@@ -1,6 +1,17 @@
 # Changelog
 
-## [v1.0.4](https://github.com/georstat/react-native-image-cache/compare/v1.0.3...v1.0.4)
+## [v1.0.5](https://github.com/georstat/react-native-image-cache/compare/v1.0.4...v1.0.5)
+
+#### Improvements
+
+- refactor: alphanum sorted some objects and props
+docs: sorted props on props table
+refactor: removed unused code
+refactor: BREAKING CHANGE: renamed `imageAnimationDuration` to `sourceAnimationDuration` prop for convention
+docs: removed iOS video demo and added GIF
+docs: added Android demo ([e36e5b2](https://github.com/georstat/react-native-image-cache/commit/e36e5b23c224d9afc0e46efc5d253546657c8d6a)).
+
+## [v1.0.4](https://github.com/georstat/react-native-image-cache/compare/v1.0.3...v1.0.4) - 2021-05-07
 
 #### Fixes
 
