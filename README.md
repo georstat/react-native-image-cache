@@ -1,10 +1,10 @@
 # React Native Image Cache with Progressive Loading
 [![npm version](https://badge.fury.io/js/%40georstat%2Freact-native-image-cache.svg)](https://badge.fury.io/js/%40georstat%2Freact-native-image-cache)
 
-Inpired by:
+Inspired by:
 
-- https://github.com/wcandillon/react-native-expo-image-cache (William Candillon)
-- https://github.com/WrathChaos/react-native-progressive-fast-image (FreakyCoder)
+- [wcandillon/react-native-expo-image-cache](https://github.com/wcandillon/react-native-expo-image-cache) (William Candillon)
+- [WrathChaos/react-native-progressive-fast-image](https://github.com/WrathChaos/react-native-progressive-fast-image) (FreakyCoder)
 
 ## Features
 
