@@ -20,7 +20,9 @@ Inspired by:
 ![@georstat:react-native-image-cache_iOS_demo](https://user-images.githubusercontent.com/717975/117460761-85fd8f00-af55-11eb-8804-69c008bfeb8d.gif)
 
 ###Android:
-![georstatreact-native-image-cache.gif](https://s3.gifyu.com/images/georstatreact-native-image-cache.gif)
+
+[![georstatreact-native-image-cache.gif](https://s3.gifyu.com/images/georstatreact-native-image-cache.gif)](https://gifyu.com/image/5gYY)
+
 ## Installation
 
 yarn:
