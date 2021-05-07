@@ -26,10 +26,10 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      showDefault: true,
       error: false,
       imageLoaded: false,
-      source: { uri: undefined },
+      showDefault: true,
+      uri: undefined,
     };
   }
 
@@ -39,7 +39,7 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
 
   componentDidUpdate(prevProps: any) {
     const { source } = this.props;
-    if (source?.uri !== prevProps.source.uri) {
+    if (source !== prevProps.source) {
       this.load(this.props).catch(e => console.log(e));
     }
   }
@@ -51,12 +51,12 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
   onThumbnailLoad = () => {
     Animated.timing(this.animatedLoadingImage, {
       toValue: 0,
-      useNativeDriver: this.props.useNativeDriver || true,
+      useNativeDriver: true,
     }).start(() => {
       Animated.timing(this.animatedThumbnailImage, {
         toValue: 1,
         duration: this.props.thumbnailAnimationDuration,
-        useNativeDriver: this.props.useNativeDriver || true,
+        useNativeDriver: true,
       }).start();
     });
   };
@@ -74,7 +74,7 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
     Animated.timing(this.animatedImage, {
       toValue: 1,
       duration: this.props.imageAnimationDuration,
-      useNativeDriver: this.props.useNativeDriver || true,
+      useNativeDriver: true,
     }).start();
   };
 
@@ -84,17 +84,17 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
     cacheKey,
     onError,
   }: ImageProps): Promise<void> {
-    if (source.uri) {
+    if (source) {
       try {
         const path = await CacheManager.get(
           source,
           options,
-          cacheKey || source.uri
+          cacheKey || source
         ).getPath();
         if (this.mounted) {
           if (path) {
             this.setState({
-              source: { uri: path },
+              uri: path,
               error: false,
             });
           } else {
@@ -121,8 +121,8 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
       resizeMode,
       ...props
     } = this.props;
-    const { source, error } = this.state;
-    const isImageReady = !!source;
+    const { uri, error } = this.state;
+    const isImageReady = !!uri;
 
     return (
       <View style={styles.container}>
@@ -142,7 +142,7 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
           ))}
         <Animated.Image
           blurRadius={15}
-          source={thumbnailSource}
+          source={{ uri: thumbnailSource }}
           resizeMode={resizeMode || 'contain'}
           onLoad={this.onThumbnailLoad}
           style={[{ opacity: this.animatedThumbnailImage }, style]}
@@ -157,13 +157,10 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
           style={[styles.imageStyle, { opacity: this.animatedImage }, style]}
           // @ts-ignore
           source={
-            error || !source.uri
+            error || !uri
               ? loadingSource
               : {
-                  uri:
-                    Platform.OS === 'android'
-                      ? `file://${source.uri}`
-                      : source.uri,
+                  uri: Platform.OS === 'android' ? `file://${uri}` : uri,
                 }
           }
         />

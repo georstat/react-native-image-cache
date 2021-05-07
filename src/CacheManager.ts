@@ -3,12 +3,12 @@ import SHA1 from 'crypto-js/sha1';
 import { uniqueId } from 'lodash';
 import { Dirs, FileSystem } from 'react-native-file-access';
 
-import { DownloadOptions, ImageSource } from './types';
+import { DownloadOptions } from './types';
 
 const BASE_DIR = `${Dirs.CacheDir}/images_cache/`;
 
 export class CacheEntry {
-  source: ImageSource;
+  source: string;
 
   options: DownloadOptions;
 
@@ -18,7 +18,7 @@ export class CacheEntry {
 
   pathResolved = false;
 
-  constructor(source: ImageSource, options: DownloadOptions, cacheKey: string) {
+  constructor(source: string, options: DownloadOptions, cacheKey: string) {
     this.source = source;
     this.options = options;
     this.cacheKey = cacheKey;
@@ -47,8 +47,8 @@ export class CacheEntry {
     tmpPath: string
   ): Promise<string | undefined> {
     const { source, options } = this;
-    if (source.uri != null) {
-      const result = await FileSystem.fetch(source.uri, {
+    if (source != null) {
+      const result = await FileSystem.fetch(source, {
         path: tmpPath,
         ...options,
       });
@@ -61,7 +61,7 @@ export class CacheEntry {
       this.pathResolved = true;
       return path;
     }
-    return source.uri;
+    return source;
   }
 }
 
@@ -80,7 +80,7 @@ export default class CacheManager {
   } */
 
   static get(
-    source: ImageSource,
+    source: string,
     options: DownloadOptions,
     cacheKey: string
   ): CacheEntry {

@@ -1,6 +1,6 @@
 {
   "name": "@georstat/react-native-image-cache",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "access": "public",
   "description": "React Native image file system caching for iOS and Android",
   "main": "lib/commonjs/index",
