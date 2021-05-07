@@ -46,6 +46,26 @@ import { CacheManager } from "@georstat/react-native-image-cache";
 await CacheManager.clearCache();
 ```
 
+## Props
+
+CachedImage accepts the following props:
+
+| Properties           | PropType             | Description                                                                                             |
+| -------------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
+| `cacheKey`           | `String`               | Defaults to source.uri |
+| `imageAnimationDuration`   | `Number`            | Image animation duration when loading                                                         |
+| `loadingImageComponent`      | `React.Node`             | Defaults to an image with the loadingSource prop                     |
+| `loadingImageStyle`    | `Object`             | Style for loading image component. Works if you don't provide a  loadingImageComponent     |
+| `loadingSource`             | `object`             | Source for loading Image component. Works if you don't provide  loadingImageComponent         |
+| `onError`          | `Func` | Runs when there is an error loading the image from cache                                                                       |
+| `resizeMode`            | `String` | React native Image component resizeMode                                                    |
+| `source` | `Object`             | Image source . For example {uri:'https://...'}                    |
+| `style`      | `Object`     | Image style                                                                   |
+| `thumbnailAnimationDuration`              | `Number`             | Animation duration for thumbnail                                                          |
+| `thumbnailSource`      | `Object`            | Source of the thumbnail while loading the image                                                         |
+
+
+
 ## Todo:
 - Convert library to React Hooks
 
