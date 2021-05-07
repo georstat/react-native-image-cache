@@ -58,7 +58,6 @@ const CachedImage: React.FC<IProps> = props => {
   };
 
   const onThumbnailLoad = () => {
-    console.log(3333);
     Animated.timing(animatedLoadingImage, {
       toValue: 0,
       useNativeDriver: true,
