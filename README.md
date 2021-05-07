@@ -52,7 +52,6 @@ CachedImage accepts the following props:
 
 | Properties           | PropType             | Description                                                                                             |
 | -------------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
-| `cacheKey`           | `String`               | Defaults to source.uri |
 | `imageAnimationDuration`   | `Number`            | Image animation duration when loading                                                         |
 | `loadingImageComponent`      | `React.Node`             | Defaults to an image with the loadingSource prop                     |
 | `loadingImageStyle`    | `Object`             | Style for loading image component. Works if you don't provide a  loadingImageComponent     |
