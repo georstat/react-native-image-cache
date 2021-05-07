@@ -1,6 +1,12 @@
 # Changelog
 
-## [v1.0.5](https://github.com/georstat/react-native-image-cache/compare/v1.0.4...v1.0.5)
+## [v1.0.6](https://github.com/georstat/react-native-image-cache/compare/v1.0.5...v1.0.6)
+
+#### Documentations
+
+- docs: fix Android demo gif ([68a212f](https://github.com/georstat/react-native-image-cache/commit/68a212fcba89218800ac496b5bed1f3d5d63e212)).
+
+## [v1.0.5](https://github.com/georstat/react-native-image-cache/compare/v1.0.4...v1.0.5) - 2021-05-07
 
 #### Improvements
 
