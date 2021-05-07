@@ -1,6 +1,16 @@
 # Changelog
 
-## [v1.0.3](https://github.com/georstat/react-native-image-cache/compare/v1.0.2...v1.0.3)
+## [v1.0.4](https://github.com/georstat/react-native-image-cache/compare/v1.0.3...v1.0.4)
+
+#### Fixes
+
+- fix: Remove cache key from props ([b9e9dc1](https://github.com/georstat/react-native-image-cache/commit/b9e9dc1077d6081223aa36bfa142efdacb6cb5bf)).
+
+#### Documentations
+
+- docs: Update props, Add cache manager methods ([6743975](https://github.com/georstat/react-native-image-cache/commit/67439752f96bad16c303f6063abe24c7194135a6)).
+
+## [v1.0.3](https://github.com/georstat/react-native-image-cache/compare/v1.0.2...v1.0.3) - 2021-05-07
 
 #### Improvements
 
