@@ -15,11 +15,11 @@ Inspired by:
 
 ## Preview
 
-###iOS:
+### iOS:
 
 ![@georstat:react-native-image-cache_iOS_demo](https://user-images.githubusercontent.com/717975/117460761-85fd8f00-af55-11eb-8804-69c008bfeb8d.gif)
 
-###Android:
+### Android:
 
 ![@georstat:react-native-image-cache_Android_demo](https://user-images.githubusercontent.com/717975/117491773-4ba5e900-af79-11eb-8ae1-99604b47c55c.gif)
 
