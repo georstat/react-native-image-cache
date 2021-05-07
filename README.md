@@ -21,7 +21,8 @@ Inspired by:
 
 ###Android:
 
-[![georstatreact-native-image-cache.gif](https://s3.gifyu.com/images/georstatreact-native-image-cache.gif)](https://gifyu.com/image/5gYY)
+![@georstat:react-native-image-cache_Android_demo](https://user-images.githubusercontent.com/717975/117491773-4ba5e900-af79-11eb-8ae1-99604b47c55c.gif)
+
 
 ## Installation
 
