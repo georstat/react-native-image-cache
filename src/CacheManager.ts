@@ -68,17 +68,6 @@ export class CacheEntry {
 export default class CacheManager {
   static entries: { [uri: string]: CacheEntry } = {};
 
-  /*   static get(
-    source: ImageSource,
-    options: DownloadOptions,
-    cacheKey: string
-  ): CacheEntry {
-    if (!CacheManager.entries[cacheKey]) {
-      CacheManager.entries[cacheKey] = new CacheEntry(source, options, cacheKey);
-    }
-    return CacheManager.entries[cacheKey];
-  } */
-
   static get(
     source: string,
     options: DownloadOptions,

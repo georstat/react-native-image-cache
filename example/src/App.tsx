@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useCallback} from 'react';
 import {
   Alert,
   Button,
@@ -9,7 +10,6 @@ import {
   View,
 } from 'react-native';
 import {CachedImage, CacheManager} from '@georstat/react-native-image-cache';
-import {useCallback} from 'react';
 
 const App = () => {
   const clearCache = useCallback(async () => {
@@ -25,59 +25,59 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Non Cached Image: (5.4MB)</Text>
       <Image
+        resizeMode="cover"
         source={{
           uri:
             'https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg',
         }}
         style={styles.image}
-        resizeMode="cover"
       />
       <Text style={styles.bottomText}>
         Cached Image With Thumbnail: (5.4MB, thumb: 14KB)
       </Text>
       <View style={styles.cachedImageContainer}>
         <CachedImage
-          thumbnailSource="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg/320px-Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg"
           source="https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg"
           style={styles.image}
+          thumbnailSource=" https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg/320px-Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg"
         />
       </View>
 
       <View style={styles.clearCachButtonContainer}>
-        <Button title="Clear Cache" onPress={clearCache} color="white" />
+        <Button color="white" onPress={clearCache} title="Clear Cache" />
       </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  bottomText: {
+    fontSize: 18,
+    marginLeft: 12,
+    marginTop: 30,
+  },
+  cachedImageContainer: {
+    alignItems: 'center',
+  },
+  clearCachButtonContainer: {
+    alignSelf: 'center',
+    backgroundColor: 'red',
+    marginTop: 30,
+    width: 200,
+  },
   container: {
     flex: 1,
   },
   image: {
-    width: 250,
-    height: 250,
     alignSelf: 'center',
+    height: 250,
     marginTop: 12,
+    width: 250,
   },
   text: {
     fontSize: 18,
     marginLeft: 12,
     marginTop: 12,
-  },
-  cachedImageContainer: {
-    alignItems: 'center',
-  },
-  bottomText: {
-    fontSize: 18,
-    marginTop: 30,
-    marginLeft: 12,
-  },
-  clearCachButtonContainer: {
-    marginTop: 30,
-    backgroundColor: 'red',
-    width: 200,
-    alignSelf: 'center',
   },
 });
 

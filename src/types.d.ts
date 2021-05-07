@@ -30,7 +30,7 @@ export interface ImageProps {
 
 interface IProps {
   cacheKey?: string;
-  imageAnimationDuration?: number;
+  sourceAnimationDuration?: number;
   loadingImageComponent?: React.ReactNode;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;

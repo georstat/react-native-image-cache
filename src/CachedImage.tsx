@@ -20,7 +20,9 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
   mounted = true;
 
   static defaultProps = {
+    sourceAnimationDuration: 200,
     onError: () => {},
+    thumbnailAnimationDuration: 200,
   };
 
   constructor(props: IProps) {
@@ -73,16 +75,16 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
     this.setState({ imageLoaded: false });
     Animated.timing(this.animatedImage, {
       toValue: 1,
-      duration: this.props.imageAnimationDuration,
+      duration: this.props.sourceAnimationDuration,
       useNativeDriver: true,
     }).start();
   };
 
   async load({
-    source,
-    options = {},
     cacheKey,
     onError,
+    options = {},
+    source,
   }: ImageProps): Promise<void> {
     if (source) {
       try {
@@ -113,15 +115,15 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
 
   render() {
     const {
-      style,
-      loadingSource,
-      thumbnailSource,
       loadingImageComponent,
       loadingImageStyle = this.props.style,
+      loadingSource,
       resizeMode,
+      style,
+      thumbnailSource,
       ...props
     } = this.props;
-    const { uri, error } = this.state;
+    const { error, uri } = this.state;
     const isImageReady = !!uri;
 
     return (
@@ -142,9 +144,9 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
           ))}
         <Animated.Image
           blurRadius={15}
-          source={{ uri: thumbnailSource }}
-          resizeMode={resizeMode || 'contain'}
           onLoad={this.onThumbnailLoad}
+          resizeMode={resizeMode || 'contain'}
+          source={{ uri: thumbnailSource }}
           style={[{ opacity: this.animatedThumbnailImage }, style]}
         />
         <AnimatedImage
@@ -154,8 +156,6 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
           onLoadEnd={this.onLoadEnd}
           resizeMode={resizeMode || 'contain'}
           // @ts-ignore
-          style={[styles.imageStyle, { opacity: this.animatedImage }, style]}
-          // @ts-ignore
           source={
             error || !uri
               ? loadingSource
@@ -163,6 +163,8 @@ export default class CachedImage extends React.Component<IProps, ImageState> {
                   uri: Platform.OS === 'android' ? `file://${uri}` : uri,
                 }
           }
+          // @ts-ignore
+          style={[styles.imageStyle, { opacity: this.animatedImage }, style]}
         />
       </View>
     );
@@ -174,21 +176,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   imageStyle: {
-    top: 0,
-    left: 0,
-    right: 0,
     bottom: 0,
+    left: 0,
     position: 'absolute',
+    right: 0,
+    top: 0,
   },
   loadingImageStyle: {
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    position: 'absolute',
     alignItems: 'center',
     alignSelf: 'center',
+    bottom: 0,
     justifyContent: 'center',
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
   },
 });
 

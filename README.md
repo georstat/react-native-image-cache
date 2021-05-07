@@ -15,8 +15,12 @@ Inspired by:
 
 ## Preview
 
-https://user-images.githubusercontent.com/717975/117415299-cf7fb700-af20-11eb-8bcb-be8bfa3f655d.mov
+###iOS:
 
+![@georstat:react-native-image-cache_iOS_demo](https://user-images.githubusercontent.com/717975/117460761-85fd8f00-af55-11eb-8804-69c008bfeb8d.gif)
+
+###Android:
+![georstatreact-native-image-cache.gif](https://s3.gifyu.com/images/georstatreact-native-image-cache.gif)
 ## Installation
 
 yarn:
@@ -63,20 +67,22 @@ CachedImage accepts the following props:
 
 | Properties                   | PropType     | Description                                                                              |
 | ---------------------------- | ------------ | ---------------------------------------------------------------------------------------- |
-| `source`                     | `String`     | (**Required**) Uri of remote image.                                                      |
+| `source`                     | `String`     | (**Required**) Uri of remote image.
+| `sourceAnimationDuration`     | `Number`     | `source` image animation duration when loading    |
 | `thumbnailSource`            | `String`     | (**Required**) Uri of the thumbnail image                                                |
-| `imageAnimationDuration`     | `Number`     | Image animation duration when loading                                                    |
+| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail                                              |
 | `loadingImageComponent`      | `React.Node` | Defaults to an image with the loadingSource prop                                         |
 | `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a loadingImageComponent    |
 | `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide loadingImageComponent     |
 | `onError`                    | `Func`       | Runs when there is an error loading the image from cache                                 |
 | `resizeMode`                 | `String`     | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) |
-| `style`                      | `Object`     | Image style                                                                              |
-| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail                                                         |
+| `style`                      | `Object`     | `source` image style                                                                              ||
+| `options`                      | `Object`     | custom `headers` for the fetch image http request                                                                             ||
 
 ## Todo:
 
 - Convert library to React Hooks
+- Make `BASE_DIR` configurable
 
 ## Authors:
 
