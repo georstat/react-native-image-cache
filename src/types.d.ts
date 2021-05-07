@@ -7,33 +7,25 @@ import {
 } from 'react-native';
 import React from 'react';
 
-export declare type ImageSource = {
-  uri?: string;
-  headers?: {
-    [key: string]: string;
-  };
-};
-
 export interface DownloadOptions {
-  md5?: boolean;
   headers?: { [name: string]: string };
 }
 
 export interface ImageState {
-  source: any;
-  imageLoaded: boolean;
   error: boolean;
+  imageLoaded: boolean;
   showDefault: boolean;
+  uri: string | undefined;
 }
 
 export interface ImageProps {
-  style?: StyleProp<ImageStyle>;
-  defaultSource?: ImageURISource | number;
-  thumbnailSource?: ImageSource;
-  options?: DownloadOptions;
-  source: ImageSource;
   cacheKey?: string;
+  defaultSource?: ImageURISource | number;
   onError: (error: { nativeEvent: { error: Error } }) => void;
+  options?: DownloadOptions;
+  source: string;
+  style?: StyleProp<ImageStyle>;
+  thumbnailSource?: string;
 }
 
 interface IProps {
@@ -45,9 +37,8 @@ interface IProps {
   onError: (error: { nativeEvent: { error: Error } }) => void;
   options?: DownloadOptions;
   resizeMode?: ImageResizeMode;
-  source: ImageSource;
+  source: string;
   style?: StyleProp<ImageStyle>;
   thumbnailAnimationDuration?: number;
-  thumbnailSource: ImageSource;
-  useNativeDriver?: boolean;
+  thumbnailSource: string;
 }
