@@ -1,6 +1,6 @@
 // @ts-ignore
 import SHA1 from 'crypto-js/sha1';
-import { uniqueId } from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 import { Dirs, FileSystem } from 'react-native-file-access';
 
 import { DownloadOptions } from './types';
