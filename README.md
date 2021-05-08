@@ -23,7 +23,6 @@ Inspired by:
 
 ![@georstat:react-native-image-cache_Android_demo](https://user-images.githubusercontent.com/717975/117491773-4ba5e900-af79-11eb-8ae1-99604b47c55c.gif)
 
-
 ## Installation
 
 yarn:
@@ -70,21 +69,21 @@ CachedImage accepts the following props:
 
 | Properties                   | PropType     | Description                                                                              |
 | ---------------------------- | ------------ | ---------------------------------------------------------------------------------------- |
-| `source`                     | `String`     | (**Required**) Uri of remote image.
-| `sourceAnimationDuration`     | `Number`     | `source` image animation duration when loading    |
+| `source`                     | `String`     | (**Required**) Uri of remote image.                                                      |
+| `sourceAnimationDuration`    | `Number`     | `source` image animation duration when loading                                           |
 | `thumbnailSource`            | `String`     | (**Required**) Uri of the thumbnail image                                                |
-| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail                                              |
+| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail                                                         |
 | `loadingImageComponent`      | `React.Node` | Defaults to an image with the loadingSource prop                                         |
 | `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a loadingImageComponent    |
 | `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide loadingImageComponent     |
 | `onError`                    | `Func`       | Runs when there is an error loading the image from cache                                 |
 | `resizeMode`                 | `String`     | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) |
-| `style`                      | `Object`     | `source` image style                                                                              ||
-| `options`                      | `Object`     | custom `headers` for the fetch image http request                                                                             ||
+| `style`                      | `Object`     | `source` image style                                                                     |
+| `options`                    | `Object`     | custom options for the fetch image http request .Eg `{headers:{} , body:{}}`             |
 
 ## Todo:
 
-- Convert library to React Hooks
+- ~~Convert library to React Hooks~~
 - Make `BASE_DIR` configurable
 
 ## Authors:
