@@ -28,7 +28,7 @@ export interface ImageProps {
   thumbnailSource?: string;
 }
 
-interface IProps {
+export interface IProps {
   cacheKey?: string;
   sourceAnimationDuration?: number;
   loadingImageComponent?: React.ReactNode;
