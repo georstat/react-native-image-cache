@@ -1,6 +1,24 @@
 # Changelog
 
-## [v1.0.6](https://github.com/georstat/react-native-image-cache/compare/v1.0.5...v1.0.6)
+## [v1.0.7](https://github.com/georstat/react-native-image-cache/compare/v1.0.6...v1.0.7)
+
+#### Improvements
+
+- refactor: delete console logs and unused files ([5180849](https://github.com/georstat/react-native-image-cache/commit/5180849afce1474e2851801de96254488c020c69)).
+- refactor: refactor code ([d6b5405](https://github.com/georstat/react-native-image-cache/commit/d6b54050c6430d872fa7eccb51b1d5b0fe41dfbe)).
+
+#### Fixes
+
+- fix: rewrite cached image as hook ([9dc89fa](https://github.com/georstat/react-native-image-cache/commit/9dc89fa350fdaa6d49d74fbd0dc0bd4b12cfe017)).
+- fix: import only iniqueId from lodash ([0feb013](https://github.com/georstat/react-native-image-cache/commit/0feb013bcbae917b1560b6a703009d7ed2c854bb)).
+
+#### Documentations
+
+- docs: hooks todo and options prop correction ([5d9b983](https://github.com/georstat/react-native-image-cache/commit/5d9b983ec1624be3ed51502ea233e2ebc8f05d1f)).
+- docs: fixed preview os headers ([7e762f9](https://github.com/georstat/react-native-image-cache/commit/7e762f9973829df13397b433abf4112275fb433e)).
+- docs: finally fixed Android demo gif ([f070a2a](https://github.com/georstat/react-native-image-cache/commit/f070a2afd55520ec1940531771497b0bde016576)).
+
+## [v1.0.6](https://github.com/georstat/react-native-image-cache/compare/v1.0.5...v1.0.6) - 2021-05-07
 
 #### Documentations
 
