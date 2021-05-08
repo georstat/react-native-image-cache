@@ -70,9 +70,9 @@ CachedImage accepts the following props:
 | Properties                   | PropType     | Description                                                                              |
 | ---------------------------- | ------------ | ---------------------------------------------------------------------------------------- |
 | `source`                     | `String`     | (**Required**) Uri of remote image.                                                      |
-| `sourceAnimationDuration`    | `Number`     | `source` image animation duration when loading                                           |
+| `sourceAnimationDuration`    | `Number`     | `source` image animation duration when loading, defaults to '200' ms                     |
 | `thumbnailSource`            | `String`     | (**Required**) Uri of the thumbnail image                                                |
-| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail                                                         |
+| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail, defaults to '200' ms                                   |
 | `loadingImageComponent`      | `React.Node` | Defaults to an image with the loadingSource prop                                         |
 | `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a loadingImageComponent    |
 | `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide loadingImageComponent     |
