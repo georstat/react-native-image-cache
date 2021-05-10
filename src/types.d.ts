@@ -7,6 +7,12 @@ import {
 } from 'react-native';
 import React from 'react';
 
+export const defaultProps = {
+  sourceAnimationDuration: 200,
+  onError: () => {},
+  thumbnailAnimationDuration: 200,
+};
+
 export interface DownloadOptions {
   headers?: { [name: string]: string };
 }
@@ -18,7 +24,7 @@ export interface ImageState {
   uri: string | undefined;
 }
 
-export interface ImageProps {
+export type ImageProps = {
   cacheKey?: string;
   defaultSource?: ImageURISource | number;
   onError: (error: { nativeEvent: { error: Error } }) => void;
@@ -26,7 +32,7 @@ export interface ImageProps {
   source: string;
   style?: StyleProp<ImageStyle>;
   thumbnailSource?: string;
-}
+} & typeof defaultProps;
 
 export interface IProps {
   cacheKey?: string;
@@ -34,7 +40,7 @@ export interface IProps {
   loadingImageComponent?: React.ReactNode;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;
-  onError: (error: { nativeEvent: { error: Error } }) => void;
+  onError?: (error: { nativeEvent: { error: Error } }) => void;
   options?: DownloadOptions;
   resizeMode?: ImageResizeMode;
   source: string;

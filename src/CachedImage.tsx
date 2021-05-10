@@ -7,12 +7,12 @@ import {
   View,
 } from 'react-native';
 
-import { ImageProps, IProps } from './types';
+import { defaultProps, ImageProps, IProps } from './types';
 import CacheManager from './CacheManager';
 
 const AnimatedImage = Animated.createAnimatedComponent(RNImage);
 
-const CachedImage: React.FC<IProps> = props => {
+const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = React.useState<boolean>(false);
   const [uri, setUri] = React.useState<string | undefined>(undefined);
 
@@ -24,7 +24,7 @@ const CachedImage: React.FC<IProps> = props => {
 
   useEffect(() => {
     if (props.source !== uri) {
-      load(props);
+      load(props).catch();
     }
   }, [props, uri]);
 
@@ -155,10 +155,6 @@ const styles = StyleSheet.create({
   },
 });
 
-CachedImage.defaultProps = {
-  sourceAnimationDuration: 200,
-  onError: () => {},
-  thumbnailAnimationDuration: 200,
-};
+CachedImage.defaultProps = defaultProps;
 
 export default CachedImage;
