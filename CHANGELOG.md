@@ -1,6 +1,17 @@
 # Changelog
 
-## [v1.0.7](https://github.com/georstat/react-native-image-cache/compare/v1.0.6...v1.0.7)
+## [v1.0.8](https://github.com/georstat/react-native-image-cache/compare/v1.0.7...v1.0.8)
+
+#### Fixes
+
+- fix: fixed `defaultProps` typings ([1cd94be](https://github.com/georstat/react-native-image-cache/commit/1cd94be7c070961f68106f965c88e1df628c3cb9)).
+
+#### Documentations
+
+- docs: docs typo ([15a0b0f](https://github.com/georstat/react-native-image-cache/commit/15a0b0f214717f89c5b73410d51b7160af94fda8)).
+- docs: add default durations ([b2e2f86](https://github.com/georstat/react-native-image-cache/commit/b2e2f862435d24652731863700e0aab905c62f1f)).
+
+## [v1.0.7](https://github.com/georstat/react-native-image-cache/compare/v1.0.6...v1.0.7) - 2021-05-08
 
 #### Improvements
 
