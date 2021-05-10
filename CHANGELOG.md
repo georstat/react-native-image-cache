@@ -1,6 +1,13 @@
 # Changelog
 
-## [v1.0.8](https://github.com/georstat/react-native-image-cache/compare/v1.0.7...v1.0.8)
+## [v1.0.9](https://github.com/georstat/react-native-image-cache/compare/v1.0.8...v1.0.9)
+
+#### Fixes
+
+- fix: finally fixed `defaultProps` typings
+fix: fixed a typo on `thumbnailSource` url in example ([a87e8b7](https://github.com/georstat/react-native-image-cache/commit/a87e8b7cb3b1039c9585c4c9f289a529ec7cf276)).
+
+## [v1.0.8](https://github.com/georstat/react-native-image-cache/compare/v1.0.7...v1.0.8) - 2021-05-10
 
 #### Fixes
 
