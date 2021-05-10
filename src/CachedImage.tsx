@@ -7,10 +7,16 @@ import {
   View,
 } from 'react-native';
 
-import { defaultProps, ImageProps, IProps } from './types';
 import CacheManager from './CacheManager';
+import { ImageProps, IProps } from './types';
 
 const AnimatedImage = Animated.createAnimatedComponent(RNImage);
+
+const defaultProps = {
+  sourceAnimationDuration: 1500,
+  onError: () => {},
+  thumbnailAnimationDuration: 1500,
+};
 
 const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = React.useState<boolean>(false);

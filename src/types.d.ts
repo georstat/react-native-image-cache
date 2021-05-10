@@ -7,12 +7,6 @@ import {
 } from 'react-native';
 import React from 'react';
 
-export const defaultProps = {
-  sourceAnimationDuration: 200,
-  onError: () => {},
-  thumbnailAnimationDuration: 200,
-};
-
 export interface DownloadOptions {
   headers?: { [name: string]: string };
 }
@@ -32,7 +26,7 @@ export type ImageProps = {
   source: string;
   style?: StyleProp<ImageStyle>;
   thumbnailSource?: string;
-} & typeof defaultProps;
+};
 
 export interface IProps {
   cacheKey?: string;
