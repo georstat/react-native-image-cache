@@ -1,6 +1,16 @@
 # Changelog
 
-## [v1.1.1](https://github.com/georstat/react-native-image-cache/compare/v1.1.0...v1.1.1)
+## [v1.1.2](https://github.com/georstat/react-native-image-cache/compare/v1.1.1...v1.1.2)
+
+#### Improvements
+
+- chore: removed some peerDependencies
+
+chore: removed `@react-native-community/bob` and added `react-native-builder-bob`
+
+fix: fixed `useEffect` props to only check for `props.source` instead of full props object, it was causing a loop if there was an error loading the image from cache ([d5f85c8](https://github.com/georstat/react-native-image-cache/commit/d5f85c89493919f49dfe632a367998df5f6ccc0a)).
+
+## [v1.1.1](https://github.com/georstat/react-native-image-cache/compare/v1.1.0...v1.1.1) - 2021-05-11
 
 #### Fixes
 
