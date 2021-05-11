@@ -27,10 +27,10 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const animatedLoadingImage = React.useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if (props.source !== uri) {
+    if (props?.source !== uri) {
       load(props).catch();
     }
-  }, [props, uri]);
+  }, [props?.source, uri]);
 
   const load = async ({
     cacheKey,

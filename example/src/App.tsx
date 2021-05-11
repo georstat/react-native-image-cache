@@ -34,8 +34,7 @@ const App = () => {
       <Image
         resizeMode="cover"
         source={{
-          uri:
-            'https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg',
+          uri: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg',
         }}
         style={styles.image}
       />
