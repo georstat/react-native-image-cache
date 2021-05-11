@@ -1,6 +1,14 @@
 # Changelog
 
-## [v1.0.9](https://github.com/georstat/react-native-image-cache/compare/v1.0.8...v1.0.9)
+## [v1.1.0](https://github.com/georstat/react-native-image-cache/compare/v1.0.9...v1.1.0)
+
+#### Features
+
+- feat: BREAKING CHANGE: added Global Config
+docs: updated README.md
+chore: updated dependencies ([b7cb4be](https://github.com/georstat/react-native-image-cache/commit/b7cb4be3d0d1db23c76409720128897f0c06dd41)).
+
+## [v1.0.9](https://github.com/georstat/react-native-image-cache/compare/v1.0.8...v1.0.9) - 2021-05-10
 
 #### Fixes
 
