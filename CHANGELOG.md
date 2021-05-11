@@ -1,6 +1,14 @@
 # Changelog
 
-## [v1.1.0](https://github.com/georstat/react-native-image-cache/compare/v1.0.9...v1.1.0)
+## [v1.1.1](https://github.com/georstat/react-native-image-cache/compare/v1.1.0...v1.1.1)
+
+#### Fixes
+
+- fix: fixed a typo on `onImageLoad` animation prop
+docs: added new TODO
+docs: added `react-native-file-access` docs link about `Dirs` ([cce01dc](https://github.com/georstat/react-native-image-cache/commit/cce01dc97ccc0c636a174ed7d93138deef27241d)).
+
+## [v1.1.0](https://github.com/georstat/react-native-image-cache/compare/v1.0.9...v1.1.0) - 2021-05-11
 
 #### Features
 
