@@ -25,13 +25,13 @@ Inspired by:
 
 ## Installation
 
-yarn:
+#### yarn:
 
 ```
 yarn add @georstat/react-native-image-cache
 ```
 
-npm:
+#### npm:
 
 ```
 npm i @georstat/react-native-image-cache
@@ -54,7 +54,7 @@ CacheManager.config = {
 };
 ```
 
-#### Directory constants, choose wisely:
+#### Directory constants, choose wisely: ([react-native-file-access docs](https://github.com/alpha0010/react-native-file-access#directory-constants))
 
 - `Dirs.CacheDir`
 - `Dirs.DatabaseDir` (Android only)
@@ -111,6 +111,7 @@ await CacheManager.getCacheSize();
 
 - ~~Convert library to React Hooks~~
 - ~~Make `BASE_DIR` configurable~~
+- Delete single cache entry
 
 ## Authors:
 

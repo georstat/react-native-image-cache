@@ -82,8 +82,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     Animated.timing(animatedImage, {
       toValue: 1,
       duration:
-        props.thumbnailAnimationDuration ||
-        CacheManager.config.thumbnailAnimationDuration,
+        props.sourceAnimationDuration ||
+        CacheManager.config.sourceAnimationDuration,
       useNativeDriver: true,
     }).start();
   };
