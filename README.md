@@ -1,4 +1,4 @@
-# React Native Image Cache with Progressive Loading
+# React Native Image Cache on File System with Progressive Loading
 
 [![npm version](https://badge.fury.io/js/%40georstat%2Freact-native-image-cache.svg)](https://badge.fury.io/js/%40georstat%2Freact-native-image-cache)
 
@@ -37,8 +37,34 @@ npm:
 npm i @georstat/react-native-image-cache
 ```
 
+
+
 ## Usage
 
+#### Put this Global config on your app entry eg. `App.tsx` or `index.js` (**Required**):
+
+```tsx
+import { CacheManager } from '@georstat/react-native-image-cache';
+import {Dirs} from 'react-native-file-access';
+
+CacheManager.config = {
+  sourceAnimationDuration: 1000,
+  thumbnailAnimationDuration: 1000,
+  BASE_DIR: `${Dirs.CacheDir}/images_cache/`,
+};
+```
+
+#### Directory constants, choose wisely:
+
+- `Dirs.CacheDir`
+- `Dirs.DatabaseDir` (Android only)
+- `Dirs.DocumentDir`
+- `Dirs.LibraryDir` (iOS only)
+- `Dirs.MainBundleDir`
+- `Dirs.SDCardDir` (Android only)
+  - Prefer `FileSystem.cpExternal()` when possible.
+
+#### Component:
 ```tsx
 import { CachedImage } from '@georstat/react-native-image-cache';
 
@@ -49,7 +75,7 @@ import { CachedImage } from '@georstat/react-native-image-cache';
 />;
 ```
 
-You can also clear the local cache:
+#### Clear local cache:
 
 ```tsx
 import { CacheManager } from '@georstat/react-native-image-cache';
@@ -57,7 +83,7 @@ import { CacheManager } from '@georstat/react-native-image-cache';
 await CacheManager.clearCache();
 ```
 
-Or get local cache size:
+#### Get local cache size:
 
 ```tsx
 await CacheManager.getCacheSize();
@@ -65,26 +91,26 @@ await CacheManager.getCacheSize();
 
 ## Props
 
-CachedImage accepts the following props:
+#### `CachedImage` accepts the following props:
 
 | Properties                   | PropType     | Description                                                                              |
 | ---------------------------- | ------------ | ---------------------------------------------------------------------------------------- |
 | `source`                     | `String`     | (**Required**) Uri of remote image.                                                      |
-| `sourceAnimationDuration`    | `Number`     | `source` image animation duration when loading, defaults to `200` ms                     |
+| `sourceAnimationDuration`    | `Number`     | `source` image animation duration when loading, defaults to `1000`ms (overrides config) |
 | `thumbnailSource`            | `String`     | (**Required**) Uri of the thumbnail image                                                |
-| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail, defaults to `200` ms                                   |
-| `loadingImageComponent`      | `React.Node` | Defaults to an image with the loadingSource prop                                         |
-| `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a loadingImageComponent    |
-| `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide loadingImageComponent     |
+| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail, defaults to `1000`ms (overrides config)               |
+| `loadingImageComponent`      | `React.Node` | Defaults to an image with the `loadingSource` prop                                         |
+| `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a `loadingImageComponent`    |
+| `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide `loadingImageComponent`     |
 | `onError`                    | `Func`       | Runs when there is an error loading the image from cache                                 |
-| `resizeMode`                 | `String`     | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) |
-| `style`                      | `Object`     | `source` image style                                                                     |
-| `options`                    | `Object`     | custom options for the fetch image http request .Eg `{headers:{} , body:{}}`             |
+| `resizeMode`                 | `String`     | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) defaults to `contain` |
+| `style`                      | `Object`     | `source` AND `thumbnailSource` image style                                                                     |
+| `options`                    | `Object`     | custom options for the fetch image http request eg. `{headers:{}, body:{}}`             |
 
 ## Todo:
 
 - ~~Convert library to React Hooks~~
-- Make `BASE_DIR` configurable
+- ~~Make `BASE_DIR` configurable~~
 
 ## Authors:
 

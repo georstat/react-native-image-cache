@@ -13,9 +13,7 @@ import { ImageProps, IProps } from './types';
 const AnimatedImage = Animated.createAnimatedComponent(RNImage);
 
 const defaultProps = {
-  sourceAnimationDuration: 1500,
   onError: () => {},
-  thumbnailAnimationDuration: 1500,
 };
 
 const CachedImage = (props: IProps & typeof defaultProps) => {
@@ -70,7 +68,9 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     }).start(() => {
       Animated.timing(animatedThumbnailImage, {
         toValue: 1,
-        duration: props.thumbnailAnimationDuration,
+        duration:
+          props.thumbnailAnimationDuration ||
+          CacheManager.config.thumbnailAnimationDuration,
         useNativeDriver: true,
       }).start();
     });
@@ -81,7 +81,9 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const onImageLoad = (): void => {
     Animated.timing(animatedImage, {
       toValue: 1,
-      duration: props.sourceAnimationDuration,
+      duration:
+        props.thumbnailAnimationDuration ||
+        CacheManager.config.thumbnailAnimationDuration,
       useNativeDriver: true,
     }).start();
   };

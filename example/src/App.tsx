@@ -10,6 +10,13 @@ import {
   View,
 } from 'react-native';
 import {CachedImage, CacheManager} from '@georstat/react-native-image-cache';
+import {Dirs} from 'react-native-file-access';
+
+CacheManager.config = {
+  sourceAnimationDuration: 1000,
+  thumbnailAnimationDuration: 1000,
+  BASE_DIR: `${Dirs.CacheDir}/images_cache/`,
+};
 
 const App = () => {
   const clearCache = useCallback(async () => {

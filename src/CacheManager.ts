@@ -1,11 +1,10 @@
 // @ts-ignore
 import SHA1 from 'crypto-js/sha1';
 import uniqueId from 'lodash/uniqueId';
-import { Dirs, FileSystem } from 'react-native-file-access';
+import { FileSystem } from 'react-native-file-access';
 
-import { DownloadOptions } from './types';
-
-const BASE_DIR = `${Dirs.CacheDir}/images_cache/`;
+import { Config, DownloadOptions } from './types';
+import defaultConfiguration from './defaultConfiguration';
 
 export class CacheEntry {
   source: string;
@@ -30,6 +29,7 @@ export class CacheEntry {
     if (exists) {
       return path;
     }
+
     if (!this.downloadPromise) {
       this.pathResolved = false;
       this.downloadPromise = this.download(path, tmpPath);
@@ -66,6 +66,17 @@ export class CacheEntry {
 }
 
 export default class CacheManager {
+  static defaultConfig: Config = defaultConfiguration;
+  static config: Config;
+
+  get config() {
+    return CacheManager.defaultConfig;
+  }
+
+  set config(newConfig) {
+    CacheManager.defaultConfig = newConfig;
+  }
+
   static entries: { [uri: string]: CacheEntry } = {};
 
   static get(
@@ -85,10 +96,10 @@ export default class CacheManager {
   }
 
   static async clearCache(): Promise<void> {
-    const files = await FileSystem.ls(BASE_DIR);
+    const files = await FileSystem.ls(CacheManager.config.BASE_DIR);
     for (const file of files) {
       try {
-        await FileSystem.unlink(`${BASE_DIR}${file}`);
+        await FileSystem.unlink(`${CacheManager.config.BASE_DIR}${file}`);
       } catch (e) {
         console.log(`error while clearing images cache, error: ${e}`);
       }
@@ -96,9 +107,9 @@ export default class CacheManager {
   }
 
   static async getCacheSize(): Promise<number> {
-    const result = await FileSystem.stat(BASE_DIR);
+    const result = await FileSystem.stat(CacheManager.config.BASE_DIR);
     if (!result) {
-      throw new Error(`${BASE_DIR} not found`);
+      throw new Error(`${CacheManager.config.BASE_DIR} not found`);
     }
     return result.size;
   }
@@ -116,11 +127,11 @@ const getCacheEntry = async (
       ? '.jpg'
       : filename.substring(filename.lastIndexOf('.'));
   const sha = SHA1(cacheKey);
-  const path = `${BASE_DIR}${sha}${ext}`;
-  const tmpPath = `${BASE_DIR}${sha}-${uniqueId()}${ext}`;
+  const path = `${CacheManager.config.BASE_DIR}${sha}${ext}`;
+  const tmpPath = `${CacheManager.config.BASE_DIR}${sha}-${uniqueId()}${ext}`;
   // TODO: maybe we don't have to do this every time
   try {
-    await FileSystem.mkdir(BASE_DIR);
+    await FileSystem.mkdir(CacheManager.config.BASE_DIR);
   } catch (e) {
     // do nothing
   }
