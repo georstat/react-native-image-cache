@@ -46,5 +46,5 @@ export interface IProps {
 export interface Config {
   sourceAnimationDuration: number;
   thumbnailAnimationDuration: number;
-  BASE_DIR: string;
+  baseDir: string;
 }

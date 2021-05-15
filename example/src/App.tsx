@@ -15,7 +15,7 @@ import {Dirs} from 'react-native-file-access';
 CacheManager.config = {
   sourceAnimationDuration: 1000,
   thumbnailAnimationDuration: 1000,
-  BASE_DIR: `${Dirs.CacheDir}/images_cache/`,
+  baseDir: `${Dirs.CacheDir}/images_cache/`,
 };
 
 let img =

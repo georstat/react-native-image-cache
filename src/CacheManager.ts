@@ -96,10 +96,10 @@ export default class CacheManager {
   }
 
   static async clearCache(): Promise<void> {
-    const files = await FileSystem.ls(CacheManager.config.BASE_DIR);
+    const files = await FileSystem.ls(CacheManager.config.baseDir);
     for (const file of files) {
       try {
-        await FileSystem.unlink(`${CacheManager.config.BASE_DIR}${file}`);
+        await FileSystem.unlink(`${CacheManager.config.baseDir}${file}`);
       } catch (e) {
         console.log(`error while clearing images cache, error: ${e}`);
       }
@@ -117,9 +117,9 @@ export default class CacheManager {
   }
 
   static async getCacheSize(): Promise<number> {
-    const result = await FileSystem.stat(CacheManager.config.BASE_DIR);
+    const result = await FileSystem.stat(CacheManager.config.baseDir);
     if (!result) {
-      throw new Error(`${CacheManager.config.BASE_DIR} not found`);
+      throw new Error(`${CacheManager.config.baseDir} not found`);
     }
     return result.size;
   }
@@ -137,11 +137,11 @@ const getCacheEntry = async (
       ? '.jpg'
       : filename.substring(filename.lastIndexOf('.'));
   const sha = SHA1(cacheKey);
-  const path = `${CacheManager.config.BASE_DIR}${sha}${ext}`;
-  const tmpPath = `${CacheManager.config.BASE_DIR}${sha}-${uniqueId()}${ext}`;
+  const path = `${CacheManager.config.baseDir}${sha}${ext}`;
+  const tmpPath = `${CacheManager.config.baseDir}${sha}-${uniqueId()}${ext}`;
   // TODO: maybe we don't have to do this every time
   try {
-    await FileSystem.mkdir(CacheManager.config.BASE_DIR);
+    await FileSystem.mkdir(CacheManager.config.baseDir);
   } catch (e) {
     // do nothing
   }
