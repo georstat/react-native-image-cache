@@ -106,6 +106,16 @@ export default class CacheManager {
     }
   }
 
+  static async removeCacheEntry(entry: string): Promise<void> {
+    try {
+      const file = await getCacheEntry(entry);
+      const { path } = file;
+      await FileSystem.unlink(path);
+    } catch (e) {
+      throw new Error('error while clearing image from cache');
+    }
+  }
+
   static async getCacheSize(): Promise<number> {
     const result = await FileSystem.stat(CacheManager.config.BASE_DIR);
     if (!result) {

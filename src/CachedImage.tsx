@@ -20,6 +20,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = React.useState<boolean>(false);
   const [uri, setUri] = React.useState<string | undefined>(undefined);
 
+  const { source: propsSource } = props;
+
   const animatedImage = React.useRef(new Animated.Value(0)).current;
 
   const animatedThumbnailImage = React.useRef(new Animated.Value(0)).current;
@@ -27,10 +29,11 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const animatedLoadingImage = React.useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if (props?.source !== uri) {
+    if (propsSource !== uri) {
       load(props).catch();
     }
-  }, [props?.source, uri]);
+    /* eslint-disable react-hooks/exhaustive-deps */
+  }, [propsSource, uri]);
 
   const load = async ({
     cacheKey,

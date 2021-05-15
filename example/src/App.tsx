@@ -18,11 +18,26 @@ CacheManager.config = {
   BASE_DIR: `${Dirs.CacheDir}/images_cache/`,
 };
 
+let img =
+  'https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg';
+
+let imgThumb =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg/320px-Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg';
+
 const App = () => {
   const clearCache = useCallback(async () => {
     try {
       await CacheManager.clearCache();
       Alert.alert('Cache cleared');
+    } catch (e) {
+      Alert.alert(e);
+    }
+  }, []);
+
+  const clearSingleImageFromCache = useCallback(async () => {
+    try {
+      await CacheManager.removeCacheEntry(img);
+      Alert.alert('Image cleared from cache');
     } catch (e) {
       Alert.alert(e);
     }
@@ -34,7 +49,7 @@ const App = () => {
       <Image
         resizeMode="cover"
         source={{
-          uri: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg',
+          uri: img,
         }}
         style={styles.image}
       />
@@ -43,14 +58,21 @@ const App = () => {
       </Text>
       <View style={styles.cachedImageContainer}>
         <CachedImage
-          source="https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg"
+          source={img}
           style={styles.image}
-          thumbnailSource="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg/320px-Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg"
+          thumbnailSource={imgThumb}
         />
       </View>
 
       <View style={styles.clearCachButtonContainer}>
-        <Button color="white" onPress={clearCache} title="Clear Cache" />
+        <Button color="white" onPress={clearCache} title="Clear Entire Cache" />
+      </View>
+      <View style={styles.clearCachButtonContainer}>
+        <Button
+          color="white"
+          onPress={clearSingleImageFromCache}
+          title="Clear only image"
+        />
       </View>
     </SafeAreaView>
   );
