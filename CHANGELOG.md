@@ -1,6 +1,20 @@
 # Changelog
 
-## [v1.1.2](https://github.com/georstat/react-native-image-cache/compare/v1.1.1...v1.1.2)
+## [v1.2.0](https://github.com/georstat/react-native-image-cache/compare/v1.1.2...v1.2.0)
+
+#### Features
+
+- feat: remove single cache entry ([1796ec1](https://github.com/georstat/react-native-image-cache/commit/1796ec1352ad039df7a385240196e8960d389fa5)).
+
+#### Improvements
+
+- refactor: base dir in camel case ([38536ef](https://github.com/georstat/react-native-image-cache/commit/38536ef55a33bb9dab95457972fa426aa4bb8b71)).
+
+#### Documentations
+
+- docs: ipdate docs ([8c725d4](https://github.com/georstat/react-native-image-cache/commit/8c725d484f5c60b7bd5d4665c52b6302b84873a4)).
+
+## [v1.1.2](https://github.com/georstat/react-native-image-cache/compare/v1.1.1...v1.1.2) - 2021-05-11
 
 #### Improvements
 
