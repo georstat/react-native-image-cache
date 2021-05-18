@@ -29,6 +29,7 @@ export type ImageProps = {
 };
 
 export interface IProps {
+  blurRadius?: number;
   cacheKey?: string;
   sourceAnimationDuration?: number;
   loadingImageComponent?: React.ReactNode;
@@ -44,7 +45,8 @@ export interface IProps {
 }
 
 export interface Config {
+  baseDir: string;
+  blurRadius: number;
   sourceAnimationDuration: number;
   thumbnailAnimationDuration: number;
-  baseDir: string;
 }

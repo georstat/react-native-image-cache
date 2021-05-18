@@ -92,6 +92,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   };
 
   const {
+    blurRadius,
     loadingImageComponent,
     loadingImageStyle = props.style,
     loadingSource,
@@ -117,7 +118,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           </View>
         ))}
       <AnimatedImage
-        blurRadius={15}
+        blurRadius={blurRadius || CacheManager.config.blurRadius}
         onLoad={onThumbnailLoad}
         resizeMode={resizeMode || 'contain'}
         source={{ uri: thumbnailSource }}
