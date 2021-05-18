@@ -1,6 +1,14 @@
 # Changelog
 
-## [v1.2.0](https://github.com/georstat/react-native-image-cache/compare/v1.1.2...v1.2.0)
+## [v1.2.1](https://github.com/georstat/react-native-image-cache/compare/v1.2.0...v1.2.1)
+
+#### Improvements
+
+- chore: added `blurRadius` as a prop BREAKING: please add `blurRadius` in `CacheManager` config
+docs: improved docs badges and added `blurRadius` prop info
+chore: sorted alphabetically some objects ([942a588](https://github.com/georstat/react-native-image-cache/commit/942a58884cfd77f66b56bb33f1c364e4c2dba42a)).
+
+## [v1.2.0](https://github.com/georstat/react-native-image-cache/compare/v1.1.2...v1.2.0) - 2021-05-15
 
 #### Features
 
