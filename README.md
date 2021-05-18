@@ -1,9 +1,10 @@
 # React Native Image Cache on File System with Progressive Loading
 
-[![npm version](https://badge.fury.io/js/%40georstat%2Freact-native-image-cache.svg)](https://badge.fury.io/js/%40georstat%2Freact-native-image-cache)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/georstat/react-native-image-cache)
-![Platform - Android and iOS](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue.svg)
+[![npm version](https://img.shields.io/npm/v/@georstat/react-native-image-cache.svg?style=for-the-badge)](https://www.npmjs.com/package/@georstat/react-native-image-cache)
+[![npm](https://img.shields.io/npm/dt/@georstat/react-native-image-cache.svg?style=for-the-badge)](https://www.npmjs.com/package/@georstat/react-native-image-cache)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/georstat/react-native-image-cache?style=for-the-badge)
+![Platform - Android and iOS](https://img.shields.io/badge/platform-Android%20%7C%20iOS-blue.svg?style=for-the-badge)
 
 Inspired by:
 
@@ -49,9 +50,10 @@ import { CacheManager } from '@georstat/react-native-image-cache';
 import { Dirs } from 'react-native-file-access';
 
 CacheManager.config = {
+  baseDir: `${Dirs.CacheDir}/images_cache/`,
+  blurRadius: 15,
   sourceAnimationDuration: 1000,
   thumbnailAnimationDuration: 1000,
-  baseDir: `${Dirs.CacheDir}/images_cache/`,
 };
 ```
 
@@ -88,7 +90,7 @@ await CacheManager.clearCache();
 #### Remove single cache entry:
 
 ```tsx
-let uri = 'https://img/.../example.jpg';
+const uri = 'https://.../example.jpg';
 
 await CacheManager.removeCacheEntry(uri);
 ```
@@ -109,6 +111,7 @@ await CacheManager.getCacheSize();
 | `sourceAnimationDuration`    | `Number`     | `source` image animation duration when loading, defaults to `1000`ms (overrides config)                        |
 | `thumbnailSource`            | `String`     | (**Required**) Uri of the thumbnail image                                                                      |
 | `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail, defaults to `1000`ms (overrides config)                                      |
+| `blurRadius`                 | `Number`     | Amount of blur to apply on `thumbnailSource` image , defaults to `15` (overrides config)                       |
 | `loadingImageComponent`      | `React.Node` | Defaults to an image with the `loadingSource` prop                                                             |
 | `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a `loadingImageComponent`                        |
 | `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide `loadingImageComponent`                         |
