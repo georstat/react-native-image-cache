@@ -1,6 +1,17 @@
 # Changelog
 
-## [v1.2.3](https://github.com/georstat/react-native-image-cache/compare/v1.2.2...v1.2.3)
+## [v1.2.4](https://github.com/georstat/react-native-image-cache/compare/v1.2.3...v1.2.4)
+
+#### Improvements
+
+- chore: resolve conflicts ([3d254a0](https://github.com/georstat/react-native-image-cache/commit/3d254a0d043a5c4acbbf77e2df7075b7f30b0857)).
+- chore: bump react-native-file-access ([e3d8165](https://github.com/georstat/react-native-image-cache/commit/e3d81651978d42567a583f0760744410a7d51129)).
+
+#### Fixes
+
+- fix: example on android ([1e50e8b](https://github.com/georstat/react-native-image-cache/commit/1e50e8b60df7546e8d7e299145d5caa4ff2014ca)).
+
+## [v1.2.3](https://github.com/georstat/react-native-image-cache/compare/v1.2.2...v1.2.3) - 2021-06-05
 
 ## [v1.2.2](https://github.com/georstat/react-native-image-cache/compare/v1.2.1...v1.2.2) - 2021-06-05
 
