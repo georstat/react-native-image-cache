@@ -1,6 +1,14 @@
 # Changelog
 
-## [v1.2.1](https://github.com/georstat/react-native-image-cache/compare/v1.2.0...v1.2.1)
+## [v1.2.3](https://github.com/georstat/react-native-image-cache/compare/v1.2.2...v1.2.3)
+
+## [v1.2.2](https://github.com/georstat/react-native-image-cache/compare/v1.2.1...v1.2.2) - 2021-06-05
+
+#### Improvements
+
+- chore: `react-native-file-access` now installs patch version instead of latest minor ([2d0c7a7](https://github.com/georstat/react-native-image-cache/commit/2d0c7a7f82bef79d462d55457ccafe33f912fe04)).
+
+## [v1.2.1](https://github.com/georstat/react-native-image-cache/compare/v1.2.0...v1.2.1) - 2021-05-18
 
 #### Improvements
 

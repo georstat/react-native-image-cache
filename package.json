@@ -1,6 +1,6 @@
 {
   "name": "@georstat/react-native-image-cache",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "access": "public",
   "description": "React Native image file system caching for iOS and Android",
   "main": "lib/commonjs/index.js",
@@ -20,7 +20,7 @@
     "file system image cache"
   ],
   "repository": "https://github.com/georstat/react-native-image-cache",
-  "author": "Efstathios Ntonas - George Bakogiannis",
+  "author": "Efstathios Ntonas - George Bakogiannis - George Kallinikos",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/georstat/react-native-image-cacheissues"
