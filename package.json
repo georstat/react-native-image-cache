@@ -39,7 +39,7 @@
   "dependencies": {
     "crypto-js": "^4.0.0",
     "lodash": "^4.17.21",
-    "react-native-file-access": "~1.6.1"
+    "react-native-file-access": "^1.7.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",

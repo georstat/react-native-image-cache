@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
 } from 'react-native';
 import {CachedImage, CacheManager} from '@georstat/react-native-image-cache';
 import {Dirs} from 'react-native-file-access';
@@ -46,35 +47,41 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Non Cached Image: (5.4MB)</Text>
-      <Image
-        resizeMode="cover"
-        source={{
-          uri: img,
-        }}
-        style={styles.image}
-      />
-      <Text style={styles.bottomText}>
-        Cached Image With Thumbnail: (5.4MB, thumb: 14KB)
-      </Text>
-      <View style={styles.cachedImageContainer}>
-        <CachedImage
-          source={img}
+      <ScrollView>
+        <Text style={styles.text}>Non Cached Image: (5.4MB)</Text>
+        <Image
+          resizeMode="cover"
+          source={{
+            uri: img,
+          }}
           style={styles.image}
-          thumbnailSource={imgThumb}
         />
-      </View>
+        <Text style={styles.bottomText}>
+          Cached Image With Thumbnail: (5.4MB, thumb: 14KB)
+        </Text>
+        <View style={styles.cachedImageContainer}>
+          <CachedImage
+            source={img}
+            style={styles.image}
+            thumbnailSource={imgThumb}
+          />
+        </View>
 
-      <View style={styles.clearCachButtonContainer}>
-        <Button color="white" onPress={clearCache} title="Clear Entire Cache" />
-      </View>
-      <View style={styles.clearCachButtonContainer}>
-        <Button
-          color="white"
-          onPress={clearSingleImageFromCache}
-          title="Clear only image"
-        />
-      </View>
+        <View style={styles.clearCachButtonContainer}>
+          <Button
+            color="blue"
+            onPress={clearCache}
+            title="Clear Entire Cache"
+          />
+        </View>
+        <View style={styles.clearCachButtonContainer}>
+          <Button
+            color="blue"
+            onPress={clearSingleImageFromCache}
+            title="Clear only image"
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
   },
   clearCachButtonContainer: {
     alignSelf: 'center',
-    backgroundColor: 'red',
+    backgroundColor: 'white',
     marginTop: 30,
     width: 200,
   },

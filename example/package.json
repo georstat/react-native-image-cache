@@ -13,7 +13,7 @@
     "lodash": "^4.17.21",
     "react": "17.0.2",
     "react-native": "0.64.1",
-    "react-native-file-access": "~1.6.1"
+    "react-native-file-access": "^1.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
