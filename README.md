@@ -31,14 +31,20 @@ Inspired by:
 
 #### yarn:
 
-```
+```bash
 yarn add @georstat/react-native-image-cache
 ```
 
 #### npm:
 
-```
+```bash
 npm i @georstat/react-native-image-cache
+```
+
+#### link native packages:
+```bash
+ cd ios
+ pod install
 ```
 
 ## Usage
