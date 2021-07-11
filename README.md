@@ -27,6 +27,10 @@ Inspired by:
 
 ![@georstat:react-native-image-cache_Android_demo](https://user-images.githubusercontent.com/717975/117491773-4ba5e900-af79-11eb-8ae1-99604b47c55c.gif)
 
+### Custom Loading Image Component: (see [example](https://github.com/georstat/react-native-image-cache/tree/main/example/src))
+
+![@georstat:react-native-image-cache_custom_loading_image_component_demo](https://user-images.githubusercontent.com/717975/125193571-b4e5f900-e255-11eb-8164-3ca097ce6e74.gif)
+
 ## Installation
 
 #### yarn:
