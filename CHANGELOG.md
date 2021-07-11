@@ -1,6 +1,22 @@
 # Changelog
 
-## [v1.2.4](https://github.com/georstat/react-native-image-cache/compare/v1.2.3...v1.2.4)
+## [v1.2.5](https://github.com/georstat/react-native-image-cache/compare/v1.2.4...v1.2.5)
+
+#### Improvements
+
+- chore: added example with `loadingImageComponent` ([5396857](https://github.com/georstat/react-native-image-cache/commit/53968577ab95fcf90c9bb6366e733af564c978fe)).
+- chore: updated npm packages ([f63d354](https://github.com/georstat/react-native-image-cache/commit/f63d3547b307d3804624abd81e33aee9e434fca7)).
+- chore: updated example npm packages
+* prettier add bracket spacing ([9a7bb68](https://github.com/georstat/react-native-image-cache/commit/9a7bb680eccd0cb052221621855353818925dc42)).
+- chore: added native modules linking instructions on README ([f20b3cc](https://github.com/georstat/react-native-image-cache/commit/f20b3cc2db134687894b5c53979bff6316126ede)).
+
+#### Fixes
+
+- fix: infinite callback
+chore: improved loadingImageComponent behavior ([5fc9cbd](https://github.com/georstat/react-native-image-cache/commit/5fc9cbd57d8c05b8cdbe15cf2fd834e19d36e298)).
+- fix: fix `blacklist` module not found error ([aff0b65](https://github.com/georstat/react-native-image-cache/commit/aff0b653231797797a02847dab42c3f86da1bd4a)).
+
+## [v1.2.4](https://github.com/georstat/react-native-image-cache/compare/v1.2.3...v1.2.4) - 2021-07-06
 
 #### Improvements
 
