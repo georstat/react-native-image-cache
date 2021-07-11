@@ -32,7 +32,7 @@ export interface IProps {
   blurRadius?: number;
   cacheKey?: string;
   sourceAnimationDuration?: number;
-  loadingImageComponent?: React.ReactNode;
+  loadingImageComponent?: React.ComponentType;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;
   onError?: (error: { nativeEvent: { error: Error } }) => void;
@@ -41,7 +41,7 @@ export interface IProps {
   source: string;
   style?: StyleProp<ImageStyle>;
   thumbnailAnimationDuration?: number;
-  thumbnailSource: string;
+  thumbnailSource?: string;
 }
 
 export interface Config {

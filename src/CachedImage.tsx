@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   Animated,
   Image as RNImage,
@@ -11,6 +11,7 @@ import CacheManager from './CacheManager';
 import { ImageProps, IProps } from './types';
 
 const AnimatedImage = Animated.createAnimatedComponent(RNImage);
+const AnimatedView = Animated.View;
 
 const defaultProps = {
   onError: () => {},
@@ -19,8 +20,8 @@ const defaultProps = {
 const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = React.useState<boolean>(false);
   const [uri, setUri] = React.useState<string | undefined>(undefined);
-
   const { source: propsSource } = props;
+  const [currentSource, setCurrentSource] = React.useState<string>(propsSource);
 
   const animatedImage = React.useRef(new Animated.Value(0)).current;
 
@@ -31,6 +32,11 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   useEffect(() => {
     if (propsSource !== uri) {
       load(props).catch();
+    }
+    if (propsSource !== currentSource) {
+      setCurrentSource(propsSource);
+      setUri(undefined);
+      resetAnimations();
     }
     /* eslint-disable react-hooks/exhaustive-deps */
   }, [propsSource, uri]);
@@ -64,6 +70,12 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     }
   };
 
+  const resetAnimations = () => {
+    animatedLoadingImage.setValue(1);
+    animatedThumbnailImage.setValue(0);
+    animatedImage.setValue(0);
+  };
+
   const onThumbnailLoad = () => {
     Animated.timing(animatedLoadingImage, {
       toValue: 0,
@@ -93,7 +105,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
 
   const {
     blurRadius,
-    loadingImageComponent,
+    loadingImageComponent: LoadingImageComponent,
     loadingImageStyle = props.style,
     loadingSource,
     resizeMode,
@@ -102,13 +114,30 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     ...rest
   } = props;
 
-  const isImageReady = !!uri;
+  const isImageReady = useMemo(() => !!uri, [uri, propsSource]);
+
+  const imageSource = useMemo(() => {
+    return error || !uri
+      ? loadingSource
+      : {
+          uri: Platform.OS === 'android' ? `file://${uri}` : uri,
+        };
+  }, [uri, error]);
 
   return (
-    <View style={styles.container}>
-      {loadingImageComponent ||
-        (loadingSource && !isImageReady && (
-          <View style={[styles.loadingImageStyle, style]}>
+    <View style={[styles.container, style]}>
+      {!isImageReady &&
+        (LoadingImageComponent ? (
+          <AnimatedView
+            style={[
+              styles.loadingImageStyle,
+              { opacity: animatedLoadingImage },
+            ]}
+          >
+            <LoadingImageComponent />
+          </AnimatedView>
+        ) : (
+          <View style={[styles.loadingImageStyle]}>
             <AnimatedImage
               resizeMode={resizeMode || 'contain'}
               style={[{ opacity: animatedLoadingImage }, loadingImageStyle]}
@@ -117,29 +146,27 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
             />
           </View>
         ))}
-      <AnimatedImage
-        blurRadius={blurRadius || CacheManager.config.blurRadius}
-        onLoad={onThumbnailLoad}
-        resizeMode={resizeMode || 'contain'}
-        source={{ uri: thumbnailSource }}
-        style={[{ opacity: animatedThumbnailImage }, style]}
-      />
-      <AnimatedImage
-        {...rest}
-        onError={onImageError}
-        onLoad={onImageLoad}
-        resizeMode={resizeMode || 'contain'}
-        // @ts-ignore
-        source={
-          error || !uri
-            ? loadingSource
-            : {
-                uri: Platform.OS === 'android' ? `file://${uri}` : uri,
-              }
-        }
-        // @ts-ignore
-        style={[styles.imageStyle, { opacity: animatedImage }, style]}
-      />
+      {thumbnailSource && (
+        <AnimatedImage
+          blurRadius={blurRadius || CacheManager.config.blurRadius}
+          onLoad={onThumbnailLoad}
+          resizeMode={resizeMode || 'contain'}
+          source={{ uri: thumbnailSource }}
+          style={[{ opacity: animatedThumbnailImage }]}
+        />
+      )}
+      {imageSource && (
+        <AnimatedImage
+          {...rest}
+          onError={onImageError}
+          onLoad={onImageLoad}
+          resizeMode={resizeMode || 'contain'}
+          // @ts-ignore
+          source={imageSource}
+          // @ts-ignore
+          style={[styles.imageStyle, { opacity: animatedImage }]}
+        />
+      )}
     </View>
   );
 };

@@ -118,7 +118,7 @@ await CacheManager.getCacheSize();
 | `thumbnailSource`            | `String`     | (**Required**) Uri of the thumbnail image                                                                      |
 | `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail, defaults to `1000`ms (overrides config)                                      |
 | `blurRadius`                 | `Number`     | Amount of blur to apply on `thumbnailSource` image , defaults to `15` (overrides config)                       |
-| `loadingImageComponent`      | `React.Node` | Defaults to an image with the `loadingSource` prop                                                             |
+| `loadingImageComponent`      | `React.CompnentType` | Defaults to an image with the `loadingSource` prop                                                     |
 | `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a `loadingImageComponent`                        |
 | `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide `loadingImageComponent`                         |
 | `onError`                    | `Func`       | Runs when there is an error loading the image from cache                                                       |
