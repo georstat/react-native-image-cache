@@ -1,6 +1,12 @@
 # Changelog
 
-## [v1.2.5](https://github.com/georstat/react-native-image-cache/compare/v1.2.4...v1.2.5)
+## [v1.2.6](https://github.com/georstat/react-native-image-cache/compare/v1.2.5...v1.2.6)
+
+#### Improvements
+
+- chore: added `useStateIfMounted` hook to prevent `Can't perform a React state update on an unmounted component.` warning ([833b331](https://github.com/georstat/react-native-image-cache/commit/833b331c2b7b85aab498daa33f81b05728504d85)).
+
+## [v1.2.5](https://github.com/georstat/react-native-image-cache/compare/v1.2.4...v1.2.5) - 2021-07-11
 
 #### Improvements
 
