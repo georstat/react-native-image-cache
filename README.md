@@ -13,7 +13,7 @@ Inspired by:
 
 ## Features
 
-- Cache remote images in file system with progressive loading
+- Cache **remote** images in file system with progressive loading
 - Uses [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) for file system access
 - Written in `Typescript`
 
