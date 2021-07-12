@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+} from 'react';
 import {
   Animated,
   Image as RNImage,
@@ -17,9 +23,37 @@ const defaultProps = {
   onError: () => {},
 };
 
+function useIsComponentMounted() {
+  const isMounted = React.useRef(false);
+  // @ts-ignore
+  useEffect(() => {
+    isMounted.current = true;
+    return () => (isMounted.current = false);
+  }, []);
+  return isMounted;
+}
+
+function useStateIfMounted<S>(
+  initialState: S | (() => S)
+): [S, Dispatch<SetStateAction<S>>] {
+  const isComponentMounted = useIsComponentMounted();
+  const [state, setState] = React.useState(initialState);
+
+  const newSetState = useCallback(
+    value => {
+      if (isComponentMounted.current) {
+        setState(value);
+      }
+    },
+    [isComponentMounted]
+  );
+
+  return [state, newSetState];
+}
+
 const CachedImage = (props: IProps & typeof defaultProps) => {
-  const [error, setError] = React.useState<boolean>(false);
-  const [uri, setUri] = React.useState<string | undefined>(undefined);
+  const [error, setError] = useStateIfMounted<boolean>(false);
+  const [uri, setUri] = useStateIfMounted<string | undefined>(undefined);
   const { source: propsSource } = props;
   const [currentSource, setCurrentSource] = React.useState<string>(propsSource);
 
