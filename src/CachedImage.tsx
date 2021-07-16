@@ -138,6 +138,15 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   };
 
   const {
+    accessibilityRole,
+    accessibilityRoleThumbnail,
+    accessibilityRoleLoadingSource,
+    accessibilityHint,
+    accessibilityHintLoadingImage,
+    accessibilityHintThumbnail,
+    accessibilityLabel,
+    accessibilityLabelLoadingImage,
+    accessibilityLabelThumbnail,
     blurRadius,
     loadingImageComponent: LoadingImageComponent,
     loadingImageStyle = props.style,
@@ -173,6 +182,10 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
         ) : (
           <View style={[styles.loadingImageStyle]}>
             <AnimatedImage
+              accessibilityHint={accessibilityHintLoadingImage}
+              accessibilityLabel={accessibilityLabelLoadingImage}
+              accessibilityRole={accessibilityRoleLoadingSource || 'image'}
+              accessible
               resizeMode={resizeMode || 'contain'}
               style={[{ opacity: animatedLoadingImage }, loadingImageStyle]}
               // @ts-ignore
@@ -182,6 +195,10 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
         ))}
       {thumbnailSource && (
         <AnimatedImage
+          accessibilityHint={accessibilityHintThumbnail}
+          accessibilityLabel={accessibilityLabelThumbnail}
+          accessibilityRole={accessibilityRoleThumbnail || 'image'}
+          accessible
           blurRadius={blurRadius || CacheManager.config.blurRadius}
           onLoad={onThumbnailLoad}
           resizeMode={resizeMode || 'contain'}
@@ -192,6 +209,10 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       {imageSource && (
         <AnimatedImage
           {...rest}
+          accessibilityHint={accessibilityHint}
+          accessibilityLabel={accessibilityLabel}
+          accessibilityRole={accessibilityRole || 'image'}
+          accessible
           onError={onImageError}
           onLoad={onImageLoad}
           resizeMode={resizeMode || 'contain'}

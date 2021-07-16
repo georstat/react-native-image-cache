@@ -1,4 +1,5 @@
 import {
+  AccessibilityRole,
   ImageResizeMode,
   ImageSourcePropType,
   ImageStyle,
@@ -29,9 +30,17 @@ export type ImageProps = {
 };
 
 export interface IProps {
+  accessibilityHint?: string;
+  accessibilityHintLoadingImage?: string;
+  accessibilityHintThumbnail?: string;
+  accessibilityLabel?: string;
+  accessibilityLabelLoadingImage?: string;
+  accessibilityLabelThumbnail?: string;
+  accessibilityRole?: AccessibilityRole;
+  accessibilityRoleLoadingSource?: AccessibilityRole;
+  accessibilityRoleThumbnail?: AccessibilityRole;
   blurRadius?: number;
   cacheKey?: string;
-  sourceAnimationDuration?: number;
   loadingImageComponent?: React.ComponentType;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;
@@ -39,6 +48,7 @@ export interface IProps {
   options?: DownloadOptions;
   resizeMode?: ImageResizeMode;
   source: string;
+  sourceAnimationDuration?: number;
   style?: StyleProp<ImageStyle>;
   thumbnailAnimationDuration?: number;
   thumbnailSource?: string;

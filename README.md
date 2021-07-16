@@ -129,6 +129,18 @@ await CacheManager.getCacheSize();
 | `resizeMode`                 | `String`     | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) defaults to `contain` |
 | `style`                      | `Object`     | `source` AND `thumbnailSource` image style                                                                     |
 | `options`                    | `Object`     | custom options for the fetch image http request eg. `{headers:{}, body:{}}`                                    |
+| `accessibilityHint`          | `string`     | accessibility hint for `source` (optional)                                                                     |
+| `accessibilityLabel`         | `string`     | accessibility label for `source` (optional)                                                                    |
+| `accessibilityRole`          | `string`     | accessibility role for `source` (optional, defaults to `image`)                                                |
+| `accessibilityHintThumbnail` | `string`     | accessibility hint for `thumbnailSource` (optional)                                                            |
+| `accessibilityLabelThumbnail`| `string`     | accessibility label for `thumbnailSource` (optional)                                                           |
+| `accessibilityRoleThumbnail`| `string`      | accessibility role for `thumbnailSource` (optional, defaults to `image`)                                       |
+| `accessibilityHintLoadingImage`| `string`   | accessibility hint for `loadingSource` (optional)                                                              |
+| `accessibilityLabelLoadingImage` | `string` | accessibility label for `loadingSource` (optional)                                                             |
+| `accessibilityRoleLoadingImage` | `string`  | accessibility role for `loadingSource` (optional, defaults to `image`)                                         |
+
+#### [More info about React Native Accessibility](https://reactnative.dev/docs/accessibility)
+#### [Blog Article about React Native Accessibility](https://medium.com/reactbrasil/introducing-react-native-accessibility-engine-fcf78f2a3805)
 
 ## Todo:
 
