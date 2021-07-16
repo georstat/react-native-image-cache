@@ -145,7 +145,6 @@
 				2C0332F855E89D6806F795EE /* Pods-ReactNativeImageCacheExample-ReactNativeImageCacheExampleTests.debug.xcconfig */,
 				786928E07CA4D3BFA892FC7E /* Pods-ReactNativeImageCacheExample-ReactNativeImageCacheExampleTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SR56R99GCY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ReactNativeImageCacheExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SR56R99GCY;
 				INFOPLIST_FILE = ReactNativeImageCacheExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

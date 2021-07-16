@@ -1,6 +1,13 @@
 # Changelog
 
-## [v1.2.6](https://github.com/georstat/react-native-image-cache/compare/v1.2.5...v1.2.6)
+## [v1.2.7](https://github.com/georstat/react-native-image-cache/compare/v1.2.6...v1.2.7)
+
+#### Documentations
+
+- docs: added accessibility props ([b3ef531](https://github.com/georstat/react-native-image-cache/commit/b3ef531c216ac4a755cda44e823a0177a24e61f0)).
+- docs: made `remote` bold ([0527a47](https://github.com/georstat/react-native-image-cache/commit/0527a47dc709d404930d6e5e3304fa5a6811e6f1)).
+
+## [v1.2.6](https://github.com/georstat/react-native-image-cache/compare/v1.2.5...v1.2.6) - 2021-07-12
 
 #### Improvements
 

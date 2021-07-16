@@ -3,7 +3,9 @@
     "push": true,
     "tagName": "v${version}",
     "commitMessage": "chore: release v${version}",
-    "changelog": "auto-changelog --stdout --unreleased --template ./templates/changelog-template.hbs"
+    "changelog": "auto-changelog --stdout --unreleased --template ./templates/changelog-template.hbs",
+    "requireCleanWorkingDir": false
+
   },
   "github": {
     "release": true,
