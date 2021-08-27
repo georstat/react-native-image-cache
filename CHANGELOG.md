@@ -1,6 +1,17 @@
 # Changelog
 
-## [v1.2.7](https://github.com/georstat/react-native-image-cache/compare/v1.2.6...v1.2.7)
+## [v1.2.8](https://github.com/georstat/react-native-image-cache/compare/v1.2.7...v1.2.8)
+
+#### Improvements
+
+- chore: updated packages ([5e18298](https://github.com/georstat/react-native-image-cache/commit/5e182980b098daf710e13a0da9d513273603dfd0)).
+- chore: updated example packages ([88b190a](https://github.com/georstat/react-native-image-cache/commit/88b190ad84f592a9aeb6630d91eb60211bddb890)).
+
+#### Fixes
+
+- fix: thumbnail image should now show up, was missing `style` ([8358a6d](https://github.com/georstat/react-native-image-cache/commit/8358a6d7419d85abba3fe450726ece5b4d53daf4)).
+
+## [v1.2.7](https://github.com/georstat/react-native-image-cache/compare/v1.2.6...v1.2.7) - 2021-07-16
 
 #### Documentations
 
