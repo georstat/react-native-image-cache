@@ -54,7 +54,7 @@ npm i @georstat/react-native-image-cache
 
 ### \*\*note!
 
-For react native >=65 use [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) >= 2.0.0
+For react native >= 0.65 use [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) >= 2.0.0
 
 ## Usage
 
