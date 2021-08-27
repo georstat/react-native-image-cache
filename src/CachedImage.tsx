@@ -97,7 +97,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
             nativeEvent: { error: new Error('Could not load image') },
           });
         }
-      } catch (e) {
+      } catch (e: any) {
         setError(true);
         onError({ nativeEvent: { error: e } });
       }
@@ -203,7 +203,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           onLoad={onThumbnailLoad}
           resizeMode={resizeMode || 'contain'}
           source={{ uri: thumbnailSource }}
-          style={[{ opacity: animatedThumbnailImage }]}
+          style={[style, { opacity: animatedThumbnailImage }]}
         />
       )}
       {imageSource && (
