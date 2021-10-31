@@ -123,6 +123,16 @@ export default class CacheManager {
     }
     return result.size;
   }
+
+  static async isUriCached(entry: string): Promise<boolean> {
+    try {
+      const file = await getCacheEntry(entry);
+      const { exists } = file;
+      return exists;
+    } catch (e) {
+      throw new Error('error while reading from filesystem');
+    }
+  }
 }
 
 const getCacheEntry = async (
