@@ -116,6 +116,12 @@ await CacheManager.removeCacheEntry(uri);
 await CacheManager.getCacheSize();
 ```
 
+#### Check if uri is cached:
+
+```tsx
+await CacheManager.isUriCached(uri);
+```
+
 ## Props
 
 #### `CachedImage` accepts the following props:
