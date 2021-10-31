@@ -119,7 +119,7 @@ await CacheManager.getCacheSize();
 #### Check if uri is cached:
 
 ```tsx
-await CacheManager.isUriCached(uri);
+await CacheManager.isImageCached(uri);
 ```
 
 ## Props

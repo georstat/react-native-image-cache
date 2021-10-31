@@ -124,7 +124,7 @@ export default class CacheManager {
     return result.size;
   }
 
-  static async isUriCached(entry: string): Promise<boolean> {
+  static async isImageCached(entry: string): Promise<boolean> {
     try {
       const file = await getCacheEntry(entry);
       const { exists } = file;
