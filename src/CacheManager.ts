@@ -130,7 +130,7 @@ export default class CacheManager {
       const { exists } = file;
       return exists;
     } catch (e) {
-      throw new Error('Error while checking if file already exists on cache');
+      throw new Error('Error while checking if image already exists on cache');
     }
   }
 }
