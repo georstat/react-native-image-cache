@@ -1,6 +1,29 @@
 # Changelog
 
-## [v1.2.8](https://github.com/georstat/react-native-image-cache/compare/v1.2.7...v1.2.8)
+## [v1.3.0](https://github.com/georstat/react-native-image-cache/compare/v1.2.8...v1.3.0)
+
+#### Features
+
+- feat: Add method to check if image is cached or not ([84e1464](https://github.com/georstat/react-native-image-cache/commit/84e146460d1509e714a7940534c27bcbcd06883c)).
+- feat: Add method to check if image is cached or not ([6072a23](https://github.com/georstat/react-native-image-cache/commit/6072a2374cbc9023e0387aa7fb85032b4b6ece6f)).
+
+#### Improvements
+
+- chore: rename method to check if image is cached ([d767aae](https://github.com/georstat/react-native-image-cache/commit/d767aae38dcd25110d5acfcb4e1e7f3bed045b5d)).
+- chore: change file to image on error message ([dcc8928](https://github.com/georstat/react-native-image-cache/commit/dcc892896945103d6c892a4e475238ece0756682)).
+
+#### Fixes
+
+- fix: Better error message while checking if file exists ([ca6840d](https://github.com/georstat/react-native-image-cache/commit/ca6840d54bbd4a689d6644516426c92d19bfc9e9)).
+
+#### Documentations
+
+- docs: add react-native file access version for rn 0.65 ([e38bf3b](https://github.com/georstat/react-native-image-cache/commit/e38bf3bdb253b5cc84d383873c18377b235c4363)).
+- docs: add new method to check if image is cached ([3070564](https://github.com/georstat/react-native-image-cache/commit/30705642189177ba525dbc0d4ce8f65eee177338)).
+- docs: typo in docs ([197fa77](https://github.com/georstat/react-native-image-cache/commit/197fa77835f7abcaaa2ffaef77a948358fd91626)).
+- docs: typo in note for rn 0.65 ([833ed36](https://github.com/georstat/react-native-image-cache/commit/833ed367de32b9beb5b9c49eef1b6111d3e7ac22)).
+
+## [v1.2.8](https://github.com/georstat/react-native-image-cache/compare/v1.2.7...v1.2.8) - 2021-08-27
 
 #### Improvements
 
