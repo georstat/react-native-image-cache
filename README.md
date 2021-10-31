@@ -116,7 +116,7 @@ await CacheManager.removeCacheEntry(uri);
 await CacheManager.getCacheSize();
 ```
 
-#### Check if uri is cached:
+#### Check if image is cached:
 
 ```tsx
 await CacheManager.isImageCached(uri);
