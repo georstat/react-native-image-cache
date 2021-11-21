@@ -1,0 +1,122 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "plugin:prettier/recommended",
+    "@react-native-community",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      }
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["react-hooks", "@typescript-eslint", "react", "import"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/extensions": [".ts", ".tsx", ".d.ts", ".js", ".jsx"],
+    "import/external-module-folders": ["node_modules", "node_modules/@types"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx", ".d.ts", ".js", ".jsx"],
+        "paths": ["src"]
+      }
+    }
+  },
+  "rules": {
+    "import/named": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": 0,
+    "prefer-template": "off",
+    "no-param-reassign": "off",
+    "react/no-unused-prop-types": "off",
+    "@typescript-eslint/restrict-plus-operands": 0,
+    "no-return-assign": "off",
+    "array-callback-return": "off",
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/prefer-regexp-exec": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "no-spaced-func": "off",
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/no-unsafe-call": 0,
+    "@typescript-eslint/no-misused-promises": 0,
+    "@typescript-eslint/no-floating-promises": 0,
+    "@typescript-eslint/no-unsafe-assignment": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-unsafe-member-access": 0,
+    "@typescript-eslint/no-unsafe-return": 0,
+    "react/display-name": 0,
+    "prettier/prettier": "error",
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-loop-func": 1,
+    "@typescript-eslint/no-redeclare": 1,
+    "@typescript-eslint/no-shadow": 1,
+    "@typescript-eslint/naming-convention": 0,
+    "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/no-unsafe-argument": 0,
+    "comma-dangle": "off",
+    "consistent-return": 0,
+    "global-require": 0,
+    "import/no-unresolved": 1,
+    "max-classes-per-file": ["error", 2],
+    "no-await-in-loop": 0,
+    "no-inner-declarations": 0,
+    "no-nested-ternary": 0,
+    "no-underscore-dangle": 0,
+    "quotes": ["error", "single"],
+    "react-hooks/exhaustive-deps": ["error"],
+    "react-native/no-inline-styles": 1,
+    "react/destructuring-assignment": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": 0,
+    "react/no-access-state-in-setstate": 0,
+    "react/no-unescaped-entities": 0,
+    "react/require-default-props": 0,
+    "react/state-in-constructor": 0,
+    "react/static-property-placement": 0,
+    "import/extensions": [
+      "warn",
+      "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  }
+}
