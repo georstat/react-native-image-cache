@@ -36,7 +36,7 @@ const App = () => {
     try {
       await CacheManager.clearCache();
       Alert.alert('Cache cleared');
-    } catch (e) {
+    } catch (e: any) {
       Alert.alert(e);
     }
   }, []);
@@ -45,7 +45,7 @@ const App = () => {
     try {
       await CacheManager.removeCacheEntry(img);
       Alert.alert('Image cleared from cache');
-    } catch (e) {
+    } catch (e: any) {
       Alert.alert(e);
     }
   }, []);
