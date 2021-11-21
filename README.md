@@ -17,7 +17,7 @@ Inspired by:
 - Uses [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) for file system access
 - Written in `Typescript`
 
-### If you're looking for an image library with thumbnails visit [georstat/react-native-image-gallery](https://github.com/georstat/react-native-image-gallery)
+### If you're looking for an image library with thumbnails visit [@georstat/react-native-image-gallery](https://github.com/georstat/react-native-image-gallery)
 
 ## Preview
 
