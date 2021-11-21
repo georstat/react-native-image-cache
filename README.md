@@ -46,10 +46,15 @@ npm i @georstat/react-native-image-cache
 ```
 
 #### link native packages:
+
 ```bash
  cd ios
  pod install
 ```
+
+### \*\*note!
+
+For react native >= 0.65 use [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) >= 2.0.0
 
 ## Usage
 
@@ -111,35 +116,42 @@ await CacheManager.removeCacheEntry(uri);
 await CacheManager.getCacheSize();
 ```
 
+#### Check if image is cached:
+
+```tsx
+await CacheManager.isImageCached(uri);
+```
+
 ## Props
 
 #### `CachedImage` accepts the following props:
 
-| Properties                   | PropType     | Description                                                                                                    |
-| ---------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------- |
-| `source`                     | `String`     | (**Required**) Uri of remote image.                                                                            |
-| `sourceAnimationDuration`    | `Number`     | `source` image animation duration when loading, defaults to `1000`ms (overrides config)                        |
-| `thumbnailSource`            | `String`     | (**Required**) Uri of the thumbnail image                                                                      |
-| `thumbnailAnimationDuration` | `Number`     | Animation duration for thumbnail, defaults to `1000`ms (overrides config)                                      |
-| `blurRadius`                 | `Number`     | Amount of blur to apply on `thumbnailSource` image , defaults to `15` (overrides config)                       |
-| `loadingImageComponent`      | `React.CompnentType` | Defaults to an image with the `loadingSource` prop                                                     |
-| `loadingImageStyle`          | `Object`     | Style for loading image component. Works if you don't provide a `loadingImageComponent`                        |
-| `loadingSource`              | `object`     | Source for loading Image component. Works if you don't provide `loadingImageComponent`                         |
-| `onError`                    | `Func`       | Runs when there is an error loading the image from cache                                                       |
-| `resizeMode`                 | `String`     | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) defaults to `contain` |
-| `style`                      | `Object`     | `source` AND `thumbnailSource` image style                                                                     |
-| `options`                    | `Object`     | custom options for the fetch image http request eg. `{headers:{}, body:{}}`                                    |
-| `accessibilityHint`          | `string`     | accessibility hint for `source` (optional)                                                                     |
-| `accessibilityLabel`         | `string`     | accessibility label for `source` (optional)                                                                    |
-| `accessibilityRole`          | `string`     | accessibility role for `source` (optional, defaults to `image`)                                                |
-| `accessibilityHintThumbnail` | `string`     | accessibility hint for `thumbnailSource` (optional)                                                            |
-| `accessibilityLabelThumbnail`| `string`     | accessibility label for `thumbnailSource` (optional)                                                           |
-| `accessibilityRoleThumbnail`| `string`      | accessibility role for `thumbnailSource` (optional, defaults to `image`)                                       |
-| `accessibilityHintLoadingImage`| `string`   | accessibility hint for `loadingSource` (optional)                                                              |
-| `accessibilityLabelLoadingImage` | `string` | accessibility label for `loadingSource` (optional)                                                             |
-| `accessibilityRoleLoadingImage` | `string`  | accessibility role for `loadingSource` (optional, defaults to `image`)                                         |
+| Properties                       | PropType             | Description                                                                                                    |
+| -------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `source`                         | `String`             | (**Required**) Uri of remote image.                                                                            |
+| `sourceAnimationDuration`        | `Number`             | `source` image animation duration when loading, defaults to `1000`ms (overrides config)                        |
+| `thumbnailSource`                | `String`             | (**Required**) Uri of the thumbnail image                                                                      |
+| `thumbnailAnimationDuration`     | `Number`             | Animation duration for thumbnail, defaults to `1000`ms (overrides config)                                      |
+| `blurRadius`                     | `Number`             | Amount of blur to apply on `thumbnailSource` image , defaults to `15` (overrides config)                       |
+| `loadingImageComponent`          | `React.CompnentType` | Defaults to an image with the `loadingSource` prop                                                             |
+| `loadingImageStyle`              | `Object`             | Style for loading image component. Works if you don't provide a `loadingImageComponent`                        |
+| `loadingSource`                  | `object`             | Source for loading Image component. Works if you don't provide `loadingImageComponent`                         |
+| `onError`                        | `Func`               | Runs when there is an error loading the image from cache                                                       |
+| `resizeMode`                     | `String`             | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) defaults to `contain` |
+| `style`                          | `Object`             | `source` AND `thumbnailSource` image style                                                                     |
+| `options`                        | `Object`             | custom options for the fetch image http request eg. `{headers:{}, body:{}}`                                    |
+| `accessibilityHint`              | `string`             | accessibility hint for `source` (optional)                                                                     |
+| `accessibilityLabel`             | `string`             | accessibility label for `source` (optional)                                                                    |
+| `accessibilityRole`              | `string`             | accessibility role for `source` (optional, defaults to `image`)                                                |
+| `accessibilityHintThumbnail`     | `string`             | accessibility hint for `thumbnailSource` (optional)                                                            |
+| `accessibilityLabelThumbnail`    | `string`             | accessibility label for `thumbnailSource` (optional)                                                           |
+| `accessibilityRoleThumbnail`     | `string`             | accessibility role for `thumbnailSource` (optional, defaults to `image`)                                       |
+| `accessibilityHintLoadingImage`  | `string`             | accessibility hint for `loadingSource` (optional)                                                              |
+| `accessibilityLabelLoadingImage` | `string`             | accessibility label for `loadingSource` (optional)                                                             |
+| `accessibilityRoleLoadingImage`  | `string`             | accessibility role for `loadingSource` (optional, defaults to `image`)                                         |
 
 #### [More info about React Native Accessibility](https://reactnative.dev/docs/accessibility)
+
 #### [Blog Article about React Native Accessibility](https://medium.com/reactbrasil/introducing-react-native-accessibility-engine-fcf78f2a3805)
 
 ## Todo:

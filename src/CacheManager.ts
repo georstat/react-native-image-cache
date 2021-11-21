@@ -123,6 +123,16 @@ export default class CacheManager {
     }
     return result.size;
   }
+
+  static async isImageCached(entry: string): Promise<boolean> {
+    try {
+      const file = await getCacheEntry(entry);
+      const { exists } = file;
+      return exists;
+    } catch (e) {
+      throw new Error('Error while checking if image already exists on cache');
+    }
+  }
 }
 
 const getCacheEntry = async (
