@@ -129,7 +129,7 @@ await CacheManager.isImageCached(uri);
 #### `CachedImage` accepts the following props:
 
 | Properties                       | PropType             | Description                                                                                                    |
-| -------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------- |
+|----------------------------------|----------------------|----------------------------------------------------------------------------------------------------------------|
 | `source`                         | `String`             | (**Required**) Uri of remote image.                                                                            |
 | `sourceAnimationDuration`        | `Number`             | `source` image animation duration when loading, defaults to `1000`ms (overrides config)                        |
 | `thumbnailSource`                | `String`             | (**Required**) Uri of the thumbnail image                                                                      |
@@ -158,9 +158,9 @@ await CacheManager.isImageCached(uri);
 
 ## Todo:
 
-- ~~Convert library to React Hooks~~
-- ~~Make `baseDir` configurable~~
-- ~~Delete single cache entry~~
+- [x] Convert library to React Hooks
+- [x] Make `baseDir` configurable
+- [x] Delete single cache entry
 
 ## Authors:
 
