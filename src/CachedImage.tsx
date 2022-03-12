@@ -8,6 +8,8 @@ import React, {
 import {
   Animated,
   Image as RNImage,
+  ImageLoadEventData,
+  NativeSyntheticEvent,
   Platform,
   StyleSheet,
   View,
@@ -127,7 +129,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
 
   const onImageError = (): void => setError(true);
 
-  const onImageLoad = (): void => {
+  const onImageLoad = (e: NativeSyntheticEvent<ImageLoadEventData>): void => {
+    if (props.onLoad) props.onLoad(e);
     Animated.timing(animatedImage, {
       toValue: 1,
       duration:
@@ -215,6 +218,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           accessible
           onError={onImageError}
           onLoad={onImageLoad}
+          onLoadEnd={props.onLoadEnd}
           resizeMode={resizeMode || 'contain'}
           // @ts-ignore
           source={imageSource}
