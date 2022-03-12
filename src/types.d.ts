@@ -1,9 +1,11 @@
 import {
   AccessibilityRole,
+  ImageLoadEventData,
   ImageResizeMode,
   ImageSourcePropType,
   ImageStyle,
   ImageURISource,
+  NativeSyntheticEvent,
   StyleProp,
 } from 'react-native';
 import React from 'react';
@@ -52,6 +54,8 @@ export interface IProps {
   style?: StyleProp<ImageStyle>;
   thumbnailAnimationDuration?: number;
   thumbnailSource?: string;
+  onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
+  onLoadEnd?: () => void;
 }
 
 export interface Config {
