@@ -1,6 +1,26 @@
 # Changelog
 
-## [v1.3.0](https://github.com/georstat/react-native-image-cache/compare/v1.2.8...v1.3.0)
+## [v1.4.0](https://github.com/georstat/react-native-image-cache/compare/v1.3.0...v1.4.0)
+
+#### Features
+
+- feat: add onLoad and and onLoadEnd props ([85885d8](https://github.com/georstat/react-native-image-cache/commit/85885d87685f79ad2e369d67f152c630b3fe645f)).
+
+#### Improvements
+
+- chore: updated example to react-native 0.66.3 ([c32f5e7](https://github.com/georstat/react-native-image-cache/commit/c32f5e7c591fda52e2526b8ed2f6eb09a2543b66)).
+- chore: align project with eslint 8.x.x requirements ([5bb5b2f](https://github.com/georstat/react-native-image-cache/commit/5bb5b2f0c25350e6d656081a741d0b0aa66a855d)).
+- chore: updated dev packages ([c2e64d0](https://github.com/georstat/react-native-image-cache/commit/c2e64d01ca316b9c002cf3d8a15a9d6eabf1f6da)).
+- chore: removed test from example, fixed some typings ([783fada](https://github.com/georstat/react-native-image-cache/commit/783fadab0e6868d53ebabd96314d8aac4ec9c278)).
+- chore: rename uri to image ([0b5efe8](https://github.com/georstat/react-native-image-cache/commit/0b5efe81fa3519bf49cf0ba3cc2025bf91dfd799)).
+
+#### Documentations
+
+- docs: added checkboxes on Todo ([eda10bd](https://github.com/georstat/react-native-image-cache/commit/eda10bd68eca18d082e1fc8b24f089836a1ce99a)).
+- docs: add onLoad and onLoadEnd props ([2885ab9](https://github.com/georstat/react-native-image-cache/commit/2885ab90b9f35c301f49260723a29c32de22d1ec)).
+- docs: added missing @ on image-library link ([7b9b252](https://github.com/georstat/react-native-image-cache/commit/7b9b2525daa03ff5d3879c3b30486f62d1565e37)).
+
+## [v1.3.0](https://github.com/georstat/react-native-image-cache/compare/v1.2.8...v1.3.0) - 2021-10-31
 
 #### Features
 
