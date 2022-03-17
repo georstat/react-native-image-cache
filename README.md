@@ -17,6 +17,10 @@ Inspired by:
 - Uses [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) for file system access
 - Written in `Typescript`
 
+<span style="color:red;font-size: 26px;font-weight:bold;">Caution:</span>
+
+#### If you're not using [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) version 2.x.x then use version 1.x.x of this module
+
 ### If you're looking for an image library with thumbnails visit [@georstat/react-native-image-gallery](https://github.com/georstat/react-native-image-gallery)
 
 ## Preview
