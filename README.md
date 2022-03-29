@@ -1,6 +1,7 @@
 # React Native Image Cache on File System with Progressive Loading
 
 [![npm version](https://img.shields.io/npm/v/@georstat/react-native-image-cache.svg?style=for-the-badge)](https://www.npmjs.com/package/@georstat/react-native-image-cache)
+[![npm downloads](https://img.shields.io/npm/dm/@georstat/react-native-image-cache.svg?style=for-the-badge)](https://www.npmjs.com/package/@georstat/react-native-image-cache)
 [![npm](https://img.shields.io/npm/dt/@georstat/react-native-image-cache.svg?style=for-the-badge)](https://www.npmjs.com/package/@georstat/react-native-image-cache)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/georstat/react-native-image-cache?style=for-the-badge)
