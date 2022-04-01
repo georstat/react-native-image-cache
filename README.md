@@ -84,8 +84,8 @@ Cache pruning flow:
 
 1. Get all files from `baseDir`.
 2. Sort them by `lastModified`, oldest first.
-3. Get total size in Bytes by `files.reduce` array method.
-4. Check total size from step #3 and subtract `cacheLimit` value.
+3. Get total size in Bytes by using `reduce` array method.
+4. Check total size from step 3 and subtract `cacheLimit` value.
 5. Run a while loop and keep deleting files so long as the current cache size (step 4) is larger than the size required to trigger cache pruning (`cacheLimit` value).
 
 Pruning has been benchmarked on iOS simulator with 5.7MB ~5.000 files on cache without any issues. Please note that the pruning speed/performance might differ among devices. Use `cacheLimit` wisely and do not set a big value.
