@@ -91,7 +91,8 @@ Cache pruning flow:
 
 Pruning has been benchmarked on iOS simulator with 5.7MB ~5.000 files on cache without any issues. Please note that the pruning speed/performance might differ among devices. Use `cacheLimit` wisely and do not set a big value.
 
-If you want to run your own tests on simulator then the cached images are stored in this location on a Mac: `/Users/<your_name>/Library/Developer/CoreSimulator/Devices/<simulator_device_id>/data/Containers/Data/Application/<application_id>/Library/Caches/images_cache`, just copy and past multiple images in there, there's no need to download them via the app.
+If you want to run your own tests on simulator then the cached images are stored in this location on a Mac: `/Users/<your_name>/Library/Developer/CoreSimulator/Devices/<simulator_device_id>/
+data/Containers/Data/Application/<application_id>/Library/Caches/images_cache`, just copy and paste multiple images in there, there's no need to download them via the app.
 
 #### Directory constants, choose wisely: ([react-native-file-access docs](https://github.com/alpha0010/react-native-file-access#directory-constants))
 
