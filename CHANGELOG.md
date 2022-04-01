@@ -1,6 +1,26 @@
 # Changelog
 
-## [v1.4.0](https://github.com/georstat/react-native-image-cache/compare/v1.3.0...v1.4.0)
+## [v1.5.0](https://github.com/georstat/react-native-image-cache/compare/v1.4.0...v1.5.0)
+
+#### Features
+
+- feat: cacheLimit configuration for cache auto pruning ([f81983a](https://github.com/georstat/react-native-image-cache/commit/f81983a9f02631297bf49f9ea2ac57ea5d9bdcda)).
+
+#### Improvements
+
+- chore: updated example to use react-native 0.67.4 ([eba5049](https://github.com/georstat/react-native-image-cache/commit/eba504950788782755fe25f20ac552d93c5b50df)).
+- chore: bumped react-native to 0.67.4 on working dir ([74409fa](https://github.com/georstat/react-native-image-cache/commit/74409faff6547d16e6ecabcbfeac933035606e8b)).
+
+#### Documentations
+
+- docs: improved cache pruning flow ([493ad52](https://github.com/georstat/react-native-image-cache/commit/493ad5230677308a02ac69a89ebd0d219689cc25)).
+- docs: better cacheLimit config header ([5594b84](https://github.com/georstat/react-native-image-cache/commit/5594b84097ddedd780cb2fd06eeed01bc2e682d7)).
+- docs: added an extra step on cache pruning flow ([a044978](https://github.com/georstat/react-native-image-cache/commit/a0449782ea75fbc1e890e8a0529bb69b44511ca9)).
+- docs: update README
+
+added download per month ([5366c33](https://github.com/georstat/react-native-image-cache/commit/5366c33fc222b6a8ab160eee4781c8d64721232a)).
+
+## [v1.4.0](https://github.com/georstat/react-native-image-cache/compare/v1.3.0...v1.4.0) - 2022-03-12
 
 #### Features
 
