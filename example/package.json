@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
@@ -13,7 +13,7 @@
     "lodash": "^4.17.21",
     "react": "17.0.2",
     "react-native": "^0.66.3",
-    "react-native-file-access": "^2.0.0"
+    "react-native-file-access": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

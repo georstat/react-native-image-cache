@@ -1,7 +1,7 @@
 // @ts-ignore
 import SHA1 from 'crypto-js/sha1';
 import uniqueId from 'lodash/uniqueId';
-import { FileSystem } from 'react-native-file-access';
+import { FileStat, FileSystem } from 'react-native-file-access';
 
 import { Config, DownloadOptions } from './types';
 import defaultConfiguration from './defaultConfiguration';
@@ -58,6 +58,9 @@ export class CacheEntry {
         return undefined;
       }
       await FileSystem.mv(tmpPath, path);
+      if (CacheManager.config.cacheLimit) {
+        await CacheManager.pruneCache();
+      }
       this.pathResolved = true;
       return path;
     }
@@ -67,6 +70,7 @@ export class CacheEntry {
 
 export default class CacheManager {
   static defaultConfig: Config = defaultConfiguration;
+
   static config: Config;
 
   get config() {
@@ -131,6 +135,39 @@ export default class CacheManager {
       return exists;
     } catch (e) {
       throw new Error('Error while checking if image already exists on cache');
+    }
+  }
+
+  static async pruneCache() {
+    // If cache directory does not exist yet there's no need for pruning.
+    if (!(await CacheManager.getCacheSize())) {
+      return;
+    }
+
+    const files = await FileSystem.statDir(CacheManager.config.baseDir);
+
+    files.sort((a: FileStat, b: FileStat) => {
+      return a.lastModified - b.lastModified;
+    });
+
+    const currentCacheSize = files.reduce((cacheSize, file: FileStat) => {
+      return cacheSize + file.size;
+    }, 0);
+
+    if (currentCacheSize > CacheManager.config.cacheLimit) {
+      let overflowSize = currentCacheSize - CacheManager.config.cacheLimit;
+
+      while (overflowSize > 0 && files.length) {
+        const file = files.shift();
+        if (file) {
+          if (await FileSystem.exists(file.path)) {
+            overflowSize = overflowSize - file.size;
+            await FileSystem.unlink(file.path.replace('//', '/')).catch(e =>
+              console.log(e)
+            );
+          }
+        }
+      }
     }
   }
 }

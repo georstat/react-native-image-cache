@@ -61,6 +61,7 @@ export interface IProps {
 export interface Config {
   baseDir: string;
   blurRadius: number;
+  cacheLimit: number;
   sourceAnimationDuration: number;
   thumbnailAnimationDuration: number;
 }
