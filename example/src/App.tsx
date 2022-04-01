@@ -17,12 +17,13 @@ import ImagePlaceholder from './ImagePlaceholder';
 CacheManager.config = {
   baseDir: `${Dirs.CacheDir}/images_cache/`,
   blurRadius: 15,
+  cacheLimit: 1024 * 1024 * 256, // ~256MB
   sourceAnimationDuration: 1000,
   thumbnailAnimationDuration: 1000,
 };
 
 const img =
-  'https://upload.wikimedia.org/wikipedia/commons/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg';
+  'https://upload.wikimedia.org/wikipedia/commons/0/02/Oia_dal_battello_al_tramonto_-_Santorini_-_Grecia_-_agosto_2018.jpg';
 
 const imgThumb =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg/320px-Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg';
@@ -57,7 +58,7 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Text style={styles.text}>Non Cached Image: (5.4MB)</Text>
+        <Text style={styles.text}>Non Cached Image: (4.4MB)</Text>
         <Image
           resizeMode="cover"
           source={{
@@ -66,7 +67,7 @@ const App = () => {
           style={styles.image}
         />
         <Text style={styles.bottomText}>
-          Cached Image With Thumbnail: (5.4MB, thumb: 14KB)
+          Cached Image With Thumbnail: (4.4MB, thumb: 14KB)
         </Text>
         <View style={styles.cachedImageContainer}>
           <CachedImage
@@ -76,7 +77,7 @@ const App = () => {
           />
         </View>
         <Text style={styles.bottomText}>
-          Cached Image With Custom Loading Placeholder: (5.4MB)
+          Cached Image With Custom Loading Placeholder: (4.4MB)
         </Text>
         <View style={styles.cachedImageContainer}>
           <CachedImage
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 250,
     marginTop: 12,
-    width: 250,
+    width: '90%',
   },
   text: {
     fontSize: 18,

@@ -70,10 +70,28 @@ import { Dirs } from 'react-native-file-access';
 CacheManager.config = {
   baseDir: `${Dirs.CacheDir}/images_cache/`,
   blurRadius: 15,
+  cacheLimit: 0,
   sourceAnimationDuration: 1000,
   thumbnailAnimationDuration: 1000,
 };
 ```
+
+#### `cacheLimit` config: (auto pruning of cached files)
+
+If `cacheLimit` is set to `0` (default value) then the cache will never be auto pruned. This setting accepts a number of Bytes eg. `1024 * 1024 * 256`(~256MB) and requires `react-native-file-access` >= 2.4.0, if you're using < 2.4.0 then leave the default value `0` (disabled).
+
+Cache pruning flow:
+
+1. Get all files from `baseDir`.
+2. Sort them by `lastModified`, oldest first.
+3. Get total size in Bytes by using `reduce` array method.
+4. Check total size from step 3 and subtract `cacheLimit` value.
+5. Run a while loop and keep deleting files so long as the current cache size (step 4) is larger than the size required to trigger cache pruning (`cacheLimit` value).
+6. All steps above will run only if the image is not already cached, it runs after downloading a new image into the cache.
+
+Pruning has been benchmarked on iOS simulator with 5.7MB ~5.000 files on cache without any issues. Please note that the pruning speed/performance might differ among devices. Use `cacheLimit` wisely and do not set a big value.
+
+If you want to run your own tests on simulator then the cached images are stored in this location on a Mac: `/Users/<your_name>/Library/Developer/CoreSimulator/Devices/<simulator_device_id>/data/Containers/Data/Application/<application_id>/Library/Caches/images_cache`, just copy and past multiple images in there, there's no need to download them via the app.
 
 #### Directory constants, choose wisely: ([react-native-file-access docs](https://github.com/alpha0010/react-native-file-access#directory-constants))
 

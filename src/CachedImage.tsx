@@ -130,7 +130,9 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const onImageError = (): void => setError(true);
 
   const onImageLoad = (e: NativeSyntheticEvent<ImageLoadEventData>): void => {
-    if (props.onLoad) props.onLoad(e);
+    if (props.onLoad) {
+      props.onLoad(e);
+    }
     Animated.timing(animatedImage, {
       toValue: 1,
       duration:
