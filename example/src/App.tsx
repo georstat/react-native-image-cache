@@ -4,6 +4,7 @@ import {
   Alert,
   Button,
   Image,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -13,6 +14,8 @@ import {
 import { CachedImage, CacheManager } from '@georstat/react-native-image-cache';
 import { Dirs } from 'react-native-file-access';
 import ImagePlaceholder from './ImagePlaceholder';
+
+const pickButtonColor = Platform.OS === 'ios' ? 'white' : 'black';
 
 CacheManager.config = {
   baseDir: `${Dirs.CacheDir}/images_cache/`,
@@ -89,21 +92,21 @@ const App = () => {
         </View>
         <View style={styles.clearCacheButtonContainer}>
           <Button
-            color="white"
+            color={pickButtonColor}
             onPress={clearCache}
             title="Clear Entire Cache"
           />
         </View>
         <View style={styles.clearCacheButtonContainer}>
           <Button
-            color="white"
+            color={pickButtonColor}
             onPress={clearSingleImageFromCache}
             title="Clear only image"
           />
         </View>
         <View style={styles.clearCacheButtonContainer}>
           <Button
-            color="white"
+            color={pickButtonColor}
             onPress={changeSource}
             title="Change Image source"
           />
