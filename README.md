@@ -76,9 +76,9 @@ CacheManager.config = {
 };
 ```
 
-#### cacheLimit config:
+#### `cacheLimit` config: (auto pruning of cached files)
 
-If `cacheLimit` is set to 0 (default value) then the cache will never be auto pruned. This setting accepts a number of Bytes eg. `1024 * 1024 * 256`(~256MB) and requires `react-native-file-access` >= 2.4.0, if you're using < 2.4.0 then leave the default value `0` (disabled).
+If `cacheLimit` is set to `0` (default value) then the cache will never be auto pruned. This setting accepts a number of Bytes eg. `1024 * 1024 * 256`(~256MB) and requires `react-native-file-access` >= 2.4.0, if you're using < 2.4.0 then leave the default value `0` (disabled).
 
 Cache pruning flow:
 
