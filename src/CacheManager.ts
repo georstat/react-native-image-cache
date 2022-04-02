@@ -162,9 +162,7 @@ export default class CacheManager {
         if (file) {
           if (await FileSystem.exists(file.path)) {
             overflowSize = overflowSize - file.size;
-            await FileSystem.unlink(file.path.replace('//', '/')).catch(e =>
-              console.log(e)
-            );
+            await FileSystem.unlink(file.path).catch(e => console.log(e));
           }
         }
       }
