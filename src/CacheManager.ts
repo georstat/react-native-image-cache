@@ -17,16 +17,25 @@ export class CacheEntry {
 
   pathResolved = false;
 
-  constructor(source: string, options: DownloadOptions, cacheKey: string) {
-    this.source = source;
-    this.options = options;
+  noCache: boolean | undefined = false;
+
+  constructor(
+    source: string,
+    options: DownloadOptions,
+    cacheKey: string,
+    noCache?: boolean
+  ) {
     this.cacheKey = cacheKey;
+    this.noCache = noCache;
+    this.options = options;
+    this.source = source;
   }
 
   async getPath(): Promise<string | undefined> {
-    const { cacheKey } = this;
+    const { cacheKey, noCache } = this;
     const { path, exists, tmpPath } = await getCacheEntry(cacheKey);
-    if (exists) {
+
+    if (exists && !noCache) {
       return path;
     }
 
@@ -46,7 +55,12 @@ export class CacheEntry {
     path: string,
     tmpPath: string
   ): Promise<string | undefined> {
-    const { source, options } = this;
+    const { source, options, noCache } = this;
+    // if noCache is true then return the source uri without caching it
+    if (noCache) {
+      return source;
+    }
+
     if (source != null) {
       const result = await FileSystem.fetch(source, {
         path: tmpPath,
@@ -86,13 +100,15 @@ export default class CacheManager {
   static get(
     source: string,
     options: DownloadOptions,
-    cacheKey: string
+    cacheKey: string,
+    noCache?: boolean
   ): CacheEntry {
     if (!CacheManager.entries[cacheKey]) {
       CacheManager.entries[cacheKey] = new CacheEntry(
         source,
         options,
-        cacheKey
+        cacheKey,
+        noCache
       );
       return CacheManager.entries[cacheKey];
     }

@@ -82,14 +82,17 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     onError,
     options = {},
     source,
+    noCache = false,
   }: ImageProps): Promise<void> => {
     if (source) {
       try {
         const path = await CacheManager.get(
           source,
           options,
-          cacheKey || source
+          cacheKey || source,
+          noCache
         ).getPath();
+
         if (path) {
           setUri(path);
           setError(false);
