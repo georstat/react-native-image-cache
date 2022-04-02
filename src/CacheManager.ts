@@ -19,21 +19,25 @@ export class CacheEntry {
 
   noCache: boolean | undefined = false;
 
+  maxAge: number | undefined;
+
   constructor(
     source: string,
     options: DownloadOptions,
     cacheKey: string,
-    noCache?: boolean
+    noCache?: boolean,
+    maxAge?: number
   ) {
     this.cacheKey = cacheKey;
     this.noCache = noCache;
     this.options = options;
     this.source = source;
+    this.maxAge = maxAge;
   }
 
   async getPath(): Promise<string | undefined> {
-    const { cacheKey, noCache } = this;
-    const { path, exists, tmpPath } = await getCacheEntry(cacheKey);
+    const { cacheKey, maxAge, noCache } = this;
+    const { exists, path, tmpPath } = await getCacheEntry(cacheKey, maxAge);
 
     if (exists && !noCache) {
       return path;
@@ -101,14 +105,16 @@ export default class CacheManager {
     source: string,
     options: DownloadOptions,
     cacheKey: string,
-    noCache?: boolean
+    noCache?: boolean,
+    maxAge?: number
   ): CacheEntry {
     if (!CacheManager.entries[cacheKey]) {
       CacheManager.entries[cacheKey] = new CacheEntry(
         source,
         options,
         cacheKey,
-        noCache
+        noCache,
+        maxAge
       );
       return CacheManager.entries[cacheKey];
     }
@@ -187,7 +193,8 @@ export default class CacheManager {
 }
 
 const getCacheEntry = async (
-  cacheKey: string
+  cacheKey: string,
+  maxAge?: number | undefined
 ): Promise<{ exists: boolean; path: string; tmpPath: string }> => {
   const filename = cacheKey.substring(
     cacheKey.lastIndexOf('/'),
@@ -207,5 +214,14 @@ const getCacheEntry = async (
     // do nothing
   }
   const exists = await FileSystem.exists(path);
+
+  if (maxAge && exists) {
+    const { lastModified } = await FileSystem.stat(path);
+    const ageInHours = Math.floor(Date.now() - lastModified) / 1000 / 3600;
+    if (maxAge < ageInHours) {
+      await FileSystem.unlink(path);
+      return { exists: false, path, tmpPath };
+    }
+  }
   return { exists, path, tmpPath };
 };

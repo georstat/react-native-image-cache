@@ -24,6 +24,7 @@ export interface ImageState {
 export type ImageProps = {
   cacheKey?: string;
   defaultSource?: ImageURISource | number;
+  maxAge?: number;
   noCache?: boolean;
   onError: (error: { nativeEvent: { error: Error } }) => void;
   options?: DownloadOptions;
@@ -47,6 +48,7 @@ export interface IProps {
   loadingImageComponent?: React.ComponentType;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;
+  maxAge?: number;
   noCache?: boolean;
   onError?: (error: { nativeEvent: { error: Error } }) => void;
   onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;

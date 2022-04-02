@@ -79,10 +79,11 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
 
   const load = async ({
     cacheKey,
+    maxAge,
+    noCache = false,
     onError,
     options = {},
     source,
-    noCache = false,
   }: ImageProps): Promise<void> => {
     if (source) {
       try {
@@ -90,7 +91,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           source,
           options,
           cacheKey || source,
-          noCache
+          noCache,
+          maxAge
         ).getPath();
 
         if (path) {
