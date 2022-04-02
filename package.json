@@ -40,7 +40,7 @@
   "dependencies": {
     "crypto-js": "^4.1.1",
     "lodash": "^4.17.21",
-    "react-native-file-access": "^2.4.0"
+    "react-native-file-access": "^2.4.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
@@ -65,7 +65,7 @@
     "eslint-plugin-react-hooks": "^4.4.0",
     "eslint-plugin-react-native-a11y": "^3.2.1",
     "husky": "^7.0.4",
-    "prettier": "^2.6.1",
+    "prettier": "^2.6.2",
     "react": "17.0.2",
     "react-native": "^0.67.4",
     "react-native-builder-bob": "^0.18.2",
