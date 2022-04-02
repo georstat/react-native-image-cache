@@ -17,16 +17,29 @@ export class CacheEntry {
 
   pathResolved = false;
 
-  constructor(source: string, options: DownloadOptions, cacheKey: string) {
-    this.source = source;
-    this.options = options;
+  noCache: boolean | undefined = false;
+
+  maxAge: number | undefined;
+
+  constructor(
+    source: string,
+    options: DownloadOptions,
+    cacheKey: string,
+    noCache?: boolean,
+    maxAge?: number
+  ) {
     this.cacheKey = cacheKey;
+    this.noCache = noCache;
+    this.options = options;
+    this.source = source;
+    this.maxAge = maxAge;
   }
 
   async getPath(): Promise<string | undefined> {
-    const { cacheKey } = this;
-    const { path, exists, tmpPath } = await getCacheEntry(cacheKey);
-    if (exists) {
+    const { cacheKey, maxAge, noCache } = this;
+    const { exists, path, tmpPath } = await getCacheEntry(cacheKey, maxAge);
+
+    if (exists && !noCache) {
       return path;
     }
 
@@ -46,7 +59,12 @@ export class CacheEntry {
     path: string,
     tmpPath: string
   ): Promise<string | undefined> {
-    const { source, options } = this;
+    const { source, options, noCache } = this;
+    // if noCache is true then return the source uri without caching it
+    if (noCache) {
+      return source;
+    }
+
     if (source != null) {
       const result = await FileSystem.fetch(source, {
         path: tmpPath,
@@ -86,13 +104,17 @@ export default class CacheManager {
   static get(
     source: string,
     options: DownloadOptions,
-    cacheKey: string
+    cacheKey: string,
+    noCache?: boolean,
+    maxAge?: number
   ): CacheEntry {
     if (!CacheManager.entries[cacheKey]) {
       CacheManager.entries[cacheKey] = new CacheEntry(
         source,
         options,
-        cacheKey
+        cacheKey,
+        noCache,
+        maxAge
       );
       return CacheManager.entries[cacheKey];
     }
@@ -162,9 +184,7 @@ export default class CacheManager {
         if (file) {
           if (await FileSystem.exists(file.path)) {
             overflowSize = overflowSize - file.size;
-            await FileSystem.unlink(file.path.replace('//', '/')).catch(e =>
-              console.log(e)
-            );
+            await FileSystem.unlink(file.path).catch(e => console.log(e));
           }
         }
       }
@@ -173,7 +193,8 @@ export default class CacheManager {
 }
 
 const getCacheEntry = async (
-  cacheKey: string
+  cacheKey: string,
+  maxAge?: number | undefined
 ): Promise<{ exists: boolean; path: string; tmpPath: string }> => {
   const filename = cacheKey.substring(
     cacheKey.lastIndexOf('/'),
@@ -193,5 +214,14 @@ const getCacheEntry = async (
     // do nothing
   }
   const exists = await FileSystem.exists(path);
+
+  if (maxAge && exists) {
+    const { lastModified } = await FileSystem.stat(path);
+    const ageInHours = Math.floor(Date.now() - lastModified) / 1000 / 3600;
+    if (maxAge < ageInHours) {
+      await FileSystem.unlink(path);
+      return { exists: false, path, tmpPath };
+    }
+  }
   return { exists, path, tmpPath };
 };
