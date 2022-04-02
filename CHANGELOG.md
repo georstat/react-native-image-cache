@@ -1,6 +1,26 @@
 # Changelog
 
-## [v1.5.0](https://github.com/georstat/react-native-image-cache/compare/v1.4.0...v1.5.0)
+## [v1.6.0](https://github.com/georstat/react-native-image-cache/compare/v1.5.0...v1.6.0)
+
+#### Features
+
+- feat: maxAge in hours to keep the image on cache ([375bbc4](https://github.com/georstat/react-native-image-cache/commit/375bbc414ac5c5822b41e4796b3693eb18ea0fcd)).
+- feat: do not cache the image prop ([1ede802](https://github.com/georstat/react-native-image-cache/commit/1ede80228f30085aa12ce291ea65b9188265fa84)).
+
+#### Improvements
+
+- chore: updated react-native-file-access, fixes double / of file path on iOS ([3a590aa](https://github.com/georstat/react-native-image-cache/commit/3a590aaffafb65e45559074fc67fe5333806f7ef)).
+- chore: remove .replace on file.path during cache prune unlink ([fb274d8](https://github.com/georstat/react-native-image-cache/commit/fb274d88bdaaa513bb8b84ecf9b4c204600ea8ba)).
+
+#### Fixes
+
+- fix: Android example now builds correctly & fixed button colors ([aa1a3d9](https://github.com/georstat/react-native-image-cache/commit/aa1a3d9a78173c8ae85ffafa325e72485a4de2da)).
+
+#### Documentations
+
+- docs: fixed a typo ([b98a9bf](https://github.com/georstat/react-native-image-cache/commit/b98a9bf6f234b9ad571aa107e53d53430b4c7b4b)).
+
+## [v1.5.0](https://github.com/georstat/react-native-image-cache/compare/v1.4.0...v1.5.0) - 2022-04-01
 
 #### Features
 
