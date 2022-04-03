@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
@@ -21,24 +21,24 @@
     "@babel/runtime": "^7.15.3",
     "@react-native-community/eslint-config": "^3.0.1",
     "@types/jest": "^26.0.20",
-    "@types/react-native": "^0.66.5",
+    "@types/react-native": "^0.67.3",
     "@types/react-test-renderer": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "babel-jest": "^26.6.3",
-    "eslint": "^8.3.0",
-    "eslint-config-airbnb": "^19.0.0",
-    "eslint-config-airbnb-typescript": "^16.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^16.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.0",
     "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.66.2",
+    "metro-react-native-babel-preset": "^0.70.0",
     "react-test-renderer": "17.0.2",
-    "typescript": "^4.5.2"
+    "typescript": "^4.6.3"
   },
   "resolutions": {
     "@types/react": "^17"

@@ -24,6 +24,8 @@ export interface ImageState {
 export type ImageProps = {
   cacheKey?: string;
   defaultSource?: ImageURISource | number;
+  maxAge?: number;
+  noCache?: boolean;
   onError: (error: { nativeEvent: { error: Error } }) => void;
   options?: DownloadOptions;
   source: string;
@@ -46,7 +48,11 @@ export interface IProps {
   loadingImageComponent?: React.ComponentType;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;
+  maxAge?: number;
+  noCache?: boolean;
   onError?: (error: { nativeEvent: { error: Error } }) => void;
+  onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
+  onLoadEnd?: () => void;
   options?: DownloadOptions;
   resizeMode?: ImageResizeMode;
   source: string;
@@ -54,13 +60,12 @@ export interface IProps {
   style?: StyleProp<ImageStyle>;
   thumbnailAnimationDuration?: number;
   thumbnailSource?: string;
-  onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
-  onLoadEnd?: () => void;
 }
 
 export interface Config {
   baseDir: string;
   blurRadius: number;
+  cacheLimit: number;
   sourceAnimationDuration: number;
   thumbnailAnimationDuration: number;
 }

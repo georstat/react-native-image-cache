@@ -94,6 +94,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
 
   const load = async ({
     cacheKey,
+    maxAge,
+    noCache = false,
     onError,
     options = {},
     source,
@@ -103,8 +105,11 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
         const path = await CacheManager.get(
           source,
           options,
-          cacheKey || source
+          cacheKey || source,
+          noCache,
+          maxAge
         ).getPath();
+
         if (path) {
           setUri(path);
           setError(false);
