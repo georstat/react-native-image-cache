@@ -17,6 +17,11 @@ Inspired by:
 - Cache **remote** images in file system with progressive loading
 - Uses [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) for file system access
 - Written in `Typescript`
+- Uses [`react-native-reanimated`](https://docs.swmansion.com/react-native-reanimated/docs/) for animations
+
+## <span style="color:red;font-size: 26px;font-weight:bold;">Caution:</span>
+
+#### If you're not using [`react-native-reanimated`](https://github.com/software-mansion/react-native-reanimated) version 2.x.x then use version 1.x.x of this module
 
 ### If you're looking for an image library with thumbnails visit [@georstat/react-native-image-gallery](https://github.com/georstat/react-native-image-gallery)
 
@@ -92,8 +97,7 @@ Cache pruning flow:
 Pruning has been benchmarked on iOS simulator with a 5.7MB image and ~5.000 copies of it on cache without any issues. Please note that the pruning speed/performance might differ among devices. Use `cacheLimit` wisely and do not set a big value.
 
 If you want to run your own tests on simulator then the cached images are stored in this location on a Mac:
-`/Users/<your_name>/Library/Developer/CoreSimulator/Devices/<simulator_device_id>/
-data/Containers/Data/Application/<application_id>/Library/Caches/images_cache`,
+`/Users/<your_name>/Library/Developer/CoreSimulator/Devices/<simulator_device_id>/ data/Containers/Data/Application/<application_id>/Library/Caches/images_cache`,
 just copy and paste multiple images in there, there's no need to download them via the app.
 
 #### Directory constants, choose wisely: ([react-native-file-access docs](https://github.com/alpha0010/react-native-file-access#directory-constants))
@@ -151,7 +155,7 @@ await CacheManager.isImageCached(uri);
 #### `CachedImage` accepts the following props:
 
 | Properties                       | PropType             | Description                                                                                                                                                                                                    |
-|----------------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `source`                         | `String`             | (**Required**) Uri of remote image.                                                                                                                                                                            |
 | `sourceAnimationDuration`        | `Number`             | `source` image animation duration when loading, defaults to `1000`ms (overrides config)                                                                                                                        |
 | `thumbnailSource`                | `String`             | (**Required**) Uri of the thumbnail image                                                                                                                                                                      |

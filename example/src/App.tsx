@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import {
   Alert,
   Button,
+  Dimensions,
   Image,
   Platform,
   SafeAreaView,
@@ -26,10 +27,10 @@ CacheManager.config = {
 };
 
 const img =
-  'https://upload.wikimedia.org/wikipedia/commons/0/02/Oia_dal_battello_al_tramonto_-_Santorini_-_Grecia_-_agosto_2018.jpg';
+  'https://upload.wikimedia.org/wikipedia/commons/c/c6/Attica_06-13_Athens_50_View_from_Philopappos_-_Acropolis_Hill.jpg';
 
 const imgThumb =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg/320px-Willaerts_Adam_The_Embarkation_of_the_Elector_Palantine_Oil_Canvas-huge.jpg';
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Attica_06-13_Athens_50_View_from_Philopappos_-_Acropolis_Hill.jpg/320px-Attica_06-13_Athens_50_View_from_Philopappos_-_Acropolis_Hill.jpg';
 
 const img2 =
   'https://images.unsplash.com/photo-1623849778517-668dffe703fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format';
@@ -61,7 +62,7 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Text style={styles.text}>Non Cached Image: (4.4MB)</Text>
+        <Text style={styles.text}>Non Cached Image: (7.06MB)</Text>
         <Image
           resizeMode="cover"
           source={{
@@ -70,17 +71,18 @@ const App = () => {
           style={styles.image}
         />
         <Text style={styles.bottomText}>
-          Cached Image With Thumbnail: (4.4MB, thumb: 14KB)
+          Cached Image With Thumbnail: (7.06MB, thumb: 25KB)
         </Text>
         <View style={styles.cachedImageContainer}>
           <CachedImage
+            resizeMode="cover"
             source={img}
             style={styles.image}
             thumbnailSource={imgThumb}
           />
         </View>
         <Text style={styles.bottomText}>
-          Cached Image With Custom Loading Placeholder: (4.4MB)
+          Cached Image With Custom Loading Placeholder: (7.06MB)
         </Text>
         <View style={styles.cachedImageContainer}>
           <CachedImage
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 250,
     marginTop: 12,
-    width: '90%',
+    width: Dimensions.get('screen').width - 40,
   },
   text: {
     fontSize: 18,

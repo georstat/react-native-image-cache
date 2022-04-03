@@ -6,19 +6,22 @@ import React, {
   useMemo,
 } from 'react';
 import {
-  Animated,
-  Image as RNImage,
   ImageLoadEventData,
   NativeSyntheticEvent,
   Platform,
   StyleSheet,
   View,
 } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import CacheManager from './CacheManager';
 import { ImageProps, IProps } from './types';
 
-const AnimatedImage = Animated.createAnimatedComponent(RNImage);
+const AnimatedImage = Animated.Image;
 const AnimatedView = Animated.View;
 
 const defaultProps = {
@@ -59,11 +62,23 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const { source: propsSource } = props;
   const [currentSource, setCurrentSource] = React.useState<string>(propsSource);
 
-  const animatedImage = React.useRef(new Animated.Value(0)).current;
+  const animatedImage = useSharedValue(0);
 
-  const animatedThumbnailImage = React.useRef(new Animated.Value(0)).current;
+  const animatedThumbnailImage = useSharedValue(0);
 
-  const animatedLoadingImage = React.useRef(new Animated.Value(1)).current;
+  const animatedLoadingImage = useSharedValue(1);
+
+  const imageSourceStyle = useAnimatedStyle(() => {
+    return { opacity: animatedImage.value };
+  });
+
+  const thumbnailSourceStyle = useAnimatedStyle(() => {
+    return { opacity: animatedThumbnailImage.value };
+  });
+
+  const animatedLoadingImageStyle = useAnimatedStyle(() => {
+    return { opacity: animatedLoadingImage.value };
+  });
 
   useEffect(() => {
     if (propsSource !== uri) {
@@ -112,23 +127,18 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   };
 
   const resetAnimations = () => {
-    animatedLoadingImage.setValue(1);
-    animatedThumbnailImage.setValue(0);
-    animatedImage.setValue(0);
+    animatedLoadingImage.value = 1;
+    animatedThumbnailImage.value = 0;
+    animatedImage.value = 0;
   };
 
   const onThumbnailLoad = () => {
-    Animated.timing(animatedLoadingImage, {
-      toValue: 0,
-      useNativeDriver: true,
-    }).start(() => {
-      Animated.timing(animatedThumbnailImage, {
-        toValue: 1,
+    animatedLoadingImage.value = withTiming(0, {}, () => {
+      animatedThumbnailImage.value = withTiming(1, {
         duration:
           props.thumbnailAnimationDuration ||
           CacheManager.config.thumbnailAnimationDuration,
-        useNativeDriver: true,
-      }).start();
+      });
     });
   };
 
@@ -138,13 +148,11 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     if (props.onLoad) {
       props.onLoad(e);
     }
-    Animated.timing(animatedImage, {
-      toValue: 1,
+    animatedImage.value = withTiming(1, {
       duration:
         props.sourceAnimationDuration ||
         CacheManager.config.sourceAnimationDuration,
-      useNativeDriver: true,
-    }).start();
+    });
   };
 
   const {
@@ -182,10 +190,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       {!isImageReady &&
         (LoadingImageComponent ? (
           <AnimatedView
-            style={[
-              styles.loadingImageStyle,
-              { opacity: animatedLoadingImage },
-            ]}
+            style={[styles.loadingImageStyle, animatedLoadingImageStyle]}
           >
             <LoadingImageComponent />
           </AnimatedView>
@@ -197,7 +202,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
               accessibilityRole={accessibilityRoleLoadingSource || 'image'}
               accessible
               resizeMode={resizeMode || 'contain'}
-              style={[{ opacity: animatedLoadingImage }, loadingImageStyle]}
+              style={[animatedLoadingImageStyle, loadingImageStyle]}
               // @ts-ignore
               source={loadingSource}
             />
@@ -213,7 +218,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           onLoad={onThumbnailLoad}
           resizeMode={resizeMode || 'contain'}
           source={{ uri: thumbnailSource }}
-          style={[style, { opacity: animatedThumbnailImage }]}
+          style={[style, thumbnailSourceStyle]}
         />
       )}
       {imageSource && (
@@ -230,7 +235,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           // @ts-ignore
           source={imageSource}
           // @ts-ignore
-          style={[styles.imageStyle, { opacity: animatedImage }]}
+          style={[styles.imageStyle, imageSourceStyle]}
         />
       )}
     </View>
