@@ -1,6 +1,10 @@
 # Changelog
 
-## [v2.0.1](https://github.com/georstat/react-native-image-cache/compare/v2.0.0...v2.0.1)
+## [v2.0.1](https://github.com/georstat/react-native-image-cache/compare/v2.0.0...v2.0.1) - 2022-04-05
+
+#### Improvements
+
+- chore: updated reanimated to 2.6.0, fixes https://github.com/georstat/react-native-image-cache/issues/22
 
 ## [v2.0.0](https://github.com/georstat/react-native-image-cache/compare/v1.6.0...v2.0.0) - 2022-04-03
 
