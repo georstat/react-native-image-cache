@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   Alert,
   Button,
@@ -26,6 +26,15 @@ CacheManager.config = {
   thumbnailAnimationDuration: 1000,
 };
 
+const prefetchImage =
+  'https://upload.wikimedia.org/wikipedia/commons/0/02/Oia_dal_battello_al_tramonto_-_Santorini_-_Grecia_-_agosto_2018.jpg';
+
+const prefetchImageTwo =
+  'https://upload.wikimedia.org/wikipedia/commons/4/48/Thira_%28Santorini%29_-_Ia-01.jpg';
+
+const prefetchImageThree =
+  'https://upload.wikimedia.org/wikipedia/commons/3/37/Oia_sunset_-_panoramio_%282%29.jpg';
+
 const img =
   'https://upload.wikimedia.org/wikipedia/commons/c/c6/Attica_06-13_Athens_50_View_from_Philopappos_-_Acropolis_Hill.jpg';
 
@@ -35,7 +44,7 @@ const imgThumb =
 const img2 =
   'https://images.unsplash.com/photo-1623849778517-668dffe703fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format';
 
-const App = () => {
+const App = ({ navigation }: { navigation: any }) => {
   const [source, setSource] = React.useState(img);
   const clearCache = useCallback(async () => {
     try {
@@ -58,6 +67,15 @@ const App = () => {
   const changeSource = () => {
     setSource(src => (src === img ? img2 : img));
   };
+
+  const onPrefetchImages = () => {
+    navigation.navigate('PrefetchImage');
+  };
+
+  useEffect(() => {
+    CacheManager.prefetch(prefetchImage);
+    CacheManager.prefetch([prefetchImageTwo, prefetchImageThree]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -111,6 +129,13 @@ const App = () => {
             color={pickButtonColor}
             onPress={changeSource}
             title="Change Image source"
+          />
+        </View>
+        <View style={styles.clearCacheButtonContainer}>
+          <Button
+            color={pickButtonColor}
+            onPress={onPrefetchImages}
+            title="Prefetch Images"
           />
         </View>
       </ScrollView>

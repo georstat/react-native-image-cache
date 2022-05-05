@@ -9,9 +9,7 @@ import defaultConfiguration from './defaultConfiguration';
 export class CacheEntry {
   source: string;
 
-  options: DownloadOptions;
-
-  cacheKey: string;
+  options: DownloadOptions | undefined;
 
   downloadPromise: Promise<string | undefined> | undefined;
 
@@ -23,12 +21,10 @@ export class CacheEntry {
 
   constructor(
     source: string,
-    options: DownloadOptions,
-    cacheKey: string,
+    options: DownloadOptions | undefined,
     noCache?: boolean,
     maxAge?: number
   ) {
-    this.cacheKey = cacheKey;
     this.noCache = noCache;
     this.options = options;
     this.source = source;
@@ -36,8 +32,8 @@ export class CacheEntry {
   }
 
   async getPath(): Promise<string | undefined> {
-    const { cacheKey, maxAge, noCache } = this;
-    const { exists, path, tmpPath } = await getCacheEntry(cacheKey, maxAge);
+    const { source, maxAge, noCache } = this;
+    const { exists, path, tmpPath } = await getCacheEntry(source, maxAge);
 
     if (exists && !noCache) {
       return path;
@@ -103,22 +99,20 @@ export default class CacheManager {
 
   static get(
     source: string,
-    options: DownloadOptions,
-    cacheKey: string,
+    options: DownloadOptions | undefined,
     noCache?: boolean,
     maxAge?: number
   ): CacheEntry {
-    if (!CacheManager.entries[cacheKey]) {
-      CacheManager.entries[cacheKey] = new CacheEntry(
+    if (!CacheManager.entries[source]) {
+      CacheManager.entries[source] = new CacheEntry(
         source,
         options,
-        cacheKey,
         noCache,
         maxAge
       );
-      return CacheManager.entries[cacheKey];
+      return CacheManager.entries[source];
     }
-    return CacheManager.entries[cacheKey];
+    return CacheManager.entries[source];
   }
 
   static async clearCache(): Promise<void> {
@@ -157,6 +151,16 @@ export default class CacheManager {
       return exists;
     } catch (e) {
       throw new Error('Error while checking if image already exists on cache');
+    }
+  }
+
+  static prefetch(source: string | string[], options?: DownloadOptions): void {
+    if (typeof source === 'string') {
+      CacheManager.get(source, options).getPath();
+    } else {
+      source.map(image => {
+        CacheManager.get(image, options).getPath();
+      });
     }
   }
 
