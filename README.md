@@ -122,6 +122,27 @@ import { CachedImage } from '@georstat/react-native-image-cache';
 />;
 ```
 
+#### Prefetch Image(s) and store them in cache:
+Accepts 2 parameters:
+
+| Parameter  | Type              | Description                                                                 |
+|------------|-------------------|-----------------------------------------------------------------------------|
+ | `image`    | `Array or String` | (Required) uri of remote image or array of remote uri strings               |
+| `options`  | `Object`          | custom options for the fetch image http request eg. `{headers:{}, body:{}}` |
+
+
+```tsx
+import { CacheManager } from '@georstat/react-native-image-cache';
+
+const url = "https://..../image.jpg"
+
+const urls = ["https://..../image.jpg", "https://..../image2.jpg", "https://..../image3.jpg"]
+
+ CacheManager.prefetch(url); // prefetch single image
+
+ CacheManager.prefetch(urls); // prefetch mutliple images
+```
+
 #### Clear local cache:
 
 ```tsx
