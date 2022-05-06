@@ -125,10 +125,10 @@ import { CachedImage } from '@georstat/react-native-image-cache';
 #### Prefetch Image(s) and store them in cache:
 Accepts 2 parameters:
 
-| Parameter  | Type              | Description                                                                 |
-|------------|-------------------|-----------------------------------------------------------------------------|
- | `image`    | `Array or String` | (Required) uri of remote image or array of remote uri strings               |
-| `options`  | `Object`          | custom options for the fetch image http request eg. `{headers:{}, body:{}}` |
+| Parameter  | Type              | Description                                                                            |
+|------------|-------------------|----------------------------------------------------------------------------------------|
+ | `image`    | `Array or String` | (Required) uri of remote image or array of remote uri strings                          |
+| `options`  | `Object`          | (Optional) custom options for the fetch image http request eg. `{headers:{}, body:{}}` |
 
 
 ```tsx
