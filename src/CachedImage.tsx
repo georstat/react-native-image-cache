@@ -184,7 +184,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   }, [uri, error]);
 
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, style]} testID={props.testID}>
       {!isImageReady &&
         (LoadingImageComponent ? (
           <AnimatedView

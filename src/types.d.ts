@@ -60,6 +60,7 @@ export interface IProps {
   style?: StyleProp<ImageStyle>;
   thumbnailAnimationDuration?: number;
   thumbnailSource?: string;
+  testID?: string;
 }
 
 export interface Config {
