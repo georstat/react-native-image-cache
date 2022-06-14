@@ -200,6 +200,10 @@ const getCacheEntry = async (
   cacheKey: string,
   maxAge?: number | undefined
 ): Promise<{ exists: boolean; path: string; tmpPath: string }> => {
+  let newCacheKey = cacheKey;
+  if (CacheManager.config.getCustomCacheKey) {
+    newCacheKey = CacheManager.config.getCustomCacheKey(cacheKey);
+  }
   const filename = cacheKey.substring(
     cacheKey.lastIndexOf('/'),
     cacheKey.indexOf('?') === -1 ? cacheKey.length : cacheKey.indexOf('?')
@@ -208,7 +212,7 @@ const getCacheEntry = async (
     filename.indexOf('.') === -1
       ? '.jpg'
       : filename.substring(filename.lastIndexOf('.'));
-  const sha = SHA1(cacheKey);
+  const sha = SHA1(newCacheKey);
   const path = `${CacheManager.config.baseDir}${sha}${ext}`;
   const tmpPath = `${CacheManager.config.baseDir}${sha}-${uniqueId()}${ext}`;
   // TODO: maybe we don't have to do this every time

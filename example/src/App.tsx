@@ -24,6 +24,14 @@ CacheManager.config = {
   cacheLimit: 1024 * 1024 * 256, // ~256MB
   sourceAnimationDuration: 1000,
   thumbnailAnimationDuration: 1000,
+  getCustomCacheKey: (source: string) => {
+    // Remove params from the URL for chacing images (useful for caching images from Amazons S3 bucket and etc)
+    let newCacheKey = source;
+    if (source.includes('?')) {
+      newCacheKey = source.substring(0, source.lastIndexOf('?'));
+    }
+    return newCacheKey;
+  }
 };
 
 const prefetchImage =
