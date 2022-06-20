@@ -81,6 +81,24 @@ CacheManager.config = {
 };
 ```
 
+#### Custom cache key, useful for caching images from Amazon's S3 and similar services, add this (or whatever suits your needs) on `CacheManager.config`:
+
+```tsx
+CacheManager.config = {
+  // ...
+  getCustomCacheKey: (source: string) => {
+    // Remove params from the URL for chacing images (useful for caching images from Amazons S3 bucket and etc)
+    let newCacheKey = source;
+    if (source.includes('?')) {
+      newCacheKey = source.substring(0, source.lastIndexOf('?'));
+    }
+    return newCacheKey;
+  }
+}
+```
+
+
+
 #### `cacheLimit` config: (auto pruning of cached files)
 
 If `cacheLimit` is set to `0` (default value) then the cache will never be auto pruned. This setting accepts a number of Bytes eg. `1024 * 1024 * 256`(~256MB) and requires `react-native-file-access` >= 2.4.0, if you're using < 2.4.0 then leave the default value `0` (disabled).
@@ -176,7 +194,7 @@ await CacheManager.isImageCached(uri);
 #### `CachedImage` accepts the following props:
 
 | Properties                       | PropType             | Description                                                                                                                                                                                                    |
-| -------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `source`                         | `String`             | (**Required**) Uri of remote image.                                                                                                                                                                            |
 | `sourceAnimationDuration`        | `Number`             | `source` image animation duration when loading, defaults to `1000`ms (overrides config)                                                                                                                        |
 | `thumbnailSource`                | `String`             | (**Required**) Uri of the thumbnail image                                                                                                                                                                      |
@@ -191,6 +209,7 @@ await CacheManager.isImageCached(uri);
 | `onLoad`                         | `Func`               | Invoked when load completes successfully                                                                                                                                                                       |
 | `onLoadEnd`                      | `Func`               | Invoked when load either succeeds or fails                                                                                                                                                                     |
 | `resizeMode`                     | `String`             | React native Image component [resizeMode](https://reactnative.dev/docs/image#resizemode) defaults to `contain`                                                                                                 |
+| `testID`                         | `String`             | testID, useful for tests                                                                                                                                                                                       |
 | `style`                          | `Object`             | `source` AND `thumbnailSource` image style                                                                                                                                                                     |
 | `options`                        | `Object`             | custom options for the fetch image http request eg. `{headers:{}, body:{}}`                                                                                                                                    |
 | `accessibilityHint`              | `string`             | accessibility hint for `source` (optional)                                                                                                                                                                     |
