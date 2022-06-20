@@ -15,7 +15,7 @@ const PrefetchImage = () => {
   return (
     <ScrollView contentContainerStyle={styles.cachedImageContainer}>
       <Text style={styles.header}> Single</Text>
-      <View style={{ marginTop: 12 }}>
+      <View style={styles.wrapper}>
         {/* source and thumbnailSource props are the same, no need to enter thumbnail since image is already cached */}
         <CachedImage
           resizeMode="cover"
@@ -26,7 +26,7 @@ const PrefetchImage = () => {
       </View>
       <Text style={styles.header}>Multiple</Text>
       {[prefetchImageTwo, prefetchImageThree].map(image => (
-        <View style={{ marginTop: 12 }} key={image}>
+        <View style={styles.wrapper} key={image}>
           {/* source and thumbnailSource props are the same, no need to enter */}
           {/* thumbnail since image is already cached */}
           <CachedImage
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 250,
     width: Dimensions.get('screen').width - 40,
+  },
+  wrapper: {
+    marginTop: 12,
   },
 });
 
