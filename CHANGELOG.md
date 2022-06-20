@@ -1,6 +1,20 @@
 # Changelog
 
-## [v2.1.0](https://github.com/georstat/react-native-image-cache/compare/v2.0.1...v2.1.0)
+## [v2.2.0](https://github.com/georstat/react-native-image-cache/compare/v2.1.0...v2.2.0)
+
+#### Improvements
+
+- chore: updated dev packages ([0e87709](https://github.com/georstat/react-native-image-cache/commit/0e8770929f3ed68708049000d4142de6d4e08861)).
+- chore: updated example packages, added routes.tsx on .eslintignore ([859a880](https://github.com/georstat/react-native-image-cache/commit/859a88005a370d484103173eec9ff359c34fac6b)).
+- chore: linted example and fixed a typo in a comment ([f2237a6](https://github.com/georstat/react-native-image-cache/commit/f2237a6a891bb3a0f474d8c0fd4bdbf41c7c07c3)).
+- chore: a-b sorted types.d.ts ([3698869](https://github.com/georstat/react-native-image-cache/commit/3698869e96b3a524e101f0b2595a55aefeb09ced)).
+
+#### Documentations
+
+- docs: added testID prop and new getCustomCacheKey config option ([c1dfdf0](https://github.com/georstat/react-native-image-cache/commit/c1dfdf035694eeffe13c72fdf740068d4852d61b)).
+- docs: mark prefetch options as optional on parameters ([3db99cf](https://github.com/georstat/react-native-image-cache/commit/3db99cf9a72ab547263c0b4e9d7ef075c7e34e48)).
+
+## [v2.1.0](https://github.com/georstat/react-native-image-cache/compare/v2.0.1...v2.1.0) - 2022-05-05
 
 ## [v2.0.1](https://github.com/georstat/react-native-image-cache/compare/v2.0.0...v2.0.1) - 2022-04-05
 
