@@ -11,7 +11,9 @@ import {
 import React from 'react';
 
 export interface DownloadOptions {
-  headers?: { [name: string]: string };
+  headers?: {
+    [name: string]: string;
+  };
 }
 
 export interface ImageState {
@@ -58,16 +60,16 @@ export interface IProps {
   source: string;
   sourceAnimationDuration?: number;
   style?: StyleProp<ImageStyle>;
+  testID?: string;
   thumbnailAnimationDuration?: number;
   thumbnailSource?: string;
-  testID?: string;
 }
 
 export interface Config {
   baseDir: string;
   blurRadius: number;
   cacheLimit: number;
+  getCustomCacheKey?: (source: string) => string;
   sourceAnimationDuration: number;
   thumbnailAnimationDuration: number;
-  getCustomCacheKey?: (source: string) => string;
 }
