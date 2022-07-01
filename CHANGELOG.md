@@ -8,7 +8,7 @@
 - chore: updated example packages, added routes.tsx on .eslintignore ([859a880](https://github.com/georstat/react-native-image-cache/commit/859a88005a370d484103173eec9ff359c34fac6b)).
 - chore: linted example and fixed a typo in a comment ([f2237a6](https://github.com/georstat/react-native-image-cache/commit/f2237a6a891bb3a0f474d8c0fd4bdbf41c7c07c3)).
 - chore: a-b sorted types.d.ts ([3698869](https://github.com/georstat/react-native-image-cache/commit/3698869e96b3a524e101f0b2595a55aefeb09ced)).
-
+- chore: added getCustomCacheKey on CacheManager.config([970e037](https://github.com/georstat/react-native-image-cache/commit/993470c6fd6beb3afdc137a47b7353992970e037))
 #### Documentations
 
 - docs: added testID prop and new getCustomCacheKey config option ([c1dfdf0](https://github.com/georstat/react-native-image-cache/commit/c1dfdf035694eeffe13c72fdf740068d4852d61b)).
