@@ -47,6 +47,7 @@ export interface IProps {
   accessibilityRoleThumbnail?: AccessibilityRole;
   blurRadius?: number;
   cacheKey?: string;
+  imageStyle?: StyleProp<ImageStyle>;
   loadingImageComponent?: React.ComponentType;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;

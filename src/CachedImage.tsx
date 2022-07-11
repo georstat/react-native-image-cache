@@ -164,6 +164,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     accessibilityLabelLoadingImage,
     accessibilityLabelThumbnail,
     blurRadius,
+    imageStyle,
     loadingImageComponent: LoadingImageComponent,
     loadingImageStyle = props.style,
     loadingSource,
@@ -234,7 +235,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           // @ts-ignore
           source={imageSource}
           // @ts-ignore
-          style={[styles.imageStyle, imageSourceStyle]}
+          style={[styles.imageStyle, imageStyle, imageSourceStyle]}
         />
       )}
     </View>
