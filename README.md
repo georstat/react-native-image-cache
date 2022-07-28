@@ -87,7 +87,7 @@ CacheManager.config = {
 CacheManager.config = {
   // ...
   getCustomCacheKey: (source: string) => {
-    // Remove params from the URL for chacing images (useful for caching images from Amazons S3 bucket and etc)
+    // Remove params from the URL for caching images (useful for caching images from Amazons S3 bucket and etc)
     let newCacheKey = source;
     if (source.includes('?')) {
       newCacheKey = source.substring(0, source.lastIndexOf('?'));
@@ -201,7 +201,7 @@ await CacheManager.isImageCached(uri);
 | `thumbnailAnimationDuration`     | `Number`             | Animation duration for thumbnail, defaults to `1000`ms (overrides config)                                                                                                                                      |
 | `blurRadius`                     | `Number`             | Amount of blur to apply on `thumbnailSource` image , defaults to `15` (overrides config)                                                                                                                       |
 | `loadingImageComponent`          | `React.CompnentType` | Defaults to an image with the `loadingSource` prop                                                                                                                                                             |
-| `noCache`                        | `Boolean`            | Do not cache the image, defaults to `false` witch means always cache the image                                                                                                                                 |
+| `noCache`                        | `Boolean`            | Do not cache the image, defaults to `false` which means always cache the image                                                                                                                                 |
 | `maxAge`                         | `Number`             | Maximum age in hours to cache the image, defaults to `undefined` (infinite caching). **Auto pruning won't take into consideration this value, it will delete the image anyway if the `cacheLimit` is reached** |
 | `loadingImageStyle`              | `Object`             | Style for loading image component. Works if you don't provide a `loadingImageComponent`                                                                                                                        |
 | `loadingSource`                  | `object`             | Source for loading Image component. Works if you don't provide `loadingImageComponent`                                                                                                                         |
