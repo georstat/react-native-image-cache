@@ -161,6 +161,24 @@ const urls = ["https://..../image.jpg", "https://..../image2.jpg", "https://....
  CacheManager.prefetch(urls); // prefetch mutliple images
 ```
 
+#### Prefetch Image(s) and return blob/base64:
+Accepts 2 parameters:
+
+| Parameter | Type     | Description                                                                            |
+|-----------|----------|----------------------------------------------------------------------------------------|
+| `image`   | `String` | (Required) uri of remote image                                                         |
+| `options` | `Object` | (Optional) custom options for the fetch image http request eg. `{headers:{}, body:{}}` |
+
+
+```tsx
+import { CacheManager } from '@georstat/react-native-image-cache';
+
+const url = "https://..../image.jpg"
+
+ CacheManager.prefetchBlob(url).then(response => console.log(response)); // response is the base64 string
+
+```
+
 #### Clear local cache:
 
 ```tsx

@@ -164,6 +164,18 @@ export default class CacheManager {
     }
   }
 
+  static async prefetchBlob(
+    source: string,
+    options?: DownloadOptions
+  ): Promise<string | undefined> {
+    const path = await CacheManager.get(source, options).getPath();
+    if (path) {
+      const blob = await FileSystem.readFile(path, 'base64');
+      return blob;
+    }
+    return undefined;
+  }
+
   static async pruneCache() {
     // If cache directory does not exist yet there's no need for pruning.
     if (!(await CacheManager.getCacheSize())) {
