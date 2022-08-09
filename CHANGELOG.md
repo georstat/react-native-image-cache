@@ -1,6 +1,19 @@
 # Changelog
 
-## [v2.2.0](https://github.com/georstat/react-native-image-cache/compare/v2.1.0...v2.2.0)
+## [v2.3.0](https://github.com/georstat/react-native-image-cache/compare/v2.2.0...v2.3.0)
+
+#### Features
+
+- feat: Prefetch image and return the base64/blob string ([47d537a](https://github.com/georstat/react-native-image-cache/commit/47d537a3429654bf61fc95066327c536856967a7)).
+
+#### Improvements
+
+- chore: updated dev and example packages ([2f23710](https://github.com/georstat/react-native-image-cache/commit/2f2371019c11d8bb774e2f28834215111d810bd3)).
+- chore: updated dev and example packages ([6f90b01](https://github.com/georstat/react-native-image-cache/commit/6f90b01659713eef208ce9c0e314c6d086f84e03)).
+- chore: updated dev and example packages ([4257f05](https://github.com/georstat/react-native-image-cache/commit/4257f051da00ec958325f6b774dd82428d1728c2)).
+- chore: updated CHANGELOG.md to include getCustomCacheKey new config ([977ddd6](https://github.com/georstat/react-native-image-cache/commit/977ddd60c1365762c2a525d8dc0b3b7a75566794)).
+
+## [v2.2.0](https://github.com/georstat/react-native-image-cache/compare/v2.1.0...v2.2.0) - 2022-06-20
 
 #### Improvements
 
@@ -8,7 +21,7 @@
 - chore: updated example packages, added routes.tsx on .eslintignore ([859a880](https://github.com/georstat/react-native-image-cache/commit/859a88005a370d484103173eec9ff359c34fac6b)).
 - chore: linted example and fixed a typo in a comment ([f2237a6](https://github.com/georstat/react-native-image-cache/commit/f2237a6a891bb3a0f474d8c0fd4bdbf41c7c07c3)).
 - chore: a-b sorted types.d.ts ([3698869](https://github.com/georstat/react-native-image-cache/commit/3698869e96b3a524e101f0b2595a55aefeb09ced)).
-- chore: added getCustomCacheKey on CacheManager.config([970e037](https://github.com/georstat/react-native-image-cache/commit/993470c6fd6beb3afdc137a47b7353992970e037))
+
 #### Documentations
 
 - docs: added testID prop and new getCustomCacheKey config option ([c1dfdf0](https://github.com/georstat/react-native-image-cache/commit/c1dfdf035694eeffe13c72fdf740068d4852d61b)).
