@@ -161,7 +161,7 @@ const urls = ["https://..../image.jpg", "https://..../image2.jpg", "https://....
  CacheManager.prefetch(urls); // prefetch mutliple images
 ```
 
-#### Prefetch Image(s) and return blob/base64:
+#### Prefetch Image and return blob/base64:
 Accepts 2 parameters:
 
 | Parameter | Type     | Description                                                                            |
