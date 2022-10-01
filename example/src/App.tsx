@@ -20,7 +20,7 @@ const pickButtonColor = Platform.OS === 'ios' ? 'white' : 'black';
 
 CacheManager.config = {
   baseDir: `${Dirs.CacheDir}/images_cache/`,
-  blurRadius: 15,
+  thumbnailBlurRadius: 15,
   cacheLimit: 1024 * 1024 * 256, // ~256MB
   sourceAnimationDuration: 1000,
   thumbnailAnimationDuration: 1000,
@@ -114,7 +114,7 @@ const App = ({ navigation }: { navigation: any }) => {
           <CachedImage
             source={source}
             style={styles.image}
-            blurRadius={1}
+            thumbnailBlurRadius={1}
             loadingImageComponent={ImagePlaceholder}
           />
         </View>

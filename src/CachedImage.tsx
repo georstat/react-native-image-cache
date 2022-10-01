@@ -163,7 +163,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     accessibilityLabel,
     accessibilityLabelLoadingImage,
     accessibilityLabelThumbnail,
-    blurRadius,
+    thumbnailBlurRadius,
     loadingImageComponent: LoadingImageComponent,
     loadingImageStyle = props.style,
     loadingSource,
@@ -213,7 +213,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           accessibilityLabel={accessibilityLabelThumbnail}
           accessibilityRole={accessibilityRoleThumbnail || 'image'}
           accessible
-          blurRadius={blurRadius || CacheManager.config.blurRadius}
+          blurRadius={thumbnailBlurRadius || CacheManager.config.thumbnailBlurRadius}
           onLoad={onThumbnailLoad}
           resizeMode={resizeMode || 'contain'}
           source={{ uri: thumbnailSource }}

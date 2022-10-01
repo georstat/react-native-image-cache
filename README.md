@@ -74,7 +74,7 @@ import { Dirs } from 'react-native-file-access';
 
 CacheManager.config = {
   baseDir: `${Dirs.CacheDir}/images_cache/`,
-  blurRadius: 15,
+  thumbnailBlurRadius: 15,
   cacheLimit: 0,
   sourceAnimationDuration: 1000,
   thumbnailAnimationDuration: 1000,
@@ -217,7 +217,7 @@ await CacheManager.isImageCached(uri);
 | `sourceAnimationDuration`        | `Number`             | `source` image animation duration when loading, defaults to `1000`ms (overrides config)                                                                                                                        |
 | `thumbnailSource`                | `String`             | (**Required**) Uri of the thumbnail image                                                                                                                                                                      |
 | `thumbnailAnimationDuration`     | `Number`             | Animation duration for thumbnail, defaults to `1000`ms (overrides config)                                                                                                                                      |
-| `blurRadius`                     | `Number`             | Amount of blur to apply on `thumbnailSource` image , defaults to `15` (overrides config)                                                                                                                       |
+| `thumbnailBlurRadius`                     | `Number`             | Amount of blur to apply on `thumbnailSource` image , defaults to `15` (overrides config)                                                                                                                       |
 | `loadingImageComponent`          | `React.CompnentType` | Defaults to an image with the `loadingSource` prop                                                                                                                                                             |
 | `noCache`                        | `Boolean`            | Do not cache the image, defaults to `false` which means always cache the image                                                                                                                                 |
 | `maxAge`                         | `Number`             | Maximum age in hours to cache the image, defaults to `undefined` (infinite caching). **Auto pruning won't take into consideration this value, it will delete the image anyway if the `cacheLimit` is reached** |

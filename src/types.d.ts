@@ -46,6 +46,7 @@ export interface IProps {
   accessibilityRoleLoadingSource?: AccessibilityRole;
   accessibilityRoleThumbnail?: AccessibilityRole;
   blurRadius?: number;
+  thumbnailBlurRadius?: number;
   cacheKey?: string;
   loadingImageComponent?: React.ComponentType;
   loadingImageStyle?: StyleProp<ImageStyle>;
@@ -67,7 +68,7 @@ export interface IProps {
 
 export interface Config {
   baseDir: string;
-  blurRadius: number;
+  thumbnailBlurRadius: number;
   cacheLimit: number;
   getCustomCacheKey?: (source: string) => string;
   sourceAnimationDuration: number;
