@@ -250,6 +250,11 @@ await CacheManager.isImageCached(uri);
 - [x] Make `baseDir` configurable
 - [x] Delete single cache entry
 
+# Sponsor
+This library is developed for free.
+
+Buy us a coffee using this link: [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/efstathios)
+
 ## Authors:
 
 - [Efstathios Ntonas](https://github.com/efstathiosntonas)
