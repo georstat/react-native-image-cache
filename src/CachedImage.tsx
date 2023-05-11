@@ -135,7 +135,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       animatedThumbnailImage.value = withTiming(1, {
         duration:
           props.thumbnailAnimationDuration ||
-          CacheManager.config.thumbnailAnimationDuration,
+          CacheManager?.config?.thumbnailAnimationDuration ||
+          100,
       });
     });
   };
@@ -149,7 +150,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     animatedImage.value = withTiming(1, {
       duration:
         props.sourceAnimationDuration ||
-        CacheManager.config.sourceAnimationDuration,
+        CacheManager?.config?.sourceAnimationDuration ||
+        1000,
     });
   };
 
