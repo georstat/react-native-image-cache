@@ -23,7 +23,7 @@
   "author": "Efstathios Ntonas - George Bakogiannis - George Kallinikos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/georstat/react-native-image-cacheissues"
+    "url": "https://github.com/georstat/react-native-image-cache/issues"
   },
   "homepage": "https://github.com/georstat/react-native-image-cache",
   "scripts": {
