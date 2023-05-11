@@ -8,20 +8,20 @@ import PrefetchImage from './src/PrefetchImage';
 const Stack = createNativeStackNavigator();
 
 function Routes() {
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="App">
-          <Stack.Screen
-            name="App"
-            component={App}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="PrefetchImage" component={PrefetchImage} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </GestureHandlerRootView>
-  );
+    return (
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName="App">
+                    <Stack.Screen
+                        name="App"
+                        component={App}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen name="PrefetchImage" component={PrefetchImage} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </GestureHandlerRootView>
+    );
 }
 
 export default Routes;
