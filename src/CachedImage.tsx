@@ -45,7 +45,7 @@ function useStateIfMounted<S>(
   const [state, setState] = React.useState(initialState);
 
   const newSetState = useCallback(
-    value => {
+    (value: any) => {
       if (isComponentMounted.current) {
         setState(value);
       }
@@ -231,6 +231,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           onLoad={onImageLoad}
           onLoadEnd={props.onLoadEnd}
           resizeMode={resizeMode || 'contain'}
+          // @ts-ignore, reanimated image doesn't have tintColor typing
+          tintColor={props.tintColor}
           // @ts-ignore
           source={imageSource}
           // @ts-ignore

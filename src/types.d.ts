@@ -63,6 +63,7 @@ export interface IProps {
   testID?: string;
   thumbnailAnimationDuration?: number;
   thumbnailSource?: string;
+  tintColor?: string;
 }
 
 export interface Config {
