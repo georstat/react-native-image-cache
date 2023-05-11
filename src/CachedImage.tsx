@@ -56,7 +56,7 @@ function useStateIfMounted<S>(
   return [state, newSetState];
 }
 
-const CachedImage = (props: IProps & typeof defaultProps) => {
+const CachedImage = (props: IProps | typeof defaultProps) => {
   const [error, setError] = useStateIfMounted<boolean>(false);
   const [uri, setUri] = useStateIfMounted<string | undefined>(undefined);
   const { source: propsSource, options: propsOptions } = props;
