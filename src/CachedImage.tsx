@@ -59,7 +59,7 @@ function useStateIfMounted<S>(
 const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = useStateIfMounted<boolean>(false);
   const [uri, setUri] = useStateIfMounted<string | undefined>(undefined);
-  const { source: propsSource } = props;
+  const { source: propsSource, options: propsOptions } = props;
   const [currentSource, setCurrentSource] = React.useState<string>(propsSource);
 
   const animatedImage = useSharedValue(0);
@@ -90,7 +90,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       resetAnimations();
     }
     /* eslint-disable react-hooks/exhaustive-deps */
-  }, [propsSource, uri]);
+  }, [propsSource, uri, propsOptions]);
 
   const load = async ({
     maxAge,
@@ -216,7 +216,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           blurRadius={blurRadius || CacheManager.config.blurRadius}
           onLoad={onThumbnailLoad}
           resizeMode={resizeMode || 'contain'}
-          source={{ uri: thumbnailSource }}
+          source={{ uri: thumbnailSource, ...propsOptions }}
           style={[style, thumbnailSourceStyle]}
         />
       )}
