@@ -44,13 +44,13 @@ Inspired by:
 #### yarn:
 
 ```bash
-yarn add @georstat/react-native-image-cache
+yarn add @georstat/react-native-image-cache react-native-file-access react-native-reanimated
 ```
 
 #### npm:
 
 ```bash
-npm i @georstat/react-native-image-cache
+npm i @georstat/react-native-image-cache react-native-file-access react-native-reanimated
 ```
 
 #### link native packages:
