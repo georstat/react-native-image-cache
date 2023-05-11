@@ -103,7 +103,11 @@ export default class CacheManager {
     noCache?: boolean,
     maxAge?: number
   ): CacheEntry {
-    if (!CacheManager.entries[source] || CacheManager.entries[source].options?.headers?.Authorization !== options?.headers?.Authorization) {
+    if (
+      !CacheManager.entries[source] ||
+      CacheManager.entries[source].options?.headers?.Authorization !==
+        options?.headers?.Authorization
+    ) {
       CacheManager.entries[source] = new CacheEntry(
         source,
         options,
