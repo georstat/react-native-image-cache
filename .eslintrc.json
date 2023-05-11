@@ -107,6 +107,7 @@
     "react/require-default-props": 0,
     "react/state-in-constructor": 0,
     "react/static-property-placement": 0,
+    "import/no-extraneous-dependencies": 0,
     "import/extensions": [
       "warn",
       "ignorePackages",
