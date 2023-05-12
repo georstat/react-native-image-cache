@@ -1,6 +1,35 @@
 # Changelog
 
-## [v2.3.0](https://github.com/georstat/react-native-image-cache/compare/v2.2.0...v2.3.0)
+## [v2.4.0](https://github.com/georstat/react-native-image-cache/compare/v2.3.0...v2.4.0)
+
+#### Improvements
+
+- chore: updated example to react-native@0.71.8 and dev packages ([c512549](https://github.com/georstat/react-native-image-cache/commit/c512549c46026012db3fc2cf60dcad2969838654)).
+- chore: prettified files ([3288507](https://github.com/georstat/react-native-image-cache/commit/3288507f464a30a8e9f1a4a7364aae88e5fb4007)).
+- chore: added nullish check on sourceAnimationDuration from global config ([f75ce87](https://github.com/georstat/react-native-image-cache/commit/f75ce870aa340ba31434d0d9986ca17af7c0439f)).
+- chore: added tintColor prop on source image ([8c91921](https://github.com/georstat/react-native-image-cache/commit/8c9192124d0113aafd6f83ded8a6be8e2b710021)).
+- chore: added missing / on bugs.url on package.json ([52cd27e](https://github.com/georstat/react-native-image-cache/commit/52cd27e6e05b0701cfc9f8eaa2598e8ce10ce17c)).
+- chore: added missing comma on package.json ([457fcff](https://github.com/georstat/react-native-image-cache/commit/457fcfff73e1998aa0b03e90a5547e1eee9ee471)).
+- chore: updated eslint rules ([232564d](https://github.com/georstat/react-native-image-cache/commit/232564d5d9900539206ef7979cbca7f787a9c6ef)).
+
+#### Fixes
+
+- fix: move reanimated to dev dependencies ([4066952](https://github.com/georstat/react-native-image-cache/commit/4066952f139fd4a5f8e8e3e76eb32f450a9008c7)).
+- fix: use options for thumbnails & support token refresh
+
+- Use options for thumbnails as well:
+Options property are used only for source image. So, if you have any required header or option to get thumbnail images from whatever backend you're using, it'll silently fail.
+- Support refresh on token update
+Cache Manager is being instanced once and only registering uris and options by source URL. So, if you have the same URL being called from different places across the app, you may face at some point that your images won't load since they have been stored by URL (which is the same) and with the first option that Cache Manager received; so you may already got the idea but to summarize you're not getting your images because the token that Cache Manager is using has expired and it's not being updated. ([6c21996](https://github.com/georstat/react-native-image-cache/commit/6c21996a1bed5ebec0c84d988641129ee275a821)).
+
+#### Documentations
+
+- docs: update README.md
+
+added buy me a coffee link ([2982b22](https://github.com/georstat/react-native-image-cache/commit/2982b225249b8632223b090a02fa3489b5bb1d0b)).
+- docs: fix typo ([bee2b26](https://github.com/georstat/react-native-image-cache/commit/bee2b26784cd8aa193e6a8609192181d8af3919f)).
+
+## [v2.3.0](https://github.com/georstat/react-native-image-cache/compare/v2.2.0...v2.3.0) - 2022-08-09
 
 #### Features
 
