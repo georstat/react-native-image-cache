@@ -197,16 +197,17 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           </AnimatedView>
         ) : (
           <View style={[styles.loadingImageStyle]}>
-            <AnimatedImage
-              accessibilityHint={accessibilityHintLoadingImage}
-              accessibilityLabel={accessibilityLabelLoadingImage}
-              accessibilityRole={accessibilityRoleLoadingSource || 'image'}
-              accessible
-              resizeMode={resizeMode || 'contain'}
-              style={[animatedLoadingImageStyle, loadingImageStyle]}
-              // @ts-ignore
-              source={loadingSource}
-            />
+            {loadingSource && (
+              <AnimatedImage
+                accessibilityHint={accessibilityHintLoadingImage}
+                accessibilityLabel={accessibilityLabelLoadingImage}
+                accessibilityRole={accessibilityRoleLoadingSource || 'image'}
+                accessible
+                resizeMode={resizeMode || 'contain'}
+                style={[animatedLoadingImageStyle, loadingImageStyle]}
+                source={loadingSource}
+              />
+            )}
           </View>
         ))}
       {thumbnailSource && (
