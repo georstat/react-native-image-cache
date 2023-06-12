@@ -1,6 +1,12 @@
 # Changelog
 
-## [v2.4.0](https://github.com/georstat/react-native-image-cache/compare/v2.3.0...v2.4.0)
+## [v2.5.0](https://github.com/georstat/react-native-image-cache/compare/v2.4.0...v2.5.0)
+
+#### Improvements
+
+- chore: updated dev end example packages ([d2359c1](https://github.com/georstat/react-native-image-cache/commit/d2359c146e9065993141470870d81f558b92ff41)).
+
+## [v2.4.0](https://github.com/georstat/react-native-image-cache/compare/v2.3.0...v2.4.0) - 2023-05-12
 
 #### Improvements
 
