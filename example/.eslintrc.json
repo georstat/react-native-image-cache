@@ -8,7 +8,7 @@
   "extends": [
     "airbnb-typescript",
     "plugin:prettier/recommended",
-    "@react-native-community",
+    "@react-native",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
     "plugin:react-hooks/recommended",
