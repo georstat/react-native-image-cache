@@ -8,6 +8,9 @@
 - chore: updated dev packages, react-native@0.72.3 ([6a5dd6d](https://github.com/georstat/react-native-image-cache/commit/6a5dd6d8f442cfa4195c66d193847caaa6363181)).
 - chore: eslint fixes ([f25cbd5](https://github.com/georstat/react-native-image-cache/commit/f25cbd5ae9a701af11d6eb792a0ffeac01ec57c5)).
 
+#### Fixes:
+- fix: check if path exist before clearing cache (`clearCache`) https://github.com/georstat/react-native-image-cache/pull/56 thanks @itsramiel !
+
 ## [v2.5.0](https://github.com/georstat/react-native-image-cache/compare/v2.4.0...v2.5.0) - 2023-06-12
 
 #### Improvements
