@@ -134,9 +134,11 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     animatedLoadingImage.value = withTiming(0, {}, () => {
       animatedThumbnailImage.value = withTiming(1, {
         duration:
-          props.thumbnailAnimationDuration ||
-          CacheManager?.config?.thumbnailAnimationDuration ||
-          100,
+          props.thumbnailAnimationDuration === 0
+            ? 0
+            : props.thumbnailAnimationDuration ||
+              CacheManager?.config?.thumbnailAnimationDuration ||
+              100,
       });
     });
   };
@@ -149,9 +151,11 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     }
     animatedImage.value = withTiming(1, {
       duration:
-        props.sourceAnimationDuration ||
-        CacheManager?.config?.sourceAnimationDuration ||
-        1000,
+        props.sourceAnimationDuration === 0
+          ? 0
+          : props.sourceAnimationDuration ||
+            CacheManager?.config?.sourceAnimationDuration ||
+            100,
     });
   };
 
