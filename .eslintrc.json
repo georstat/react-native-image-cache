@@ -8,14 +8,13 @@
   "extends": [
     "airbnb-typescript",
     "plugin:prettier/recommended",
-    "@react-native-community",
+    "@react-native",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
     "plugin:react-hooks/recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked"
   ],
   "overrides": [
     {
@@ -54,6 +53,8 @@
   "rules": {
     "import/named": "off",
     "@typescript-eslint/no-unnecessary-type-assertion": 0,
+    "@typescript-eslint/consistent-indexed-object-style": 0,
+    "@typescript-eslint/prefer-nullish-coalescing": 0,
     "prefer-template": "off",
     "no-param-reassign": "off",
     "react/no-unused-prop-types": "off",

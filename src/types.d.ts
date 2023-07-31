@@ -23,7 +23,7 @@ export interface ImageState {
   uri: string | undefined;
 }
 
-export type ImageProps = {
+export interface ImageProps {
   cacheKey?: string;
   defaultSource?: ImageURISource | number;
   maxAge?: number;
@@ -33,7 +33,7 @@ export type ImageProps = {
   source: string;
   style?: StyleProp<ImageStyle>;
   thumbnailSource?: string;
-};
+}
 
 export interface IProps {
   accessibilityHint?: string;
