@@ -120,12 +120,14 @@ export default class CacheManager {
   }
 
   static async clearCache(): Promise<void> {
-    const files = await FileSystem.ls(CacheManager.config.baseDir);
-    for (const file of files) {
-      try {
-        await FileSystem.unlink(`${CacheManager.config.baseDir}${file}`);
-      } catch (e) {
-        console.log(`error while clearing images cache, error: ${e}`);
+    if (await FileSystem.exists(CacheManager.config.baseDir)) {
+      const files = await FileSystem.ls(CacheManager.config.baseDir);
+      for (const file of files) {
+        try {
+          await FileSystem.unlink(`${CacheManager.config.baseDir}${file}`);
+        } catch (e) {
+          console.log(`error while clearing images cache, error: ${e}`);
+        }
       }
     }
   }
