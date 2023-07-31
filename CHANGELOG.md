@@ -1,15 +1,22 @@
 # Changelog
 
-## [v2.6.0](https://github.com/georstat/react-native-image-cache/compare/v2.5.0...v2.6.0)
+## [v2.7.0](https://github.com/georstat/react-native-image-cache/compare/v2.6.0...v2.7.0)
+
+#### Improvements
+
+- chore: updated CHANGELOG.md ([4b01561](https://github.com/georstat/react-native-image-cache/commit/4b015611e5c2f0335dcd9cc572ce57aae85d09e8)).
+
+#### Fixes
+
+- fix: allow `0` as an animation duration on both source and thumbnail ([071941c](https://github.com/georstat/react-native-image-cache/commit/071941c850d0510f574d3d0b9fc7dfe0136d39da)).
+
+## [v2.6.0](https://github.com/georstat/react-native-image-cache/compare/v2.5.0...v2.6.0) - 2023-07-31
 
 #### Improvements
 
 - chore: updated example packages, react-native@0.72.3 ([6ca18a8](https://github.com/georstat/react-native-image-cache/commit/6ca18a829b4190f8d58870635129a2bd868200c0)).
 - chore: updated dev packages, react-native@0.72.3 ([6a5dd6d](https://github.com/georstat/react-native-image-cache/commit/6a5dd6d8f442cfa4195c66d193847caaa6363181)).
 - chore: eslint fixes ([f25cbd5](https://github.com/georstat/react-native-image-cache/commit/f25cbd5ae9a701af11d6eb792a0ffeac01ec57c5)).
-
-#### Fixes:
-- fix: check if path exist before clearing cache (`clearCache`) https://github.com/georstat/react-native-image-cache/pull/56 thanks @itsramiel !
 
 ## [v2.5.0](https://github.com/georstat/react-native-image-cache/compare/v2.4.0...v2.5.0) - 2023-06-12
 
