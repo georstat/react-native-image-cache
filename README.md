@@ -18,6 +18,7 @@ Inspired by:
 - Uses [`react-native-file-access`](https://github.com/alpha0010/react-native-file-access) for file system access
 - Written in `Typescript`
 - Uses [`react-native-reanimated`](https://docs.swmansion.com/react-native-reanimated/docs/) for animations
+- Supports new Architecture, both `react-native-file-access` and `react-native-reanimated` are Fabric ready.
 
 ## <span style="color:red;font-size: 26px;font-weight:bold;">Caution:</span>
 
