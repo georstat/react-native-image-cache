@@ -3,8 +3,9 @@ import React, {
   SetStateAction,
   useCallback,
   useEffect,
-  useMemo, useRef
-} from "react";
+  useMemo,
+  useRef,
+} from 'react';
 import {
   ImageLoadEventData,
   NativeSyntheticEvent,
@@ -29,7 +30,7 @@ const defaultProps = {
 };
 
 function useIsComponentMounted() {
-  const isMounted = React.useRef(false);
+  const isMounted = useRef(false);
   // @ts-ignore
   useEffect(() => {
     isMounted.current = true;
@@ -60,7 +61,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = useStateIfMounted<boolean>(false);
   const [uri, setUri] = useStateIfMounted<string | undefined>(undefined);
   const { source: propsSource, options: propsOptions } = props;
-  const currentSource = React.useRef<string>(propsSource);
+  const currentSource = useRef<string>(propsSource);
 
   const animatedImage = useSharedValue(0);
 
