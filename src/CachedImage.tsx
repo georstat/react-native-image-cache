@@ -94,7 +94,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     noCache = false,
     onError,
     options = {},
-    source
+    source,
   }: ImageProps): Promise<void> => {
     if (source) {
       try {
