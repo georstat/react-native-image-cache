@@ -3,8 +3,8 @@ import React, {
   SetStateAction,
   useCallback,
   useEffect,
-  useMemo,
-} from 'react';
+  useMemo, useRef
+} from "react";
 import {
   ImageLoadEventData,
   NativeSyntheticEvent,
@@ -60,7 +60,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = useStateIfMounted<boolean>(false);
   const [uri, setUri] = useStateIfMounted<string | undefined>(undefined);
   const { source: propsSource, options: propsOptions } = props;
-  const [currentSource, setCurrentSource] = React.useState<string>(propsSource);
+  const currentSource = React.useRef<string>(propsSource);
 
   const animatedImage = useSharedValue(0);
 
@@ -70,7 +70,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
 
   const imageSourceStyle = useAnimatedStyle(() => {
     return { opacity: animatedImage.value };
-  });
+  },[propsSource]);
 
   const thumbnailSourceStyle = useAnimatedStyle(() => {
     return { opacity: animatedThumbnailImage.value };
@@ -81,24 +81,21 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   });
 
   useEffect(() => {
-    if (propsSource !== uri) {
-      load(props).catch();
-    }
-    if (propsSource !== currentSource) {
-      setCurrentSource(propsSource);
-      setUri(undefined);
+    load(props).catch();
+    if (propsSource !== currentSource.current) {
+      currentSource.current = propsSource;
       resetAnimations();
     }
     /* eslint-disable react-hooks/exhaustive-deps */
-  }, [propsSource, uri, propsOptions]);
+  }, [propsSource, propsOptions]);
 
   const load = async ({
-    maxAge,
-    noCache = false,
-    onError,
-    options = {},
-    source,
-  }: ImageProps): Promise<void> => {
+     maxAge,
+     noCache = false,
+     onError,
+     options = {},
+     source
+   }: ImageProps): Promise<void> => {
     if (source) {
       try {
         const path = await CacheManager.get(
@@ -112,18 +109,19 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           setUri(path);
           setError(false);
         } else {
+          setUri(undefined);
           setError(true);
           onError({
             nativeEvent: { error: new Error('Could not load image') },
           });
         }
       } catch (e: any) {
+        setUri(undefined);
         setError(true);
         onError({ nativeEvent: { error: e } });
       }
     }
   };
-
   const resetAnimations = () => {
     animatedLoadingImage.value = 1;
     animatedThumbnailImage.value = 0;
