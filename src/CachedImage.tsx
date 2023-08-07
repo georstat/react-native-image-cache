@@ -70,7 +70,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
 
   const imageSourceStyle = useAnimatedStyle(() => {
     return { opacity: animatedImage.value };
-  },[propsSource]);
+  });
 
   const thumbnailSourceStyle = useAnimatedStyle(() => {
     return { opacity: animatedThumbnailImage.value };
@@ -90,12 +90,12 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   }, [propsSource, propsOptions]);
 
   const load = async ({
-     maxAge,
-     noCache = false,
-     onError,
-     options = {},
-     source
-   }: ImageProps): Promise<void> => {
+    maxAge,
+    noCache = false,
+    onError,
+    options = {},
+    source
+  }: ImageProps): Promise<void> => {
     if (source) {
       try {
         const path = await CacheManager.get(
