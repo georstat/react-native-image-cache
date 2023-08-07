@@ -1,6 +1,13 @@
 # Changelog
 
-## [v2.7.0](https://github.com/georstat/react-native-image-cache/compare/v2.6.0...v2.7.0)
+## [v2.8.0](https://github.com/georstat/react-native-image-cache/compare/v2.7.0...v2.8.0)
+
+#### Improvements
+
+- chore: updated dev and example packages ([8633bbb](https://github.com/georstat/react-native-image-cache/commit/8633bbbdb3494dbe0fdc493f1a800617731034a1)).
+- chore: import useRef instead of React.useRef ([d02ea03](https://github.com/georstat/react-native-image-cache/commit/d02ea03717374c5b76eb380fc37a0a95bfde66f8)).
+
+## [v2.7.0](https://github.com/georstat/react-native-image-cache/compare/v2.6.0...v2.7.0) - 2023-07-31
 
 #### Improvements
 
