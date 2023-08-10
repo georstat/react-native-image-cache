@@ -62,15 +62,22 @@ export class CacheEntry {
     }
 
     if (source != null) {
-      const result = await FileSystem.fetch(source, {
-        path: tmpPath,
-        ...options,
-      });
-      // If the image download failed, we don't cache anything
-      if (result && result.status !== 200) {
+      try {
+        const result = await FileSystem.fetch(source, {
+          path: tmpPath,
+          ...options,
+        });
+        // If the image download failed, we don't cache anything
+        if (result && result.status !== 200) {
+          this.downloadPromise = undefined;
+          return undefined;
+        }
+      } catch (e) {
+        console.log("FileSystem.fetch meet some trouble: " + (e instanceof Error ? e.message : 'unknown'))
         this.downloadPromise = undefined;
         return undefined;
       }
+
       await FileSystem.mv(tmpPath, path);
       if (CacheManager.config.cacheLimit) {
         await CacheManager.pruneCache();
