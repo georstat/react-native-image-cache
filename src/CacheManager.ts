@@ -6,6 +6,43 @@ import { FileStat, FileSystem } from 'react-native-file-access';
 import { Config, DownloadOptions } from './types';
 import defaultConfiguration from './defaultConfiguration';
 
+async function retry(
+  fn: () => any,
+  retriesLeft = CacheManager.config.maxRetries || 0,
+  interval = CacheManager.config.retryDelay
+): Promise<any> {
+  try {
+    /* for some reason FileSystem.fetch won't throw error if image is not found
+     * we need to catch the errors locally
+     */
+    const request = await fn();
+
+    switch (request.status) {
+      case 404:
+        throw new Error(request.status);
+      case 401:
+        throw new Error(request.status);
+      default:
+        return request;
+    }
+  } catch (error: any) {
+    /* abort early if the image is not found or
+     * the access is not authorized
+     */
+    if (error.message === '404' || error.message === '401') {
+      throw new Error(error);
+    }
+    /* FileSystem.fetch throws error if device is offline/temp internet loss with message "Host unreachable" or "Unable to resolve host"
+     * so keep trying
+     */
+    if (retriesLeft === 0) {
+      throw new Error(`Maximum retries exceeded: ${error.message}`);
+    }
+    await new Promise(resolve => setTimeout(resolve, interval));
+    return retry(fn, retriesLeft - 1, interval);
+  }
+}
+
 export class CacheEntry {
   source: string;
 
@@ -56,24 +93,32 @@ export class CacheEntry {
     tmpPath: string
   ): Promise<string | undefined> {
     const { source, options, noCache } = this;
-    // if noCache is true then return the source uri without caching it
+    /* if noCache is true then return the source uri without caching it */
     if (noCache) {
       return source;
     }
 
     if (source != null) {
       try {
-        const result = await FileSystem.fetch(source, {
-          path: tmpPath,
-          ...options,
-        });
-        // If the image download failed, we don't cache anything
+        const result = await retry(() =>
+          FileSystem.fetch(source, {
+            path: tmpPath,
+            ...options,
+          })
+        );
+        /* If the image download failed, we don't cache anything */
         if (result && result.status !== 200) {
           this.downloadPromise = undefined;
           return undefined;
         }
       } catch (e) {
-        console.log("FileSystem.fetch meet some trouble: " + (e instanceof Error ? e.message : 'unknown'))
+        if (__DEV__) {
+          console.log(
+            `FileSystem.fetch has some trouble, error: ${
+              e instanceof Error ? e.message : 'unknown'
+            }`
+          );
+        }
         this.downloadPromise = undefined;
         return undefined;
       }
@@ -133,7 +178,9 @@ export default class CacheManager {
         try {
           await FileSystem.unlink(`${CacheManager.config.baseDir}${file}`);
         } catch (e) {
-          console.log(`error while clearing images cache, error: ${e}`);
+          if (__DEV__) {
+            console.log(`error while clearing images cache, error: ${e}`);
+          }
         }
       }
     }
@@ -190,7 +237,7 @@ export default class CacheManager {
   }
 
   static async pruneCache() {
-    // If cache directory does not exist yet there's no need for pruning.
+    /* If cache directory does not exist yet there's no need for pruning. */
     if (!(await CacheManager.getCacheSize())) {
       return;
     }
@@ -213,7 +260,11 @@ export default class CacheManager {
         if (file) {
           if (await FileSystem.exists(file.path)) {
             overflowSize = overflowSize - file.size;
-            await FileSystem.unlink(file.path).catch(e => console.log(e));
+            await FileSystem.unlink(file.path).catch(e => {
+              if (__DEV__) {
+                console.log(e);
+              }
+            });
           }
         }
       }
@@ -244,7 +295,7 @@ const getCacheEntry = async (
   try {
     await FileSystem.mkdir(CacheManager.config.baseDir);
   } catch (e) {
-    // do nothing
+    /* do nothing */
   }
   const exists = await FileSystem.exists(path);
 
