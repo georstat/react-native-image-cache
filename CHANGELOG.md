@@ -1,6 +1,16 @@
 # Changelog
 
-## [v2.8.0](https://github.com/georstat/react-native-image-cache/compare/v2.7.0...v2.8.0)
+## [v2.9.0](https://github.com/georstat/react-native-image-cache/compare/v2.8.0...v2.9.0)
+
+#### Improvements
+
+- chore: updated dev and example packages ([eba84f1](https://github.com/georstat/react-native-image-cache/commit/eba84f101269b150e1718fe4a1f13f8e50fc5d0e)).
+
+#### Documentations
+
+- docs: added supports new Arch in Features ([bd859ef](https://github.com/georstat/react-native-image-cache/commit/bd859ef2be9e1c4c603939925d0808021de04eda)).
+
+## [v2.8.0](https://github.com/georstat/react-native-image-cache/compare/v2.7.0...v2.8.0) - 2023-08-07
 
 #### Improvements
 
