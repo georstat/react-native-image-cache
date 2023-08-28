@@ -59,6 +59,7 @@ export interface IProps {
   resizeMode?: ImageResizeMode;
   source: string;
   sourceAnimationDuration?: number;
+  imageStyle?: StyleProp<ImageStyle>;
   style?: StyleProp<ImageStyle>;
   testID?: string;
   thumbnailAnimationDuration?: number;

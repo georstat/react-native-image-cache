@@ -9,9 +9,9 @@ import React, {
 import {
   ImageLoadEventData,
   NativeSyntheticEvent,
-  Platform,
   StyleSheet,
   View,
+  ImageSourcePropType
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -21,6 +21,7 @@ import Animated, {
 
 import CacheManager from './CacheManager';
 import { ImageProps, IProps } from './types';
+import { isAndroid, isRemoteImage, isImageWithRequire } from "./helpers";
 
 const AnimatedImage = Animated.Image;
 const AnimatedView = Animated.View;
@@ -82,7 +83,12 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   });
 
   useEffect(() => {
-    load(props).catch();
+    if(isRemoteImage(propsSource)) {
+      load(props as ImageProps).catch();
+    }else{
+      setUri(propsSource)
+    }
+
     if (propsSource !== currentSource.current) {
       currentSource.current = propsSource;
       resetAnimations();
@@ -176,18 +182,27 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     style,
     testID,
     thumbnailSource,
+    imageStyle,
     ...rest
   } = props;
 
   const isImageReady = useMemo(() => !!uri, [uri, propsSource]);
 
   const imageSource = useMemo(() => {
-    return error || !uri
-      ? loadingSource
-      : {
-          uri: Platform.OS === 'android' ? `file://${uri}` : uri,
-        };
-  }, [uri, error]);
+    if (error || !uri) {
+      return loadingSource;
+    }
+
+    if (isRemoteImage(propsSource) || !isImageWithRequire(propsSource)) {
+      return {
+        uri: isAndroid() ? `file://${uri}` : uri,
+      };
+    }
+
+    // If reached here it means it's not http image or local path eg:"/data/user/0/com.reactnativeimagecacheexample/.."
+    // so its local image with Require method
+    return uri as ImageSourcePropType;
+  }, [uri, error, propsSource]);
 
   return (
     <View style={[styles.container, style]} testID={testID}>
@@ -242,7 +257,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           // @ts-ignore
           source={imageSource}
           // @ts-ignore
-          style={[styles.imageStyle, imageSourceStyle]}
+          style={[styles.imageStyle, imageSourceStyle, imageStyle]}
         />
       )}
     </View>
