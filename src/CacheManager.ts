@@ -1,6 +1,5 @@
 // @ts-ignore
 import SHA1 from 'crypto-js/sha1';
-import uniqueId from 'lodash/uniqueId';
 import { FileStat, FileSystem } from 'react-native-file-access';
 
 import { Config, DownloadOptions } from './types';
@@ -70,7 +69,7 @@ export class CacheEntry {
 
   async getPath(): Promise<string | undefined> {
     const { source, maxAge, noCache } = this;
-    const { exists, path, tmpPath } = await getCacheEntry(source, maxAge);
+    const { exists, path } = await getCacheEntry(source, maxAge);
 
     if (exists && !noCache) {
       return path;
@@ -78,19 +77,18 @@ export class CacheEntry {
 
     if (!this.downloadPromise) {
       this.pathResolved = false;
-      this.downloadPromise = this.download(path, tmpPath);
+      this.downloadPromise = this.download(path);
     }
 
     if (this.downloadPromise && this.pathResolved) {
       this.pathResolved = false;
-      this.downloadPromise = this.download(path, tmpPath);
+      this.downloadPromise = this.download(path);
     }
     return this.downloadPromise;
   }
 
   private async download(
     path: string,
-    tmpPath: string
   ): Promise<string | undefined> {
     const { source, options, noCache } = this;
     /* if noCache is true then return the source uri without caching it */
@@ -102,7 +100,7 @@ export class CacheEntry {
       try {
         const result = await retry(() =>
           FileSystem.fetch(source, {
-            path: tmpPath,
+            path: path,
             ...options,
           })
         );
@@ -123,7 +121,6 @@ export class CacheEntry {
         return undefined;
       }
 
-      await FileSystem.mv(tmpPath, path);
       if (CacheManager.config.cacheLimit) {
         await CacheManager.pruneCache();
       }
@@ -275,7 +272,7 @@ export default class CacheManager {
 const getCacheEntry = async (
   cacheKey: string,
   maxAge?: number | undefined
-): Promise<{ exists: boolean; path: string; tmpPath: string }> => {
+): Promise<{ exists: boolean; path: string;}> => {
   let newCacheKey = cacheKey;
   if (CacheManager.config.getCustomCacheKey) {
     newCacheKey = CacheManager.config.getCustomCacheKey(cacheKey);
@@ -290,7 +287,7 @@ const getCacheEntry = async (
       : filename.substring(filename.lastIndexOf('.'));
   const sha = SHA1(newCacheKey);
   const path = `${CacheManager.config.baseDir}${sha}${ext}`;
-  const tmpPath = `${CacheManager.config.baseDir}${sha}-${uniqueId()}${ext}`;
+
   // TODO: maybe we don't have to do this every time
   try {
     await FileSystem.mkdir(CacheManager.config.baseDir);
@@ -304,8 +301,8 @@ const getCacheEntry = async (
     const ageInHours = Math.floor(Date.now() - lastModified) / 1000 / 3600;
     if (maxAge < ageInHours) {
       await FileSystem.unlink(path);
-      return { exists: false, path, tmpPath };
+      return { exists: false, path };
     }
   }
-  return { exists, path, tmpPath };
+  return { exists, path };
 };
