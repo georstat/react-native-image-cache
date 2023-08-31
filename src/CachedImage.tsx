@@ -148,7 +148,12 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     });
   };
 
-  const onImageError = (): void => setError(true);
+  const onImageError = (): void => {
+    if(props.onError){
+      props.onError()
+    }
+    setError(true);
+  };
 
   const onImageLoad = (e: NativeSyntheticEvent<ImageLoadEventData>): void => {
     if (props.onLoad) {
