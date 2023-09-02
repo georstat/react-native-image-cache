@@ -100,7 +100,7 @@ export class CacheEntry {
       try {
         const result = await retry(() =>
           FileSystem.fetch(source, {
-            path: path,
+            path,
             ...options,
           })
         );
