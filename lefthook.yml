@@ -14,7 +14,9 @@ pre-commit:
       glob: "*.{js,ts,jsx,tsx}"
       run: tsc --noEmit
     4_example:
-      run: cd example && yarn lint && yarn prettier && tsc --noEmit
+      root: "example/"
+      run: yarn lint && yarn prettier && tsc --noEmit
+
 commit-msg:
   parallel: true
   commands:
