@@ -1,18 +1,18 @@
 # Changelog
 
-## [v3.0.0](https://github.com/georstat/react-native-image-cache/compare/v2.9.0...v3.0.0)
-
-#### New Features
-- feat: support local images via `require`, note that you must provide the `imageStyle` prop https://github.com/georstat/react-native-image-cache/pull/62 thanks @saif-o99
+## [v3.1.0](https://github.com/georstat/react-native-image-cache/compare/v2.9.0...v3.1.0)
 
 #### Improvements
 
-- chore: removed `lodash` and `tmpPath` https://github.com/georstat/react-native-image-cache/pull/63 thanks @saif-o99
 - chore: updated dev and example packages ([b534f4f](https://github.com/georstat/react-native-image-cache/commit/b534f4f4717c1a3d0653a6f1ab013edc2d28b15f)).
 - chore: removed husky, added lefthook ([f6d0745](https://github.com/georstat/react-native-image-cache/commit/f6d0745f27b5f5ea305946bd8303dc0141ff4a54)).
 - chore: prettified, linted and a-b sorted some props ([708340d](https://github.com/georstat/react-native-image-cache/commit/708340dd328da559731cd1ca59f60b404fa223a3)).
 - chore: renamed animated style variables for better readability ([3b7486b](https://github.com/georstat/react-native-image-cache/commit/3b7486bfa99ce8efd748ac9a8d790c8a3b0298f3)).
+- chore: updated CHANGELOG.md ([2c019c1](https://github.com/georstat/react-native-image-cache/commit/2c019c1abc049c8680e488c8cba140859b710211)).
+- chore: added 408, 500 & 503 error codes in the retry function ([e823000](https://github.com/georstat/react-native-image-cache/commit/e823000129d9e0b298e0463caa5768844f4d055f)).
 - chore: use root on lefthook for example run ([66e04eb](https://github.com/georstat/react-native-image-cache/commit/66e04eb22ce5d3d96278c4f3ec2a1a6563721584)).
+- chore: use `forEach` instead of `map` in prefetch function ([9ab5e91](https://github.com/georstat/react-native-image-cache/commit/9ab5e91ebfdeecf14372f6c87ded35f08e796107)).
+- chore: yarn prettier now runs first on lefthook example run to avoid eslint issues afterwards ([5169b0e](https://github.com/georstat/react-native-image-cache/commit/5169b0e9a32fc2be648b9a6433ae0dac22825d9c)).
 
 #### Documentations
 
@@ -77,16 +77,15 @@
 - fix: use options for thumbnails & support token refresh
 
 - Use options for thumbnails as well:
-  Options property are used only for source image. So, if you have any required header or option to get thumbnail images from whatever backend you're using, it'll silently fail.
+Options property are used only for source image. So, if you have any required header or option to get thumbnail images from whatever backend you're using, it'll silently fail.
 - Support refresh on token update
-  Cache Manager is being instanced once and only registering uris and options by source URL. So, if you have the same URL being called from different places across the app, you may face at some point that your images won't load since they have been stored by URL (which is the same) and with the first option that Cache Manager received; so you may already got the idea but to summarize you're not getting your images because the token that Cache Manager is using has expired and it's not being updated. ([6c21996](https://github.com/georstat/react-native-image-cache/commit/6c21996a1bed5ebec0c84d988641129ee275a821)).
+Cache Manager is being instanced once and only registering uris and options by source URL. So, if you have the same URL being called from different places across the app, you may face at some point that your images won't load since they have been stored by URL (which is the same) and with the first option that Cache Manager received; so you may already got the idea but to summarize you're not getting your images because the token that Cache Manager is using has expired and it's not being updated. ([6c21996](https://github.com/georstat/react-native-image-cache/commit/6c21996a1bed5ebec0c84d988641129ee275a821)).
 
 #### Documentations
 
 - docs: update README.md
 
 added buy me a coffee link ([2982b22](https://github.com/georstat/react-native-image-cache/commit/2982b225249b8632223b090a02fa3489b5bb1d0b)).
-
 - docs: fix typo ([bee2b26](https://github.com/georstat/react-native-image-cache/commit/bee2b26784cd8aa193e6a8609192181d8af3919f)).
 
 ## [v2.3.0](https://github.com/georstat/react-native-image-cache/compare/v2.2.0...v2.3.0) - 2022-08-09
@@ -253,15 +252,13 @@ added download per month ([5366c33](https://github.com/georstat/react-native-ima
 - chore: added example with `loadingImageComponent` ([5396857](https://github.com/georstat/react-native-image-cache/commit/53968577ab95fcf90c9bb6366e733af564c978fe)).
 - chore: updated npm packages ([f63d354](https://github.com/georstat/react-native-image-cache/commit/f63d3547b307d3804624abd81e33aee9e434fca7)).
 - chore: updated example npm packages
-
 * prettier add bracket spacing ([9a7bb68](https://github.com/georstat/react-native-image-cache/commit/9a7bb680eccd0cb052221621855353818925dc42)).
-
 - chore: added native modules linking instructions on README ([f20b3cc](https://github.com/georstat/react-native-image-cache/commit/f20b3cc2db134687894b5c53979bff6316126ede)).
 
 #### Fixes
 
 - fix: infinite callback
-  chore: improved loadingImageComponent behavior ([5fc9cbd](https://github.com/georstat/react-native-image-cache/commit/5fc9cbd57d8c05b8cdbe15cf2fd834e19d36e298)).
+chore: improved loadingImageComponent behavior ([5fc9cbd](https://github.com/georstat/react-native-image-cache/commit/5fc9cbd57d8c05b8cdbe15cf2fd834e19d36e298)).
 - fix: fix `blacklist` module not found error ([aff0b65](https://github.com/georstat/react-native-image-cache/commit/aff0b653231797797a02847dab42c3f86da1bd4a)).
 
 ## [v1.2.4](https://github.com/georstat/react-native-image-cache/compare/v1.2.3...v1.2.4) - 2021-07-06
@@ -288,8 +285,8 @@ added download per month ([5366c33](https://github.com/georstat/react-native-ima
 #### Improvements
 
 - chore: added `blurRadius` as a prop BREAKING: please add `blurRadius` in `CacheManager` config
-  docs: improved docs badges and added `blurRadius` prop info
-  chore: sorted alphabetically some objects ([942a588](https://github.com/georstat/react-native-image-cache/commit/942a58884cfd77f66b56bb33f1c364e4c2dba42a)).
+docs: improved docs badges and added `blurRadius` prop info
+chore: sorted alphabetically some objects ([942a588](https://github.com/georstat/react-native-image-cache/commit/942a58884cfd77f66b56bb33f1c364e4c2dba42a)).
 
 ## [v1.2.0](https://github.com/georstat/react-native-image-cache/compare/v1.1.2...v1.2.0) - 2021-05-15
 
@@ -320,23 +317,23 @@ fix: fixed `useEffect` props to only check for `props.source` instead of full pr
 #### Fixes
 
 - fix: fixed a typo on `onImageLoad` animation prop
-  docs: added new TODO
-  docs: added `react-native-file-access` docs link about `Dirs` ([cce01dc](https://github.com/georstat/react-native-image-cache/commit/cce01dc97ccc0c636a174ed7d93138deef27241d)).
+docs: added new TODO
+docs: added `react-native-file-access` docs link about `Dirs` ([cce01dc](https://github.com/georstat/react-native-image-cache/commit/cce01dc97ccc0c636a174ed7d93138deef27241d)).
 
 ## [v1.1.0](https://github.com/georstat/react-native-image-cache/compare/v1.0.9...v1.1.0) - 2021-05-11
 
 #### Features
 
 - feat: BREAKING CHANGE: added Global Config
-  docs: updated README.md
-  chore: updated dependencies ([b7cb4be](https://github.com/georstat/react-native-image-cache/commit/b7cb4be3d0d1db23c76409720128897f0c06dd41)).
+docs: updated README.md
+chore: updated dependencies ([b7cb4be](https://github.com/georstat/react-native-image-cache/commit/b7cb4be3d0d1db23c76409720128897f0c06dd41)).
 
 ## [v1.0.9](https://github.com/georstat/react-native-image-cache/compare/v1.0.8...v1.0.9) - 2021-05-10
 
 #### Fixes
 
 - fix: finally fixed `defaultProps` typings
-  fix: fixed a typo on `thumbnailSource` url in example ([a87e8b7](https://github.com/georstat/react-native-image-cache/commit/a87e8b7cb3b1039c9585c4c9f289a529ec7cf276)).
+fix: fixed a typo on `thumbnailSource` url in example ([a87e8b7](https://github.com/georstat/react-native-image-cache/commit/a87e8b7cb3b1039c9585c4c9f289a529ec7cf276)).
 
 ## [v1.0.8](https://github.com/georstat/react-native-image-cache/compare/v1.0.7...v1.0.8) - 2021-05-10
 
@@ -378,11 +375,11 @@ fix: fixed `useEffect` props to only check for `props.source` instead of full pr
 #### Improvements
 
 - refactor: alphanum sorted some objects and props
-  docs: sorted props on props table
-  refactor: removed unused code
-  refactor: BREAKING CHANGE: renamed `imageAnimationDuration` to `sourceAnimationDuration` prop for convention
-  docs: removed iOS video demo and added GIF
-  docs: added Android demo ([e36e5b2](https://github.com/georstat/react-native-image-cache/commit/e36e5b23c224d9afc0e46efc5d253546657c8d6a)).
+docs: sorted props on props table
+refactor: removed unused code
+refactor: BREAKING CHANGE: renamed `imageAnimationDuration` to `sourceAnimationDuration` prop for convention
+docs: removed iOS video demo and added GIF
+docs: added Android demo ([e36e5b2](https://github.com/georstat/react-native-image-cache/commit/e36e5b23c224d9afc0e46efc5d253546657c8d6a)).
 
 ## [v1.0.4](https://github.com/georstat/react-native-image-cache/compare/v1.0.3...v1.0.4) - 2021-05-07
 
@@ -400,8 +397,8 @@ fix: fixed `useEffect` props to only check for `props.source` instead of full pr
 
 - chore: added LICENSE ([12e667f](https://github.com/georstat/react-native-image-cache/commit/12e667ffb41b8bce2af2dbb072346fb7ad76ea66)).
 - refactor: source is now a string instead of object for convenience
-  refactor: removed useNativeDriver prop, now it's always `true`
-  refactor: types cleanup ([149426f](https://github.com/georstat/react-native-image-cache/commit/149426fb922efcaec76c66c12d0471d86c4a5912)).
+refactor: removed useNativeDriver prop, now it's always `true`
+refactor: types cleanup ([149426f](https://github.com/georstat/react-native-image-cache/commit/149426fb922efcaec76c66c12d0471d86c4a5912)).
 - chore: version bump ([bfcface](https://github.com/georstat/react-native-image-cache/commit/bfcfaced5e52270b863aa0ad0decd514068f81c0)).
 
 ## v1.0.2 - 2021-05-07
