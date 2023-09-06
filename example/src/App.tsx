@@ -56,6 +56,9 @@ const imgThumb =
 const img2 =
   'https://images.unsplash.com/photo-1623849778517-668dffe703fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format';
 
+const localImage = require('../assets/building-image.jpg')
+
+
 const App = ({ navigation }: { navigation: any }) => {
   const [source, setSource] = React.useState(img);
   const clearCache = useCallback(async () => {
@@ -122,6 +125,18 @@ const App = ({ navigation }: { navigation: any }) => {
             loadingImageComponent={ImagePlaceholder}
           />
         </View>
+        <Text style={styles.bottomText}>
+          Local Image With require()
+        </Text>
+        <View style={styles.cachedImageContainer}>
+          <CachedImage
+            source={localImage}
+            style={styles.image}
+            // imageStyle prop is required when using require for the image to respect the height and width
+            imageStyle={styles.imageRequireStyle}
+            resizeMode={"cover"}
+          />
+        </View>
         <View style={styles.clearCacheButtonContainer}>
           <Button
             color={pickButtonColor}
@@ -184,6 +199,10 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     marginTop: 12,
   },
+  imageRequireStyle:{
+    height:"100%",
+    width:"100%"
+  }
 });
 
 export default App;
