@@ -225,7 +225,7 @@ export default class CacheManager {
     if (typeof source === 'string') {
       CacheManager.get(source, options).getPath();
     } else {
-      source.map(image => {
+      source.forEach(image => {
         CacheManager.get(image, options).getPath();
       });
     }
