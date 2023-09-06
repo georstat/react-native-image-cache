@@ -1,6 +1,20 @@
 # Changelog
 
-## [v2.9.0](https://github.com/georstat/react-native-image-cache/compare/v2.8.0...v2.9.0)
+## [v3.0.0](https://github.com/georstat/react-native-image-cache/compare/v2.9.0...v3.0.0)
+
+#### Improvements
+
+- chore: updated dev and example packages ([b534f4f](https://github.com/georstat/react-native-image-cache/commit/b534f4f4717c1a3d0653a6f1ab013edc2d28b15f)).
+- chore: removed husky, added lefthook ([f6d0745](https://github.com/georstat/react-native-image-cache/commit/f6d0745f27b5f5ea305946bd8303dc0141ff4a54)).
+- chore: prettified, linted and a-b sorted some props ([708340d](https://github.com/georstat/react-native-image-cache/commit/708340dd328da559731cd1ca59f60b404fa223a3)).
+- chore: renamed animated style variables for better readability ([3b7486b](https://github.com/georstat/react-native-image-cache/commit/3b7486bfa99ce8efd748ac9a8d790c8a3b0298f3)).
+- chore: use root on lefthook for example run ([66e04eb](https://github.com/georstat/react-native-image-cache/commit/66e04eb22ce5d3d96278c4f3ec2a1a6563721584)).
+
+#### Documentations
+
+- docs: added `imageStyle` prop and info about supporting local images ([23e2a70](https://github.com/georstat/react-native-image-cache/commit/23e2a70d01441b97d1bee9e1448d74e1123f4a28)).
+
+## [v2.9.0](https://github.com/georstat/react-native-image-cache/compare/v2.8.0...v2.9.0) - 2023-08-10
 
 #### Improvements
 
