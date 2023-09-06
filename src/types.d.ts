@@ -47,6 +47,7 @@ export interface IProps {
   accessibilityRoleThumbnail?: AccessibilityRole;
   blurRadius?: number;
   cacheKey?: string;
+  imageStyle?: StyleProp<ImageStyle>;
   loadingImageComponent?: React.ComponentType;
   loadingImageStyle?: StyleProp<ImageStyle>;
   loadingSource?: ImageSourcePropType;
@@ -59,7 +60,6 @@ export interface IProps {
   resizeMode?: ImageResizeMode;
   source: string;
   sourceAnimationDuration?: number;
-  imageStyle?: StyleProp<ImageStyle>;
   style?: StyleProp<ImageStyle>;
   testID?: string;
   thumbnailAnimationDuration?: number;

@@ -87,9 +87,7 @@ export class CacheEntry {
     return this.downloadPromise;
   }
 
-  private async download(
-    path: string,
-  ): Promise<string | undefined> {
+  private async download(path: string): Promise<string | undefined> {
     const { source, options, noCache } = this;
     /* if noCache is true then return the source uri without caching it */
     if (noCache) {
@@ -272,7 +270,7 @@ export default class CacheManager {
 const getCacheEntry = async (
   cacheKey: string,
   maxAge?: number | undefined
-): Promise<{ exists: boolean; path: string;}> => {
+): Promise<{ exists: boolean; path: string }> => {
   let newCacheKey = cacheKey;
   if (CacheManager.config.getCustomCacheKey) {
     newCacheKey = CacheManager.config.getCustomCacheKey(cacheKey);

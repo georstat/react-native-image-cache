@@ -1,19 +1,24 @@
-import { Platform } from "react-native";
+import { Platform } from 'react-native';
 
-export function isRemoteImage(url){
-  // Check if the URL starts with 'http://' or 'https://' and not a number (using Require method)
-  if(!url) return false
+export function isRemoteImage(url: any) {
+  /* Check if the URL starts with 'http://' or 'https://' and not a number (using require method) */
+  if (!url) {
+    return false;
+  }
 
-  if (!isImageWithRequire(url) && (url.startsWith('http://') || url.startsWith('https://'))) {
-    return true; // Remote image
+  if (
+    !isImageWithRequire(url) &&
+    (url.startsWith('http://') || url.startsWith('https://'))
+  ) {
+    return true; // remote image
   }
   return false;
 }
 
 export function isAndroid() {
-  return Platform.OS == "android";
+  return Platform.OS === 'android';
 }
 
-export function isImageWithRequire(url) {
+export function isImageWithRequire(url: any) {
   return typeof url === 'number';
 }
