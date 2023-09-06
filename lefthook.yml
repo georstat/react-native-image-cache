@@ -15,7 +15,7 @@ pre-commit:
       run: tsc --noEmit
     4_example:
       root: "example/"
-      run: yarn lint && yarn prettier && tsc --noEmit
+      run: yarn prettier && yarn lint && tsc --noEmit
 
 commit-msg:
   parallel: true
