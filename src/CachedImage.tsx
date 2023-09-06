@@ -8,10 +8,10 @@ import React, {
 } from 'react';
 import {
   ImageLoadEventData,
+  ImageSourcePropType,
   NativeSyntheticEvent,
   StyleSheet,
   View,
-  ImageSourcePropType
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -21,7 +21,7 @@ import Animated, {
 
 import CacheManager from './CacheManager';
 import { ImageProps, IProps } from './types';
-import { isAndroid, isRemoteImage, isImageWithRequire } from "./helpers";
+import { isAndroid, isImageWithRequire, isRemoteImage } from './helpers';
 
 const AnimatedImage = Animated.Image;
 const AnimatedView = Animated.View;
@@ -65,28 +65,26 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const currentSource = useRef<string>(propsSource);
 
   const animatedImage = useSharedValue(0);
-
   const animatedThumbnailImage = useSharedValue(0);
-
   const animatedLoadingImage = useSharedValue(1);
 
-  const imageSourceStyle = useAnimatedStyle(() => {
+  const imageSourceAnimatedStyle = useAnimatedStyle(() => {
     return { opacity: animatedImage.value };
   });
 
-  const thumbnailSourceStyle = useAnimatedStyle(() => {
+  const thumbnailSourceAnimatedStyle = useAnimatedStyle(() => {
     return { opacity: animatedThumbnailImage.value };
   });
 
-  const animatedLoadingImageStyle = useAnimatedStyle(() => {
+  const loadingImageAnimatedStyle = useAnimatedStyle(() => {
     return { opacity: animatedLoadingImage.value };
   });
 
   useEffect(() => {
-    if(isRemoteImage(propsSource)) {
+    if (isRemoteImage(propsSource)) {
       load(props as ImageProps).catch();
-    }else{
-      setUri(propsSource)
+    } else {
+      setUri(propsSource);
     }
 
     if (propsSource !== currentSource.current) {
@@ -149,8 +147,8 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   };
 
   const onImageError = (): void => {
-    if(props.onError){
-      props.onError()
+    if (props.onError) {
+      props.onError();
     }
     setError(true);
   };
@@ -170,16 +168,17 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   };
 
   const {
-    accessibilityRole,
-    accessibilityRoleThumbnail,
-    accessibilityRoleLoadingSource,
     accessibilityHint,
     accessibilityHintLoadingImage,
     accessibilityHintThumbnail,
     accessibilityLabel,
     accessibilityLabelLoadingImage,
     accessibilityLabelThumbnail,
+    accessibilityRole,
+    accessibilityRoleLoadingSource,
+    accessibilityRoleThumbnail,
     blurRadius,
+    imageStyle,
     loadingImageComponent: LoadingImageComponent,
     loadingImageStyle = props.style,
     loadingSource,
@@ -187,7 +186,6 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
     style,
     testID,
     thumbnailSource,
-    imageStyle,
     ...rest
   } = props;
 
@@ -204,8 +202,9 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       };
     }
 
-    // If reached here it means it's not http image or local path eg:"/data/user/0/com.reactnativeimagecacheexample/.."
-    // so its local image with Require method
+    /* If reached here it means it's not http image or local path eg:"/data/user/0/com.reactnativeimagecacheexample/.."
+     * so its local image with Require method
+     */
     return uri as ImageSourcePropType;
   }, [uri, error, propsSource]);
 
@@ -214,7 +213,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       {!isImageReady &&
         (LoadingImageComponent ? (
           <AnimatedView
-            style={[styles.loadingImageStyle, animatedLoadingImageStyle]}
+            style={[styles.loadingImageStyle, loadingImageAnimatedStyle]}
           >
             <LoadingImageComponent />
           </AnimatedView>
@@ -227,7 +226,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
                 accessibilityRole={accessibilityRoleLoadingSource || 'image'}
                 accessible
                 resizeMode={resizeMode || 'contain'}
-                style={[animatedLoadingImageStyle, loadingImageStyle]}
+                style={[loadingImageAnimatedStyle, loadingImageStyle]}
                 source={loadingSource}
               />
             )}
@@ -243,7 +242,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           onLoad={onThumbnailLoad}
           resizeMode={resizeMode || 'contain'}
           source={{ uri: thumbnailSource, ...propsOptions }}
-          style={[style, thumbnailSourceStyle]}
+          style={[style, thumbnailSourceAnimatedStyle]}
         />
       )}
       {imageSource && (
@@ -262,7 +261,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           // @ts-ignore
           source={imageSource}
           // @ts-ignore
-          style={[styles.imageStyle, imageSourceStyle, imageStyle]}
+          style={[styles.imageStyle, imageSourceAnimatedStyle, imageStyle]}
         />
       )}
     </View>
