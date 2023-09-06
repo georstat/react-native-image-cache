@@ -21,6 +21,12 @@ async function retry(
         throw new Error(request.status);
       case 401:
         throw new Error(request.status);
+      case 408:
+        throw new Error(request.status);
+      case 500:
+        throw new Error(request.status);
+      case 503:
+        throw new Error(request.status);
       default:
         return request;
     }
@@ -28,7 +34,13 @@ async function retry(
     /* abort early if the image is not found or
      * the access is not authorized
      */
-    if (error.message === '404' || error.message === '401') {
+    if (
+      error.message === '404' ||
+      error.message === '401' ||
+      error.message === '500' ||
+      error.message === '503' ||
+      error.message === '408'
+    ) {
       throw new Error(error);
     }
     /* FileSystem.fetch throws error if device is offline/temp internet loss with message "Host unreachable" or "Unable to resolve host"
