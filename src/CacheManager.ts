@@ -1,57 +1,21 @@
-// @ts-ignore
 import SHA1 from 'crypto-js/sha1';
+import { v4 as uniqueId } from 'uuid';
 import { FileStat, FileSystem } from 'react-native-file-access';
 
 import { Config, DownloadOptions } from './types';
 import defaultConfiguration from './defaultConfiguration';
+import FastImage from 'react-native-fast-image';
 
-async function retry(
-  fn: () => any,
-  retriesLeft = CacheManager.config.maxRetries || 0,
-  interval = CacheManager.config.retryDelay
-): Promise<any> {
-  try {
-    /* for some reason FileSystem.fetch won't throw error if image is not found
-     * we need to catch the errors locally
-     */
-    const request = await fn();
+// Blow away FastImage cache so that updated assets are loaded.
+// (We could blow away FastImage at any time since we use FileSystem for the actual caching)
+// TODO: figure out how to prevent FastImage from caching at all.
+FastImage.clearDiskCache();
+FastImage.clearMemoryCache();
 
-    switch (request.status) {
-      case 404:
-        throw new Error(request.status);
-      case 401:
-        throw new Error(request.status);
-      case 408:
-        throw new Error(request.status);
-      case 500:
-        throw new Error(request.status);
-      case 503:
-        throw new Error(request.status);
-      default:
-        return request;
-    }
-  } catch (error: any) {
-    /* abort early if the image is not found or
-     * the access is not authorized
-     */
-    if (
-      error.message === '404' ||
-      error.message === '401' ||
-      error.message === '500' ||
-      error.message === '503' ||
-      error.message === '408'
-    ) {
-      throw new Error(error);
-    }
-    /* FileSystem.fetch throws error if device is offline/temp internet loss with message "Host unreachable" or "Unable to resolve host"
-     * so keep trying
-     */
-    if (retriesLeft === 0) {
-      throw new Error(`Maximum retries exceeded: ${error.message}`);
-    }
-    await new Promise(resolve => setTimeout(resolve, interval));
-    return retry(fn, retriesLeft - 1, interval);
-  }
+interface CacheEntryItem {
+  exists: boolean;
+  path: string;
+  tmpPath: string;
 }
 
 export class CacheEntry {
@@ -60,8 +24,6 @@ export class CacheEntry {
   options: DownloadOptions | undefined;
 
   downloadPromise: Promise<string | undefined> | undefined;
-
-  pathResolved = false;
 
   noCache: boolean | undefined = false;
 
@@ -81,63 +43,75 @@ export class CacheEntry {
 
   async getPath(): Promise<string | undefined> {
     const { source, maxAge, noCache } = this;
-    const { exists, path } = await getCacheEntry(source, maxAge);
+    const { exists, path, tmpPath } = await getCacheEntry(source, maxAge);
 
     if (exists && !noCache) {
+      try {
+        const { lastModified } = await FileSystem.stat(path);
+        const ageInSeconds = (Date.now() - lastModified) / 1000;
+        const ageInHours = ageInSeconds / (60 * 60);
+        // Download fresh images every day
+        if (ageInHours > CacheManager.config.refreshIntervalHours) {
+          // Skip fresh download if one is already in flight
+          if (!this.downloadPromise) {
+            this.downloadPromise = this.download(path, tmpPath);
+          }
+        }
+      } catch (err) {
+        // error logging
+      }
+
       return path;
     }
 
     if (!this.downloadPromise) {
-      this.pathResolved = false;
-      this.downloadPromise = this.download(path);
+      this.downloadPromise = this.download(path, tmpPath);
     }
 
-    if (this.downloadPromise && this.pathResolved) {
-      this.pathResolved = false;
-      this.downloadPromise = this.download(path);
+    try {
+      await this.downloadPromise;
+    } catch (err) {
+      // noop if file now exists
+      const exists = await FileSystem.exists(path);
+      if (!exists) throw err;
     }
-    return this.downloadPromise;
+
+    return path;
   }
 
-  private async download(path: string): Promise<string | undefined> {
+  private async download(path: string, tmpPath: string): Promise<string> {
     const { source, options, noCache } = this;
-    /* if noCache is true then return the source uri without caching it */
-    if (noCache) {
-      return source;
-    }
-
-    if (source != null) {
-      try {
-        const result = await retry(() =>
-          FileSystem.fetch(source, {
-            path,
-            ...options,
-          })
-        );
-        /* If the image download failed, we don't cache anything */
-        if (result && result.status !== 200) {
-          this.downloadPromise = undefined;
-          return undefined;
-        }
-      } catch (e) {
-        if (__DEV__) {
-          console.log(
-            `FileSystem.fetch has some trouble, error: ${
-              e instanceof Error ? e.message : 'unknown'
-            }`
-          );
-        }
-        this.downloadPromise = undefined;
-        return undefined;
+    try {
+      // if noCache is true then return the source uri without caching it
+      if (noCache) {
+        return source;
       }
 
+      const result = await FileSystem.fetch(source, {
+        path: tmpPath,
+        ...options,
+      });
+      // If the image download failed, we don't cache anything
+      if (result && result.status !== 200) {
+        throw new Error(
+          `Image download failed with status: ${result.status}, ${source}`
+        );
+      }
+
+      // This mv may throw if we download many copies of the same image.
+      // (eg. feed downloads may copies of a pfp chip)
+      await FileSystem.mv(tmpPath, path);
       if (CacheManager.config.cacheLimit) {
         await CacheManager.pruneCache();
       }
-      this.pathResolved = true;
       return path;
+    } catch (err) {
+      // disabled for now, nothing actionable
+      // appException('CacheManager: download', err, { source, path })
+      throw err;
+    } finally {
+      this.downloadPromise = undefined;
     }
-    return source;
   }
 }
 
@@ -162,11 +136,7 @@ export default class CacheManager {
     noCache?: boolean,
     maxAge?: number
   ): CacheEntry {
-    if (
-      !CacheManager.entries[source] ||
-      CacheManager.entries[source].options?.headers?.Authorization !==
-        options?.headers?.Authorization
-    ) {
+    if (!CacheManager.entries[source]) {
       CacheManager.entries[source] = new CacheEntry(
         source,
         options,
@@ -179,22 +149,20 @@ export default class CacheManager {
   }
 
   static async clearCache(): Promise<void> {
-    if (await FileSystem.exists(CacheManager.config.baseDir)) {
-      const files = await FileSystem.ls(CacheManager.config.baseDir);
-      for (const file of files) {
-        try {
-          await FileSystem.unlink(`${CacheManager.config.baseDir}${file}`);
-        } catch (e) {
-          if (__DEV__) {
-            console.log(`error while clearing images cache, error: ${e}`);
-          }
-        }
+    const files = await FileSystem.ls(CacheManager.config.baseDir);
+    for (const file of files) {
+      try {
+        await FileSystem.unlink(`${CacheManager.config.baseDir}${file}`);
+      } catch (e) {
+        console.log(`error while clearing images cache, error: ${e}`);
       }
     }
   }
 
   static async removeCacheEntry(entry: string): Promise<void> {
     try {
+      FastImage.clearDiskCache();
+      FastImage.clearMemoryCache();
       const file = await getCacheEntry(entry);
       const { path } = file;
       await FileSystem.unlink(path);
@@ -225,26 +193,14 @@ export default class CacheManager {
     if (typeof source === 'string') {
       CacheManager.get(source, options).getPath();
     } else {
-      source.forEach(image => {
+      source.map(image => {
         CacheManager.get(image, options).getPath();
       });
     }
   }
 
-  static async prefetchBlob(
-    source: string,
-    options?: DownloadOptions
-  ): Promise<string | undefined> {
-    const path = await CacheManager.get(source, options).getPath();
-    if (path) {
-      const blob = await FileSystem.readFile(path, 'base64');
-      return blob;
-    }
-    return undefined;
-  }
-
   static async pruneCache() {
-    /* If cache directory does not exist yet there's no need for pruning. */
+    // If cache directory does not exist yet there's no need for pruning.
     if (!(await CacheManager.getCacheSize())) {
       return;
     }
@@ -267,11 +223,7 @@ export default class CacheManager {
         if (file) {
           if (await FileSystem.exists(file.path)) {
             overflowSize = overflowSize - file.size;
-            await FileSystem.unlink(file.path).catch(e => {
-              if (__DEV__) {
-                console.log(e);
-              }
-            });
+            await FileSystem.unlink(file.path).catch(e => console.log(e));
           }
         }
       }
@@ -282,7 +234,7 @@ export default class CacheManager {
 const getCacheEntry = async (
   cacheKey: string,
   maxAge?: number | undefined
-): Promise<{ exists: boolean; path: string }> => {
+): Promise<CacheEntryItem> => {
   let newCacheKey = cacheKey;
   if (CacheManager.config.getCustomCacheKey) {
     newCacheKey = CacheManager.config.getCustomCacheKey(cacheKey);
@@ -293,26 +245,29 @@ const getCacheEntry = async (
   );
   const ext =
     filename.indexOf('.') === -1
-      ? '.jpg'
+      ? '.webp'
       : filename.substring(filename.lastIndexOf('.'));
   const sha = SHA1(newCacheKey);
   const path = `${CacheManager.config.baseDir}${sha}${ext}`;
+  const tmpPath = `${CacheManager.config.baseDir}${sha}-${uniqueId()}${ext}`;
+  let exists = false;
 
-  // TODO: maybe we don't have to do this every time
   try {
-    await FileSystem.mkdir(CacheManager.config.baseDir);
-  } catch (e) {
-    /* do nothing */
-  }
-  const exists = await FileSystem.exists(path);
-
-  if (maxAge && exists) {
-    const { lastModified } = await FileSystem.stat(path);
-    const ageInHours = Math.floor(Date.now() - lastModified) / 1000 / 3600;
-    if (maxAge < ageInHours) {
-      await FileSystem.unlink(path);
-      return { exists: false, path };
+    const cacheDirExists = await FileSystem.exists(CacheManager.config.baseDir);
+    if (!cacheDirExists) {
+      await FileSystem.mkdir(CacheManager.config.baseDir);
     }
+    exists = await FileSystem.exists(path);
+    if (maxAge && exists) {
+      const { lastModified } = await FileSystem.stat(path);
+      const ageInHours = Math.floor(Date.now() - lastModified) / 1000 / 3600;
+      if (maxAge < ageInHours) {
+        await FileSystem.unlink(path);
+        return { exists: false, path, tmpPath };
+      }
+    }
+  } catch (err) {
+    // disabled for now, nothing actionable
   }
-  return { exists, path };
+  return { exists, path, tmpPath };
 };

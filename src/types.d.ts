@@ -1,13 +1,5 @@
-import {
-  AccessibilityRole,
-  ImageLoadEventData,
-  ImageResizeMode,
-  ImageSourcePropType,
-  ImageStyle,
-  ImageURISource,
-  NativeSyntheticEvent,
-  StyleProp,
-} from 'react-native';
+import { AccessibilityRole, ImageURISource, StyleProp } from 'react-native';
+import * as FastImage from 'react-native-fast-image';
 import React from 'react';
 
 export interface DownloadOptions {
@@ -31,7 +23,7 @@ export interface ImageProps {
   onError: (error: { nativeEvent: { error: Error } }) => void;
   options?: DownloadOptions;
   source: string;
-  style?: StyleProp<ImageStyle>;
+  style?: StyleProp<FastImage.ImageStyle>;
   thumbnailSource?: string;
 }
 
@@ -47,24 +39,23 @@ export interface IProps {
   accessibilityRoleThumbnail?: AccessibilityRole;
   blurRadius?: number;
   cacheKey?: string;
-  imageStyle?: StyleProp<ImageStyle>;
   loadingImageComponent?: React.ComponentType;
-  loadingImageStyle?: StyleProp<ImageStyle>;
-  loadingSource?: ImageSourcePropType;
+  loadingImageStyle?: StyleProp<FastImage.ImageStyle>;
+  loadingSource?: FastImage.Source;
   maxAge?: number;
   noCache?: boolean;
-  onError?: (error: { nativeEvent: { error: Error } }) => void;
-  onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
+  onCacheError?: (error: { nativeEvent: { error: Error } }) => void;
+  onImageComponentError?: (error: { nativeEvent: { error: Error } }) => void;
+  onLoad?: (event: FastImage.OnLoadEvent) => void;
   onLoadEnd?: () => void;
   options?: DownloadOptions;
-  resizeMode?: ImageResizeMode;
+  resizeMode?: FastImage.ResizeMode;
   source: string;
   sourceAnimationDuration?: number;
-  style?: StyleProp<ImageStyle>;
+  style?: StyleProp<FastImage.ImageStyle>;
   testID?: string;
   thumbnailAnimationDuration?: number;
   thumbnailSource?: string;
-  tintColor?: string;
 }
 
 export interface Config {
@@ -72,8 +63,7 @@ export interface Config {
   blurRadius: number;
   cacheLimit: number;
   getCustomCacheKey?: (source: string) => string;
-  maxRetries?: number;
-  retryDelay?: number;
   sourceAnimationDuration: number;
   thumbnailAnimationDuration: number;
+  refreshIntervalHours: number;
 }
