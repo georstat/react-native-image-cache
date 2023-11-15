@@ -71,7 +71,7 @@ export interface Config {
   baseDir: string;
   blurRadius: number;
   cacheLimit: number;
-  getCustomCacheKey?: (source: string) => string;
+  getCustomCacheKey?: (source: string) =>Promise<string>;
   maxRetries?: number;
   retryDelay?: number;
   sourceAnimationDuration: number;

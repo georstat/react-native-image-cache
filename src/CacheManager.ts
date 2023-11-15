@@ -285,7 +285,7 @@ const getCacheEntry = async (
 ): Promise<{ exists: boolean; path: string }> => {
   let newCacheKey = cacheKey;
   if (CacheManager.config.getCustomCacheKey) {
-    newCacheKey = CacheManager.config.getCustomCacheKey(cacheKey);
+    newCacheKey = await CacheManager.config.getCustomCacheKey(cacheKey);
   }
   const filename = cacheKey.substring(
     cacheKey.lastIndexOf('/'),
