@@ -1,5 +1,5 @@
 {
-  "name": "@georstat/react-native-image-cache",
+  "name": "@ogbodo/react-native-image-cache",
   "version": "3.1.0",
   "access": "public",
   "description": "React Native image file system caching for iOS and Android",
@@ -19,13 +19,13 @@
     "cache",
     "file system image cache"
   ],
-  "repository": "https://github.com/georstat/react-native-image-cache",
+  "repository": "https://github.com/ogbodo/react-native-image-cache",
   "author": "Efstathios Ntonas - George Bakogiannis - George Kallinikos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/georstat/react-native-image-cache/issues"
+    "url": "https://github.com/ogbodo/react-native-image-cache/issues"
   },
-  "homepage": "https://github.com/georstat/react-native-image-cache",
+  "homepage": "https://github.com/ogbodo/react-native-image-cache",
   "scripts": {
     "tsc": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -35,9 +35,6 @@
     "example": "yarn --cwd example",
     "prettier": "prettier \"**/*.{ts,tsx,js}\" --write",
     "bootstrap": "yarn install && yarn example"
-  },
-  "dependencies": {
-    "crypto-js": "^4.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",

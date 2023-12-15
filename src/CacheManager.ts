@@ -1,5 +1,5 @@
 // @ts-ignore
-import SHA1 from 'crypto-js/sha1';
+import SHA1 from './sha';
 import { FileStat, FileSystem } from 'react-native-file-access';
 
 import { Config, DownloadOptions } from './types';

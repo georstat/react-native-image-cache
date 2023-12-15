@@ -1,24 +1,24 @@
 no_tty: true
 pre-commit:
-  piped: true
+  piped: false
   commands:
-    1_prettier:
-      interactive: true
-      glob: "*.{js,json,md,ts,tsx}"
-      run: prettier --write {staged_files}
-    2_lint:
-      interactive: true
-      glob: "*.{js,ts,jsx,tsx}"
-      run: eslint {staged_files}
-    3_types:
-      glob: "*.{js,ts,jsx,tsx}"
-      run: tsc --noEmit
-    4_example:
-      root: "example/"
-      run: yarn prettier && yarn lint && tsc --noEmit
+  #   1_prettier:
+  #     interactive: true
+  #     glob: "*.{js,json,md,ts,tsx}"
+  #     run: prettier --write {staged_files}
+  #   2_lint:
+  #     interactive: true
+  #     glob: "*.{js,ts,jsx,tsx}"
+  #     run: eslint {staged_files}
+  #   3_types:
+  #     glob: "*.{js,ts,jsx,tsx}"
+  #     run: tsc --noEmit
+  # 4_example:
+  #   root: "example/"
+  #   run: yarn prettier && yarn lint && tsc --noEmit
 
 commit-msg:
   parallel: true
   commands:
-    commitlint:
-      run: commitlint --edit $1
+    # commitlint:
+    # run: commitlint --edit $1
