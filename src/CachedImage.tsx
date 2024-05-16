@@ -26,10 +26,6 @@ import { isAndroid, isImageWithRequire, isRemoteImage } from './helpers';
 const AnimatedImage = Animated.Image;
 const AnimatedView = Animated.View;
 
-const defaultProps = {
-  onError: () => {},
-};
-
 function useIsComponentMounted() {
   const isMounted = useRef(false);
   // @ts-ignore
@@ -58,7 +54,7 @@ function useStateIfMounted<S>(
   return [state, newSetState];
 }
 
-const CachedImage = (props: IProps & typeof defaultProps) => {
+const CachedImage = ({onError = () => {}, ...props}: IProps) => {
   const [error, setError] = useStateIfMounted<boolean>(false);
   const [uri, setUri] = useStateIfMounted<string | undefined>(undefined);
   const { source: propsSource, options: propsOptions } = props;
@@ -290,7 +286,5 @@ const styles = StyleSheet.create({
     top: 0,
   },
 });
-
-CachedImage.defaultProps = defaultProps;
 
 export default CachedImage;
