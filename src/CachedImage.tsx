@@ -62,7 +62,6 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
   const [error, setError] = useStateIfMounted<boolean>(false);
   const [uri, setUri] = useStateIfMounted<string | undefined>(undefined);
   const { source: propsSource, options: propsOptions } = props;
-  const currentSource = useRef<string>(propsSource);
 
   const animatedImage = useSharedValue(0);
   const animatedThumbnailImage = useSharedValue(0);
@@ -85,11 +84,6 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       load(props as ImageProps).catch();
     } else {
       setUri(propsSource);
-    }
-
-    if (propsSource !== currentSource.current) {
-      currentSource.current = propsSource;
-      resetAnimations();
     }
     /* eslint-disable react-hooks/exhaustive-deps */
   }, [propsSource, propsOptions]);
@@ -151,6 +145,10 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
       props.onError();
     }
     setError(true);
+  };
+
+  const onImageLoadStart = () => {
+    resetAnimations();
   };
 
   const onImageLoad = (e: NativeSyntheticEvent<ImageLoadEventData>): void => {
@@ -252,6 +250,7 @@ const CachedImage = (props: IProps & typeof defaultProps) => {
           accessibilityLabel={accessibilityLabel}
           accessibilityRole={accessibilityRole || 'image'}
           accessible
+          onLoadStart={onImageLoadStart}
           onError={onImageError}
           onLoad={onImageLoad}
           onLoadEnd={props.onLoadEnd}
