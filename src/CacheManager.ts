@@ -5,50 +5,24 @@ import { FileStat, FileSystem } from 'react-native-file-access';
 import { Config, DownloadOptions } from './types';
 import defaultConfiguration from './defaultConfiguration';
 
-async function retry(
-  fn: () => any,
+async function retry<T>(
+  fn: () => Promise<T>,
   retriesLeft = CacheManager.config.maxRetries || 0,
   interval = CacheManager.config.retryDelay
-): Promise<any> {
+): Promise<T> {
   try {
-    /* for some reason FileSystem.fetch won't throw error if image is not found
-     * we need to catch the errors locally
-     */
     const request = await fn();
 
-    switch (request.status) {
-      case 404:
-        throw new Error(request.status);
-      case 401:
-        throw new Error(request.status);
-      case 408:
-        throw new Error(request.status);
-      case 500:
-        throw new Error(request.status);
-      case 503:
-        throw new Error(request.status);
-      default:
-        return request;
-    }
-  } catch (error: any) {
-    /* abort early if the image is not found or
-     * the access is not authorized
-     */
-    if (
-      error.message === '404' ||
-      error.message === '401' ||
-      error.message === '500' ||
-      error.message === '503' ||
-      error.message === '408'
-    ) {
-      throw new Error(error);
-    }
-    /* FileSystem.fetch throws error if device is offline/temp internet loss with message "Host unreachable" or "Unable to resolve host"
-     * so keep trying
-     */
+    return request;
+  } catch (error: unknown) {
     if (retriesLeft === 0) {
-      throw new Error(`Maximum retries exceeded: ${error.message}`);
+      let errorMessage = 'Maximum retries exceeded';
+      if (error instanceof Error) {
+        errorMessage += `: ${error.message}`;
+      }
+      throw new Error(errorMessage);
     }
+
     await new Promise(resolve => setTimeout(resolve, interval));
     return retry(fn, retriesLeft - 1, interval);
   }
@@ -114,9 +88,14 @@ export class CacheEntry {
             ...options,
           })
         );
-        /* If the image download failed, we don't cache anything */
-        if (result && result.status !== 200) {
+
+        if (result && !result.ok) {
           this.downloadPromise = undefined;
+          // react-native-file-access saves a file even if the request fails
+          if (await FileSystem.exists(path)) {
+            await FileSystem.unlink(path);
+          }
+
           return undefined;
         }
       } catch (e) {
